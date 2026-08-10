@@ -1,7 +1,11 @@
 {
   "name": "queryeditor-docs",
   "compatibility_date": "2026-02-24",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public",
+    "unsafe_eval"
+  ],
   "assets": {
     "directory": "./dist"
   },
