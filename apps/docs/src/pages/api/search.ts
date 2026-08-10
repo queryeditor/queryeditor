@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro'
 import { searchContent } from 'slugtree'
 
-export const GET: APIRoute = async (request) => {
-  const query = new URL(request.url).searchParams.get('query')
+export const prerender = false
 
-  console.log(query)
+export const GET: APIRoute = async ({ url }) => {
+  const query = url.searchParams.get('query')
 
   if (!query) return Response.json([])
 
