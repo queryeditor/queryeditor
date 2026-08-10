@@ -5,6 +5,8 @@ import Nav from '@/components/nav.astro'
 import seo from '@/const/seo'
 import Footer from '@/sections/footer.astro'
 import { ClientRouter } from 'astro:transitions'
+import darkHeroImage from '@queryeditor/shared/images/hero.dark.png'
+import lightHeroImage from '@queryeditor/shared/images/hero.light.png'
 
 type Props = {
   title?: string
@@ -43,6 +45,27 @@ const jsonLd = {
 <html lang="en">
   <head>
     <ClientRouter />
+    <link
+      rel="preload"
+      href="/fonts/google-sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={lightHeroImage.src}
+      as="image"
+      fetchpriority="high"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="preload"
+      href={darkHeroImage.src}
+      as="image"
+      fetchpriority="high"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
