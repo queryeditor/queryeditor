@@ -1,0 +1,121 @@
+---
+import { getTree } from 'slugtree'
+import Item from './item.astro'
+import Search from './search'
+const tree = getTree()
+---
+
+<aside
+  class="hidden md:flex flex-col min-w-70 max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto"
+  class="hidden lg:flex flex-col min-w-70 max-w-70 sticky top-14 px-10 h-[calc(100svh-3.5rem)] overflow-y-auto"
+>
+  <Search client:load transition:persist />
+
+  <div class="flex flex-col tree__content px-3 grow overflow-y-auto text-sm">
+    {
+      tree.map((node) => {
+        return <Item node={node} />
+      })
+    }
+  </div>
+
+  <footer class="p-4">
+    <p>
+      © {new Date().getFullYear()} QueryEditor Docs
+    </p>
+    <p class="text-xs text-foreground/60 pt-1">
+      Built with <a
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://slugtree.daustinn.com">Slugtree</a
+      > & <a
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://astro.build">Astro</a
+      >
+    </p>
+  </footer>
+</aside>
+
+<script>
+  import gsap from 'gsap'
+  import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+  import { $$, $ } from '@queryeditor/shared/lib/dom'
+
+  gsap.registerPlugin(ScrollToPlugin)
+
+  function init() {
+    const $tocItems = $$('.toc__item')
+    const $headings = $$('.prose__heading')
+
+    let activeId = ''
+
+    const handleScroll = () => {
+      const threshold = 122
+      let closestHeading = null
+      const isAtBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 10
+
+      if (isAtBottom && $headings.length > 0) {
+        closestHeading = $headings[$headings.length - 1]
+      } else {
+        for (let i = $headings.length - 1; i >= 0; i--) {
+          const $heading = $headings[i]
+          const rect = $heading.getBoundingClientRect()
+          if (rect.top <= threshold) {
+            closestHeading = $heading
+            break
+          }
+        }
+      }
+
+      if (!closestHeading && $headings.length > 0) {
+        closestHeading = $headings[0]
+      }
+
+      if (closestHeading) {
+        const $icon = $('.prose__heading__icon', closestHeading)
+        const id = $icon?.dataset['slugId']
+        if (id && id !== activeId) {
+          activeId = id
+          $tocItems.forEach(($item) => {
+            if ($item.dataset['slugId'] === activeId) {
+              $item.dataset['highlighted'] = 'true'
+            } else {
+              delete $item.dataset['highlighted']
+            }
+          })
+        }
+      }
+    }
+
+    $tocItems.forEach(($item) => {
+      $item.addEventListener('click', () => {
+        const slugId = $item.dataset['slugId']
+        if (!slugId) return
+        activeId = slugId
+        $tocItems.forEach(($i) => {
+          if ($i.dataset['slugId'] === activeId) {
+            $i.dataset['highlighted'] = 'true'
+          } else {
+            delete $i.dataset['highlighted']
+          }
+        })
+      })
+    })
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        requestAnimationFrame(handleScroll)
+      },
+      { passive: true }
+    )
+
+    handleScroll()
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>

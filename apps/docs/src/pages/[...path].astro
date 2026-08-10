@@ -5,7 +5,7 @@ import NotFound from '@/pages/404.astro'
 import { getNode, getSlugs } from 'slugtree'
 import Header from '@/components/header.astro'
 import Footer from '@/components/footer.astro'
-import Sidebar from '@/components/sidebar/index.astro'
+import SecondarySidebar from '@/components/secondary-sidebar/index.astro'
 import MDXRenderer from '@/components/mdx-renderer.astro'
 
 export async function getStaticPaths() {
@@ -35,7 +35,7 @@ const node = getNode(slug)
         </div>
         <Footer slug={slug} />
       </section>
-      <Sidebar node={node} />
+      <SecondarySidebar node={node} />
     </Layout>
   ) : (
     <NotFound />

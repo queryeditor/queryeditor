@@ -2,7 +2,7 @@
 import '@/styles/global.css'
 import '@queryeditor/shared/theme.css'
 import Nav from '@/components/nav/index.astro'
-import Sidebar from '@/components/sidebar/index.astro'
+import PrimarySidebar from '@/components/primary-sidebar/index.astro'
 import path from '@/lib/path'
 import seo from '@/const/seo'
 import { ClientRouter } from 'astro:transitions'
@@ -23,8 +23,12 @@ const {
   sidebar = true
 } = Astro.props
 
-const pageTitle = title === seo.title ? `${seo.name} — ${title}` : `${title} — ${seo.name}`
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || seo.url).toString()
+const pageTitle =
+  title === seo.title ? `${seo.name} — ${title}` : `${title} — ${seo.name}`
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || seo.url
+).toString()
 const ogImageURL = new URL(image, Astro.site || seo.url).toString()
 
 const jsonLd = {
@@ -66,7 +70,10 @@ const jsonLd = {
     <meta name="description" content={description} />
     <meta name="keywords" content={seo.keywords.join(', ')} />
     <meta name="author" content={seo.author} />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, nofollow' : 'index, follow'}
+    />
     <meta name="theme-color" content="#09090b" />
 
     <meta property="og:type" content="article" />
@@ -88,7 +95,7 @@ const jsonLd = {
   <body class="flex flex-col">
     <Nav />
     <main class="flex grow container">
-      {sidebar && <Sidebar />}
+      {sidebar && <PrimarySidebar />}
       <div class="grow flex">
         <slot />
       </div>
