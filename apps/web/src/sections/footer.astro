@@ -66,14 +66,14 @@ const items = {
 
 <footer class="min-h-svh root__footer flex flex-col bg-black text-white">
   <div class="grow flex flex-col justify-center">
-    <h4
+    <p
       class="text-6xl tracking-tighter font-semibold font-google-sans max-w-3xl mx-auto text-center"
     >
       Download and start <span
         class="bg-linear-to-l bg-clip-text text-transparent from-yellow-400 via-violet-400 to-blue-400"
         >querying</span
       > in under a minute.
-    </h4>
+    </p>
     <button
       class="flex font-google-sans text-base font-medium mx-auto download-button w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-4 bg-white text-black rounded-full px-10 py-4 mt-7 text-nowrap"
     >
@@ -98,7 +98,7 @@ const items = {
     {
       Object.entries(items).map(([key, value]) => (
         <div>
-          <h3 class="pb-3 opacity-50">{key}</h3>
+          <h3 class="pb-3 opacity-50 px-2">{key}</h3>
           <ul>
             {value.map((item) => (
               <li>
@@ -109,7 +109,7 @@ const items = {
                       ? 'noopener noreferrer'
                       : undefined
                   }
-                  class="py-0.5 inline-block hover:underline"
+                  class="py-1.5 px-2 inline-block hover:underline"
                   href={item.href}
                 >
                   {item.name}
