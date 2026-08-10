@@ -14,8 +14,8 @@ const BASE = process.env.BASE_URL || import.meta.env.BASE_URL || '/'
 
 export default defineConfig({
   site: PAGE,
-  output: 'server',
-  adapter: cloudflare(),
+  output: 'static',
+  // adapter: cloudflare(),
   integrations: [
     slugtree({
       basePath: BASE
