@@ -5,36 +5,25 @@ import tailwindcss from '@tailwindcss/vite'
 import slugtree from 'slugtree/astro'
 import preact from '@astrojs/preact'
 
+const PAGE =
+  process.env.DOCS_PAGE_URL ||
+  import.meta.env.DOCS_PAGE_URL ||
+  'https://docs.queryeditor.com'
+
+const BASE = process.env.BASE_URL || import.meta.env.BASE_URL || '/'
+
 export default defineConfig({
-  site:
-    process.env.DOCS_PAGE_URL ||
-    import.meta.env.DOCS_PAGE_URL ||
-    'https://docs.queryeditor.dev',
-  output: 'static',
-  adapter: cloudflare(),
+  site: PAGE,
+  output: 'server',
+  // adapter: cloudflare(),
   integrations: [
     slugtree({
-      basePath: import.meta.env.BASE_URL || '/'
+      basePath: BASE
     }),
     preact()
   ],
   vite: {
     envDir: '../../',
-    plugins: [
-      tailwindcss(),
-      {
-        name: 'ssr-gray-matter-stub',
-        enforce: 'pre',
-        resolveId(id, _importer, opts) {
-          if (opts?.ssr && id === 'gray-matter') return '\0gray-matter-stub'
-        },
-        load(id) {
-          if (id === '\0gray-matter-stub') {
-            return `const matter = () => ({ data: {}, content: '' });
-export default matter;`
-          }
-        }
-      }
-    ]
+    plugins: [tailwindcss()]
   }
 })

@@ -5,8 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 import mdx from '@astrojs/mdx'
 
 const PAGE =
-  process.env.DOCS_PAGE_URL ||
-  import.meta.env.DOCS_PAGE_URL ||
+  process.env.HOME_PAGE_URL ||
+  import.meta.env.HOME_PAGE_URL ||
   'https://queryeditor.com'
 
 export default defineConfig({
