@@ -1,0 +1,59 @@
+﻿---
+title: Settings
+description: Configure QueryEditor to match your workflow. Customize appearance, themes, editor behavior, hardware acceleration, and AI assistant integrations seamlessly.
+---
+
+## Tuning Your Workspace
+
+The **Settings** window (accessible via the gear icon) is the command center to customize QueryEditor's global behavior. It is neatly organized into four key sections.
+
+<Image
+  src={props.images.setting.light}
+  darksrc={props.images.setting.dark}
+  alt="QueryEditor Settings window with General, AI, Editor, and Shortcuts sections"
+  caption="Access the Settings window via the gear icon to configure appearance, AI providers, editor behavior, and shortcuts."
+/>
+
+## General Preferences
+
+Tweak the aesthetics and base behavior of the application:
+
+- **Visual Appearance**: Force Light mode, Dark mode, or let your System decide.
+- **Code Theme**: Change the Monaco editor highlight colors. You can stick to the Default theme or explore alternatives like Ayu or VSCode.
+- **Default Workspace**: The root path on your computer where `.sql` files will be saved if a connection lacks a specific folder assignment.
+- **Hardware (GPU) Acceleration**: Boost visual performance. If you experience graphical glitches, you can toggle this off (requires app restart).
+
+## Artificial Intelligence
+
+Your hub for enabling the smart assistant. Here you configure providers (OpenAI, Anthropic, Google, Groq), input your API Keys, and select your favorite default model. For a complete guide, check out the [AI Settings](/ai/setting) section.
+<Image
+  src={props.images.ai.setting.light}
+  darksrc={props.images.ai.setting.dark}
+  alt="QueryEditor AI Settings panel showing provider selection and API key input fields"
+  caption="Select your preferred AI provider and enter your API key to enable intelligent SQL assistance."
+/>
+## Editor Behavior
+
+Tailor the Monaco editor to your coding style:
+
+- **Line Numbers**: Hide or show the numbering gutter.
+- **Minimap**: Useful for extremely long scripts, it displays a bird's-eye view of your code on the right side.
+- **Word Wrap**: Prevent horizontal scrolling by wrapping long lines automatically into the viewport.
+
+<Image
+  src={props.images.editorSetting.light}
+  darksrc={props.images.editorSetting.dark}
+  alt="QueryEditor Editor Settings panel with toggles for line numbers, minimap, and word wrap"
+  caption="Fine-tune the Monaco editor by toggling line numbers, the minimap, and word wrap to match your coding style."
+/>
+
+## Keyboard Shortcuts
+
+An interactive list of all global hotkeys. You can personalize your workflow by clicking on any shortcut and pressing your new favorite key combination.
+
+<Image
+  src={props.images.shortcuts.light}
+  darksrc={props.images.shortcuts.dark}
+  alt="QueryEditor Keyboard Shortcuts settings panel listing all customizable hotkeys"
+  caption="View and remap every global shortcut directly from the Settings window."
+/>

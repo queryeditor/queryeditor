@@ -1,0 +1,13 @@
+{
+  "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "title": "The Interface",
+  "nodes": [
+    "quick-look",
+    "toolbar",
+    "primary-sidebar",
+    "secondary-sidebar",
+    "bottom-panel",
+    "queryeditor",
+    "status-bar"
+  ]
+}

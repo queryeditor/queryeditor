@@ -1,0 +1,157 @@
+---
+import ImgCard from '@/components/img-card.astro'
+import { cn } from '@queryeditor/shared/lib/cn.ts'
+import background01 from '@queryeditor/shared/images/background-01.avif'
+import background02 from '@queryeditor/shared/images/background-02.avif'
+import background03 from '@queryeditor/shared/images/background-03.avif'
+import background04 from '@queryeditor/shared/images/background-04.avif'
+
+import background from '@queryeditor/shared/images/background.avif'
+
+import ArrowBack from '@queryeditor/shared/icons/arrow-back.svg'
+
+import type { ImageMetadata } from 'astro'
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'div'> & {
+  title: string
+  description?: string
+  darkImage?: ImageMetadata
+  lightImage?: ImageMetadata
+  position?: 'left' | 'right'
+  titleClass?: string
+  descriptionClass?: string
+  index?: number
+  imageWidth?: number
+  card?: HTMLAttributes<'div'>
+  features?: string[]
+  link?: {
+    label: string
+    href: string
+  }
+}
+
+const hasSlot = Astro.slots.has('default')
+
+const {
+  position = 'left',
+  description,
+  darkImage,
+  lightImage,
+  title,
+  descriptionClass,
+  titleClass,
+  index = 1,
+  imageWidth,
+  card,
+  features,
+  link,
+  ...props
+} = Astro.props
+
+const backgrounds = [background01, background02, background03, background04]
+const backgroundImage = backgrounds[index % backgrounds.length] ?? background
+---
+
+<div
+  class={cn(
+    'dark:bg-stone-900/90 bg-stone-200/40 shadow-sm p-4 rounded-md overflow-hidden',
+    'flex',
+    props.class,
+    position === 'right' ? 'flex-row-reverse *:text-right' : ''
+  )}
+  {...props}
+>
+  <div
+    class="w-full relative rounded-md bg-center overflow-hidden bg-cover bg-no-repeat flex justify-center"
+    style={`background-image: url(${backgroundImage.src});`}
+  >
+    {
+      hasSlot ? (
+        <slot />
+      ) : (
+        darkImage &&
+        lightImage && (
+          <div
+            class={cn('absolute pointer-events-none', card?.class)}
+            {...card}
+          >
+            <ImgCard>
+              <picture>
+                <source
+                  srcset={darkImage.src}
+                  media="(prefers-color-scheme: dark)"
+                />
+                <img
+                  src={lightImage.src}
+                  width={imageWidth}
+                  alt={title}
+                  loading="lazy"
+                />
+              </picture>
+            </ImgCard>
+          </div>
+        )
+      )
+    }
+  </div>
+  <div class="relative w-150 flex text-lg flex-col justify-center p-10">
+    <h3
+      class={cn('text-2xl relative', titleClass, {
+        'ml-auto text-right': position === 'right'
+      })}
+    >
+      {title}
+    </h3>
+    {
+      description && (
+        <p
+          class={cn('opacity-80 pt-3 text-pretty', descriptionClass, {
+            'ml-auto text-right': position === 'right'
+          })}
+        >
+          {description}
+        </p>
+      )
+    }
+    {
+      features && features.length > 0 && (
+        <ul
+          class={cn('pt-3 space-y-1.5', {
+            'ml-auto': position === 'right'
+          })}
+        >
+          {features.map((feat) => (
+            <li
+              class={cn('flex items-start gap-2 opacity-80 text-pretty', {
+                'flex-row-reverse': position === 'right'
+              })}
+            >
+              <span class="mt-0.5 shrink-0 w-1.5 h-1.5 rounded-full bg-accent block translate-y-1.5" />
+              <span>{feat}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    {
+      link && (
+        <div class="pt-2">
+          <a
+            href={link.href}
+            target={link.href.startsWith('https') ? '_blank' : undefined}
+            rel={
+              link.href.startsWith('https') ? 'noopener noreferrer' : undefined
+            }
+            class={cn('text-accent hover:underline', {
+              'ml-auto': position === 'right'
+            })}
+          >
+            {link.label}
+            <ArrowBack class="inline-flex ml-1 rotate-180" width={20} />
+          </a>
+        </div>
+      )
+    }
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "name": "web",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "wrangler dev",
+    "start": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "14.2.0",
+    "@astrojs/mdx": "7",
+    "@astrojs/react": "4.4.2",
+    "@queryeditor/shared": "workspace:*",
+    "@radix-ui/react-accordion": "1.2.12",
+    "astro": "7.2.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "wrangler": "4.68.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1"
+  }
+}

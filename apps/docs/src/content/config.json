@@ -1,0 +1,25 @@
+{
+  "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "title": "QueryEditor Docs",
+  "nodes": [
+    "index",
+    "getting-started",
+    "--- Concepts ---",
+    "workspace",
+    "connections",
+    "--- Features ---",
+    "the-interface",
+    "editor",
+    "data-grid",
+    "--- AI Assistant ---",
+    "ai",
+    "--- Application ---",
+    "manager",
+    "setting",
+    "about",
+    "--- Meta ---",
+    "updater",
+    "shortcuts",
+    "changelog"
+  ]
+}

@@ -1,0 +1,48 @@
+﻿---
+title: Cloudflare D1
+description: Integrate Cloudflare D1 with QueryEditor. Execute serverless edge queries via the Cloudflare REST API without needing local drivers or complex configurations.
+---
+
+## Connecting to Cloudflare D1
+
+**Cloudflare D1** is a serverless, SQLite-compatible database that runs at the edge. QueryEditor connects to D1 directly via the official Cloudflare REST API — no local database installation required.
+
+## Required Fields
+
+| Field | Description |
+|---|---|
+| Account ID | Your Cloudflare account identifier (found in the Cloudflare Dashboard under Workers & Pages). |
+| Database ID | The UUID of the D1 database (found in Storage > D1). |
+| API Token | A Cloudflare API token with the `D1:Edit` permission. |
+
+<Image
+  src={props.images.d1.light}
+  darksrc={props.images.d1.dark}
+  alt="Cloudflare D1 connection form in QueryEditor showing Account ID, Database ID, and API Token fields"
+  caption="Enter your Cloudflare Account ID, Database ID, and a D1-scoped API token to connect."
+/>
+
+Your API token is stored safely using native OS-level encryption and is never exposed in plain text.
+
+## Connection Testing
+
+Clicking **Test Connection** sends a lightweight SQL check to the API. If the response comes back without errors, the connection is confirmed.
+
+<Image
+  src={props.images.d1.message}
+  alt="Cloudflare D1 connection test success message in QueryEditor"
+  caption="A successful test confirms your Cloudflare API credentials and D1 database access."
+/>
+
+## Running Queries
+
+Queries are sent as authenticated HTTPS requests. The Cloudflare API returns one result object per statement, so multi-statement batches are fully supported. Duration is measured on the client side. If you cancel, the in-flight request is dropped immediately.
+
+## Auto-Completions (IntelliSense)
+
+QueryEditor fetches your D1 schema at startup to build Monaco editor completions — table names and their column definitions — so you get intelligent suggestions as you write SQL.
+
+## Known Limitations
+
+- There is no persistent connection to manage for D1; each query is a standalone HTTPS request.
+- D1 does not support Unix socket connections — all communication goes through the Cloudflare API.

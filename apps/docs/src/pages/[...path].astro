@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/root.astro'
+import NotFound from '@/pages/404.astro'
+
+import { getNode, getSlugs } from 'slugtree'
+import Header from './header.astro'
+import Footer from './footer.astro'
+import Sidebar from './sidebar/index.astro'
+import MDXRenderer from '@/components/mdx-renderer.astro'
+
+export async function getStaticPaths() {
+  return getSlugs().map((slug) => ({
+    params: {
+      path: Array.isArray(slug) ? slug.join('/') : slug
+    },
+    props: {
+      slug
+    }
+  }))
+}
+
+export const prerender = true
+
+const { slug } = Astro.props
+const node = getNode(slug)
+---
+
+{
+  node ? (
+    <Layout title={node.title} description={node.description}>
+      <section class="flex max-w-2xl px-5 mx-auto w-full flex-col">
+        <Header node={node} />
+        <div class="prose__content grow pt-5">
+          <MDXRenderer node={node} />
+        </div>
+        <Footer slug={slug} />
+      </section>
+      <Sidebar node={node} />
+    </Layout>
+  ) : (
+    <NotFound />
+  )
+}

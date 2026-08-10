@@ -1,0 +1,23 @@
+﻿---
+title: Workspace
+description: Explore the QueryEditor Workspace. Master the resizable IDE layout, stateful tabs, Monaco editor, and real-time file synchronization for your SQL scripts.
+---
+
+## Where Ideas Take Shape
+
+The **Workspace** is the main window where you interact with a database connection. It provides a complete IDE-like experience featuring a sidebar, stateful tabs, a Monaco editor, and a high-performance data grid.
+
+## Anatomy of the Layout
+
+The workspace is divided into several resizable panels. The layout state — the exact width and height you set for each panel — is saved persistently per connection and per tab. Your workspace will look exactly how you left it next time you open it.
+
+1. **Title Bar**: Contains global actions (Run, New Query, Connect), the current file name, and the connection mode toggle.
+2. **Primary Sidebar (Left)**: Manages your physical `.sql` files and folders. Can be toggled with `Cmd+B` / `Ctrl+B`.
+3. **Main Area**: Holds the Editor (top) and Data Grid (bottom).
+4. **Secondary Sidebar (Right)**: Shows the JSON/Fields viewer for selected grid rows.
+
+## Local File Mapping
+
+Every connection is backed by a directory on your local filesystem where your `.sql` files are saved. By default, QueryEditor uses the global workspace directory set in your preferences, but you can assign a unique directory to each specific connection.
+
+When you open a workspace, QueryEditor automatically syncs any external file changes — like pulling from Git — so the sidebar always reflects the current state of your folder.

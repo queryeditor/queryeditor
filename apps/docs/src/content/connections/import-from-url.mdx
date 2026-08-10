@@ -1,0 +1,50 @@
+﻿---
+title: Import from URL
+description: Quickly set up database connections in QueryEditor by importing standard URL connection strings for MySQL and SQLite, bypassing manual form entry.
+---
+
+## Fast Connection Setup
+
+You can bypass the manual form and create a new connection simply by pasting a standard database connection URL. QueryEditor will automatically parse the string to extract the hostname, port, username, password, and database name, instantly pre-filling the engine form for you.
+
+## Supported Formats
+
+### MySQL
+
+```
+mysql://username:password@hostname:port/database
+```
+
+- Port is optional (defaults to `3306`).
+- Your password must be URL-encoded if it contains special characters (e.g. `@`, `#`).
+
+### SQLite
+
+```
+sqlite://path/to/database.sqlite
+```
+
+- The host portion is completely ignored. The path segment is extracted directly as the absolute database file path.
+
+## How to Import
+
+1. Open the Connections Manager.
+2. Click the **+** button and select **Import from URL**.
+3. Paste your URL into the text area.
+4. Click **Import**.
+5. The corresponding engine form will pop open, fully pre-filled with the parsed data. Review it and click **Save**.
+
+
+<Image
+  src={props.images.importFromURL.trigger.light}
+  darksrc={props.images.importFromURL.trigger.dark}
+  alt="Import from URL option in the QueryEditor Connections Manager add menu"
+  caption="Open the Connections Manager, click +, and select Import from URL to get started."
+/>
+
+<Image
+  src={props.images.importFromURL.light}
+  darksrc={props.images.importFromURL.dark}
+  alt="QueryEditor Import from URL dialog with a connection string input field"
+  caption="Paste your MySQL or SQLite connection URL and QueryEditor will automatically pre-fill the connection form."
+/>

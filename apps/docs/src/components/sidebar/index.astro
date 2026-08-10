@@ -1,0 +1,37 @@
+---
+import { getTree } from 'slugtree'
+import Item from './item.astro'
+import Search from './search'
+const tree = getTree()
+---
+
+<aside
+  class="hidden md:flex flex-col min-w-70 max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto"
+>
+  <Search client:load transition:persist />
+  <div class="flex flex-col tree__content px-3 grow overflow-y-auto text-sm">
+    {
+      tree.map((node) => {
+        return <Item node={node} />
+      })
+    }
+  </div>
+  <footer class="p-4">
+    <p>
+      © {new Date().getFullYear()} QueryEditor Docs
+    </p>
+    <p class="text-xs text-foreground/60 pt-1">
+      Built with <a
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://slugtree.daustinn.com">Slugtree</a
+      > & <a
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://astro.build">Astro</a
+      >
+    </p>
+  </footer>
+</aside>

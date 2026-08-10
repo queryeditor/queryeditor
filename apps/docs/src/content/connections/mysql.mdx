@@ -1,0 +1,69 @@
+﻿---
+title: MySQL
+description: Connect QueryEditor to your MySQL databases. Learn about SSL configurations, multiple statement execution, socket connections, and IntelliSense schema completion.
+---
+
+## Connecting to MySQL
+
+The MySQL connector supports standard TCP/IP connections as well as Unix socket connections. A persistent session is maintained for the duration of your workspace, ensuring fast query execution without reconnect overhead.
+
+## Required Fields
+
+| Field | Required | Default |
+|---|---|---|
+| Hostname / IP | Yes (in Host mode) | — |
+| Port | No | 3306 |
+| Username | No | — |
+| Password | No | — |
+| Database | No | — |
+
+## Connection Type (Protocol)
+
+MySQL supports two connection modes, selectable via radio buttons at the top of the form:
+
+- **Host / IP** — Standard TCP connection using a hostname and port.
+- **Socket** — Connects through a Unix socket file (e.g. `/tmp/mysql.sock`). When socket mode is selected, the Socket Path field entirely replaces the hostname/port inputs.
+
+<Image
+  src={props.images.mysql.light}
+  darksrc={props.images.mysql.dark}
+  alt="MySQL connection form in QueryEditor with host, port, username, and SSL options"
+  caption="Fill in your MySQL host, port, and credentials. Switch to Socket mode for Unix socket connections."
+/>
+
+## Securing with SSL
+
+When the **Use SSL** toggle is activated, three optional file-path fields are revealed:
+
+| Field | Description |
+|---|---|
+| SSL Key file | Absolute path to the client private key (`.pem` or `.key`). |
+| SSL Certificate file | Absolute path to the client certificate. |
+| SSL CA file | Absolute path to the Certificate Authority bundle. |
+| Reject Unauthorized | When enabled, the server certificate is strictly validated against the CA. |
+
+## Connection Testing
+
+Click **Test Connection** before saving. QueryEditor opens a temporary connection, runs `SELECT VERSION()`, and immediately closes it. The system will attempt a couple of retries before surfacing a failure message.
+
+<Image
+  src={props.images.mysql.message}
+  alt="MySQL connection test success notification in QueryEditor"
+  caption="A passing test means QueryEditor successfully reached your MySQL server and ran a quick version check."
+/>
+
+## Running Queries
+
+QueryEditor sends the full SQL to the database, supporting multiple statements in a single execution. Duration is reported in seconds. If you cancel the query using the Stop button, execution is terminated immediately.
+
+Non-SELECT statements (INSERT, UPDATE, DELETE, DDL) return an info card showing affected rows, insert IDs, and server status rather than a data table.
+
+## Auto-Completions (IntelliSense)
+
+When a workspace opens, QueryEditor silently fetches schema metadata to build a map of all schemas, tables, and columns. This data powers the Monaco editor's IntelliSense for precise table and column suggestions as you type.
+
+## Session Management
+
+- **Disconnect** — Terminates the active session and clears it from memory.
+- **Reconnect** — Creates a fresh session and verifies connectivity.
+- All sessions are automatically cleaned up when the application closes.

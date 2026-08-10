@@ -1,0 +1,33 @@
+﻿---
+title: Data Grid
+description: Analyze your query results with the QueryEditor Data Grid. Navigate multiple result sets and receive instant execution feedback for data modification statements.
+---
+
+## Visualizing Results
+
+The **Data Grid** is located in the bottom panel of the workspace and acts as the canvas for your SQL execution results. It handles everything from rendering massive tabular datasets to displaying execution feedback for non-SELECT statements.
+
+<Image
+  src={props.images.datagrid.light}
+  darksrc={props.images.datagrid.dark}
+  alt="QueryEditor Data Grid displaying SQL query results in a tabular view"
+  caption="The Data Grid renders your SQL results in a high-performance virtualized table at the bottom of the workspace."
+/>
+
+## Multi-Result Navigation
+
+When you execute a query containing multiple statements (e.g. `SELECT * FROM users; SELECT * FROM orders;`), the Data Grid will create horizontal navigation buttons at the top of the panel: **Result 1**, **Result 2**, etc.
+
+This allows you to quickly paginate and switch between the various result sets returned by your batch query without re-running them.
+
+## Execution Feedback Cards
+
+If your query is an `INSERT`, `UPDATE`, `DELETE`, `DROP` or `ALTER` statement, there is no tabular data to display. Instead of an empty table, the Data Grid will render an informational card detailing the outcome.
+
+For example, an `INSERT` statement might display:
+`5 row(s) inserted with last ID: 42`
+
+A `DELETE` statement might display:
+`10 row(s) deleted`
+
+This feedback is parsed intelligently from the database engine's raw response headers and status codes.

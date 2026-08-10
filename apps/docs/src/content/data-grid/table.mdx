@@ -1,0 +1,37 @@
+﻿---
+title: Table
+description: Experience high-performance data rendering with QueryEditor's virtualized table. Utilize client-side local filtering and native OS context menus for fast data analysis.
+---
+
+## The Core Component
+
+The core of the Data Grid is a high-performance virtualized table built to handle thousands of rows smoothly without locking up the UI thread.
+
+<Image
+  src={props.images.table.light}
+  darksrc={props.images.table.dark}
+  alt="QueryEditor virtualized data table rendering SQL query results with column headers"
+  caption="The virtualized table handles thousands of rows smoothly without blocking the UI thread."
+/>
+
+## Local Filtering
+
+At the top of the Data Grid panel (inside the Status Bar) is a local filter input. Typing in this input will instantly filter the visible rows based on a text match against any column in the result set. 
+
+*Note: This filter runs entirely on the client-side against the already-fetched data in memory; it does not issue a new `WHERE` query to the database.*
+
+## Context Menu Shortcuts
+
+Right-clicking on any cell in the table reveals a native context menu with several shortcuts:
+
+- **Copy**: Copies the entire row as a stringified JSON object.
+- **Copy cell value**: Copies strictly the value of the specific cell you clicked on.
+- **Open in JSON Viewer**: Forces the right sidebar to open (if collapsed) and displays the selected rows.
+- **Export**: Export the selected rows to CSV, JSON, or Text.
+
+<Image
+  src={props.images.table.contextMenu.light}
+  darksrc={props.images.table.contextMenu.dark}
+  alt="Native OS context menu on a Data Grid cell in QueryEditor with copy and export options"
+  caption="Right-click any cell to copy row data as JSON, copy the cell value, open in JSON Viewer, or export results."
+/>

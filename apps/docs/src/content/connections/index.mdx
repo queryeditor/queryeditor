@@ -1,0 +1,48 @@
+﻿---
+title: Connections
+description: Discover how QueryEditor securely stores and manages your database connections with encrypted local storage, connection modes, and dedicated workspace directories.
+---
+
+## The Heart of QueryEditor
+
+A **connection** is a saved configuration profile that tells QueryEditor exactly how to reach and authenticate with a database. Every connection possesses a type (the engine), a set of credentials, an optional display name, a color label, an optional group ID, and a designated workspace directory.
+
+<Image
+  src={props.images.connectionManager.light}
+  darksrc={props.images.connectionManager.dark}
+  alt="QueryEditor Connections Manager listing saved database connections"
+  caption="The Connections Manager is your gateway to all your saved database configurations."
+/>
+
+## How Connections are Stored
+
+Connections are stored locally and securely on your device. Sensitive fields such as passwords and API tokens are not stored in plain text — they are encrypted using native OS-level encryption provided by Electron, as long as encryption is supported on your host platform.
+
+## The Connection Schema
+
+Under the hood, a connection object contains the following key properties:
+
+| Property | Description |
+|---|---|
+| `name` | Optional display name. Falls back to the hostname, database path, or account ID if left blank. |
+| `color` | Optional hex color utilized as a visual accent in the title bar. |
+| `type` | The Engine key: `mysql`, `sqlite`, or `d1`. |
+| `mode` | The active Security Mode controlling write permissions. |
+| `workspaceDir` | The absolute path to the directory used as the file workspace for this connection. |
+| `layout` | Saved panel size ratios specific to the workspace window. |
+
+## Creating a New Connection
+
+1. Open the **Connections Manager** from the toolbar (the plug icon) or press the **Connect** button in the title bar.
+2. Click the **+** button.
+3. Choose an engine from the native dropdown: **MySQL**, **SQLite**, **Cloudflare D1**, **Group** or **Import from URL**.
+4. Fill in the required fields for the chosen engine.
+5. Click **Test Connection** to verify connectivity before saving.
+6. Click **Save** to persist the connection.
+
+<Image
+  src={props.images.sqlite.light}
+  darksrc={props.images.sqlite.dark}
+  alt="SQLite connection setup form in QueryEditor with file path picker"
+  caption="Select your SQLite file path and click Test Connection to verify before saving."
+/>

@@ -1,0 +1,155 @@
+:root {
+  --background: #f5f5f5;
+  --foreground: #000000;
+  --border: #d8d8d8;
+  --accent: #0454bd;
+  --selection-foreground: #000000;
+  --selection-background: #7bb4ff;
+  --nav-header: 60px;
+  --font-google-sans: 'Google Sans';
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #13130f;
+    --foreground: #fcfaf7;
+    --border: #272620;
+    --accent: #238aff;
+    --selection-foreground: #000000;
+    --selection-background: #c3d100;
+  }
+}
+
+* {
+  border-color: var(--border);
+
+  &::selection {
+    background-color: color-mix(
+      in srgb,
+      var(--selection-background) 80%,
+      transparent
+    );
+    color: var(--selection-foreground);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+}
+
+button {
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.markdown-main {
+  font-family: var(--font-google-sans);
+  font-size: 1rem;
+  line-height: 1.375;
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin: 1rem 0 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  p em {
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  p strong {
+    font-weight: 600;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-bottom: 1rem;
+    margin-left: 1.25rem;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin-bottom: 1rem;
+    margin-left: 1.25rem;
+  }
+
+  li::marker {
+    color: color-mix(in srgb, var(--foreground) 50%, transparent);
+  }
+
+  a {
+    position: relative;
+  }
+
+  a:hover {
+    opacity: 0.7;
+  }
+
+  a::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    height: 1px;
+    bottom: 0;
+    background-color: var(--foreground);
+  }
+
+  code {
+    background-color: color-mix(in srgb, var(--foreground) 10%, transparent);
+    color: var(--foreground);
+    border-radius: 4px;
+    padding: 0.125rem;
+    font-size: 0.875rem;
+    font-family:
+      var(--font-mono, ui-monospace), ui-monospace, SFMono-Regular, monospace;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+  }
+
+  th {
+    opacity: 0.6;
+    font-weight: 500;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+}

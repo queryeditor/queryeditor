@@ -1,0 +1,17 @@
+---
+import RootLayout from '@/layouts/root.astro'
+import { Content } from './content.mdx'
+---
+
+<RootLayout
+  title="About QueryEditor"
+  description="Learn about QueryEditor, a free closed-source SQL client for Windows. Local-first, privacy-focused, with AI assistance and support for multiple databases."
+>
+  <main
+    class="flex container lg:flex-row flex-col pt-5 lg:pt-36 justify-between"
+  >
+    <section class="markdown-main pb-40 lg:max-w-162.5 mx-auto w-full">
+      <Content />
+    </section>
+  </main>
+</RootLayout>

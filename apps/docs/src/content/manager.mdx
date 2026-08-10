@@ -1,0 +1,40 @@
+﻿---
+title: Connections Manager
+description: Explore the Connections Manager in QueryEditor. Learn how to organize your databases into groups, use native context menus, and securely manage your credentials.
+---
+
+## The Command Center for Your Databases
+
+The **Connections Manager** is your gateway. It opens by default when starting the application, or you can access it at any time by clicking the plug icon in the toolbar.
+
+<Image
+  src={props.images.connectionManager.light}
+  darksrc={props.images.connectionManager.dark}
+  alt="QueryEditor Connections Manager showing a list of saved database connections with quick-access actions"
+  caption="Open the Connections Manager from the toolbar plug icon to browse, search, and manage all your database connections."
+/>
+
+## Exploring and Organizing
+
+- **Clean and Clear List**: All your databases are presented in an easily navigable list.
+- **Instant Search**: Use the bottom search bar to immediately filter by name, host, or database.
+- **Fluid Drag & Drop**: Drag connections to reorder them to your liking, or drop them inside a Group.
+
+
+## Native Context Menu (Right Click)
+
+Unlike traditional web applications, QueryEditor implements native operating system context menus for a 100% desktop feel. Right-clicking on any connection reveals:
+
+- **Connect**: Opens the connection in your active window.
+- **Open in New Window**: Launches the connection in a completely independent window.
+- **Edit**: Opens the form to update passwords, connection modes, or paths.
+- **Duplicate**: Instantly clones the current connection parameters.
+- **Copy as URL**: Transforms your credentials into a standard URL (e.g. `mysql://user:pass@host/db`) straight to your clipboard.
+- **Delete**: Permanently removes the connection from local storage.
+
+## Primary Actions
+
+In the Manager's title bar you will find:
+- **Help (`?`)**: A direct link to this documentation.
+- **Refresh**: Reloads the list from local storage.
+- **Add (`+`)**: Opens a native menu to create a New Group, add a connection (MySQL, SQLite, D1), or import credentials from a URL.

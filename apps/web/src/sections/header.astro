@@ -1,0 +1,41 @@
+---
+import Download from '@queryeditor/shared/icons/download.svg'
+import ArrowBack from '@queryeditor/shared/icons/arrow-back.svg'
+import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
+---
+
+<header class="text-left container py-16 flex flex-col">
+  <span class="rounded-full border bg-border/20 w-fit px-2 py-px text-xs">
+    Alpha
+  </span>
+  <h1 class="text-5xl font-google-sans font-medium pt-3 leading-13 pl-2">
+    The SQL client that<br />
+    keeps your queries<br />
+    <span
+      class="bg-linear-to-l bg-clip-text text-transparent from-yellow-500 via-violet-500 to-blue-500 dark:from-yellow-400 dark:via-violet-400 dark:to-blue-400"
+      >on your machine.</span
+    >
+  </h1>
+  <p class="pt-4 pl-2 opacity-60 max-w-sm text-sm leading-relaxed">
+    Local-first, file-based workspace. Monaco editor. AI that knows your schema.
+    Free, no account needed.
+  </p>
+  <div class="flex md:flex-row flex-col items-center gap-2 mt-7">
+    <button
+      class="flex w-full text-base download-button md:w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-2 font-google-sans bg-foreground text-background rounded-full px-10 py-3"
+    >
+      Download for Windows
+      <Download width={16} />
+    </button>
+    <a
+      href={DOCS_PAGE_URL}
+      class="flex w-full text-base font-google-sans md:w-fit justify-center transition-transform items-center gap-2 rounded-full px-5 py-3"
+    >
+      Docs
+      <ArrowBack class="rotate-180" width={20} />
+    </a>
+  </div>
+  <p class="text-xs lg:text-left text-center pt-3 px-2 opacity-50">
+    Currently Windows only. Alpha — use at your own risk.
+  </p>
+</header>

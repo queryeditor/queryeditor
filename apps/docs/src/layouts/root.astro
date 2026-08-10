@@ -1,0 +1,236 @@
+---
+import '@/styles/global.css'
+import '@queryeditor/shared/theme.css'
+import Nav from '@/components/nav/index.astro'
+import Sidebar from '@/components/sidebar/index.astro'
+import path from '@/lib/path'
+import seo from '@/const/seo'
+import { ClientRouter } from 'astro:transitions'
+
+type Props = {
+  title?: string
+  description?: string
+  image?: string
+  noindex?: boolean
+  sidebar?: boolean
+}
+
+const {
+  description = seo.description,
+  title = seo.title,
+  image = seo.ogImage,
+  noindex = false,
+  sidebar = true
+} = Astro.props
+
+const pageTitle = title === seo.title ? `${seo.name} — ${title}` : `${title} — ${seo.name}`
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || seo.url).toString()
+const ogImageURL = new URL(image, Astro.site || seo.url).toString()
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: title,
+  description: description,
+  url: canonicalURL,
+  author: {
+    '@type': 'Person',
+    name: seo.author
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: seo.name,
+    url: seo.url
+  }
+}
+---
+
+<!doctype html>
+<html lang="en" class="scroll-pt-30">
+  <head>
+    <ClientRouter />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      href={path('/favicon.svg')}
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link rel="apple-touch-icon" href={path('/apple-touch-icon.png')} />
+    <link rel="manifest" href={path('/site.webmanifest')} />
+    <link rel="sitemap" href={path('/sitemap.xml')} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={seo.keywords.join(', ')} />
+    <meta name="author" content={seo.author} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="theme-color" content="#09090b" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content={seo.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content={seo.locale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={seo.xHandle} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="flex flex-col">
+    <Nav />
+    <main class="flex grow container">
+      {sidebar && <Sidebar />}
+      <div class="grow flex">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
+
+<script>
+  import { $$, $ } from '@queryeditor/shared/lib/dom'
+  import gsap from 'gsap'
+  import { Flip } from 'gsap/Flip'
+
+  gsap.registerPlugin(Flip)
+
+  function init() {
+    const $headings = $$('.prose__heading')
+
+    $headings.forEach(($heading) => {
+      const $icon = $('.prose__heading__icon', $heading)
+
+      if (!$icon) return
+
+      $icon.addEventListener('click', (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+
+        const slugId = $icon.dataset['slugId']
+        const currentFullPath = location.href
+        const url = new URL(currentFullPath)
+
+        url.hash = `#${slugId}`
+
+        window.navigator.clipboard.writeText(url.toString())
+
+        $heading.dataset.copied = 'true'
+
+        setTimeout(() => {
+          delete $heading.dataset.copied
+        }, 2000)
+      })
+    })
+
+    const $figures = $$('.figure__container')
+
+    $figures.forEach(($fig) => {
+      const $image = $<HTMLImageElement>('.figure__image', $fig)
+      const $overlay = $<HTMLSpanElement>('.figure__overlay', $fig)
+
+      if (!$image || !$overlay) return
+
+      let clone: HTMLImageElement | null = null
+
+      const closeImage = () => {
+        if (!clone) return
+
+        const state = Flip.getState(clone)
+        Flip.fit(clone, $image)
+
+        Flip.from(state, {
+          duration: 0.4,
+          ease: 'power3.inOut',
+          onUpdate: function () {
+            if (this.progress() > 0.9 && $image.style.visibility === 'hidden') {
+              $image.style.visibility = ''
+            }
+          },
+          onComplete: () => {
+            $image.style.visibility = ''
+            clone?.remove()
+            clone = null
+          }
+        })
+
+        delete $fig.dataset['open']
+        document.body.style.overflow = ''
+      }
+
+      $image.addEventListener('click', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (clone) return
+
+        clone = new Image()
+        clone.src =
+          $image.currentSrc || $image.src || $image.getAttribute('src') || ''
+        document.body.appendChild(clone)
+
+        Flip.fit(clone, $image)
+        const state = Flip.getState(clone)
+
+        $image.style.visibility = 'hidden'
+
+        clone.removeAttribute('style')
+        clone.className =
+          // border border-border/50
+          'drop-shadow-[0_15px_20px_rgba(0,0,0,0.2)] rounded-xl max-h-svh max-w-svw fixed inset-1 m-auto z-[9999] cursor-zoom-out'
+
+        Flip.from(state, { duration: 0.4, ease: 'power3.inOut' })
+
+        $fig.dataset['open'] = 'true'
+        document.body.style.overflow = 'hidden'
+
+        clone.addEventListener('click', (ev) => {
+          ev.stopPropagation()
+          closeImage()
+        })
+      })
+
+      $overlay.addEventListener('click', (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        if ($fig.dataset['open']) closeImage()
+      })
+    })
+
+    const $tocItems = $$('.toc__item')
+
+    $tocItems.forEach(($item) => {
+      $item.addEventListener('click', () => {
+        const slugId = $item.dataset['slugId']
+
+        if (!slugId) return
+
+        const $heading = document.getElementById(slugId)
+
+        if (!$heading) return
+
+        const $anchor = $<HTMLAnchorElement>('a', $heading)
+
+        if (!$anchor) return
+
+        if ($anchor) delete $anchor.dataset['highlighted']
+
+        $anchor.dataset['highlighted'] = 'true'
+
+        setTimeout(() => {
+          delete $anchor.dataset['highlighted']
+        }, 2000)
+      })
+    })
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>

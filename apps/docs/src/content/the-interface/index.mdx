@@ -1,0 +1,32 @@
+---
+title: The Interface
+description: Get familiar with the QueryEditor user interface. Discover a clean, responsive desktop SQL client designed to minimize context switching and maximize productivity.
+---
+
+## A Window Built for Focus
+
+The QueryEditor interface is designed to be clean, responsive, and highly customizable. It adopts a traditional IDE layout but trims the fat, keeping the focus squarely on database management and query execution.
+
+<Image
+  src={props.images.main.light}
+  darksrc={props.images.main.dark}
+  alt="QueryEditor full workspace interface with Toolbar, Primary Sidebar, Monaco editor, and Data Grid"
+  caption="The QueryEditor workspace adopts a traditional IDE layout designed for focused, efficient database management."
+/>
+
+## Deconstructing the Workspace
+
+The workspace is composed of several main panels, all of which can be resized, collapsed, or expanded depending on your workflow:
+
+- **Title Bar (Toolbar)**: Located at the absolute top. It houses window controls, connection switching, the query runner, and global settings.
+- **Primary Sidebar (Left)**: Your dedicated file explorer. Used to manage `.sql` scripts and navigate your workspace folders.
+- **QueryEditor**: The central hub where you write your SQL, powered by the robust Monaco Editor.
+- **Data Grid (Bottom Panel)**: Located below the editor, it's responsible for rendering query results and execution feedback.
+- **Action Bar (Status Bar)**: Attached to the top of the Data Grid, providing a quick summary of the last execution (status, records, duration).
+- **Secondary Sidebar (Right)**: An optional panel for inspecting complex data (like JSON or wide rows) vertically.
+
+## Fluid Resizing
+
+The workspace uses a fully resizable panel system. You can seamlessly drag the boundaries between the Primary Sidebar, Editor, Data Grid, and Secondary Sidebar to allocate space according to your current task. 
+
+These layout preferences are saved persistently per connection and per tab. Returning to a specific query tomorrow will restore your workspace arrangement exactly as you left it today.

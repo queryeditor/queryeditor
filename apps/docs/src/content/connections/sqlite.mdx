@@ -1,0 +1,51 @@
+﻿---
+title: SQLite
+description: Manage local SQLite databases in QueryEditor. Explore fast synchronous query execution and intelligent schema auto-completions.
+---
+
+## Connecting to SQLite
+
+SQLite databases are self-contained files on your local disk — no server, no network configuration required. Just point QueryEditor to the file and start writing queries.
+
+## Required Fields
+
+| Field | Required | Description |
+|---|---|---|
+| Database file | Yes | Absolute path to the `.sqlite`, `.db` or `.sqlite3` file. |
+
+Use the file picker button in the UI to browse your filesystem and select an existing file, or type a path to a new file which QueryEditor will create automatically.
+
+<Image
+  src={props.images.sqlite.light}
+  darksrc={props.images.sqlite.dark}
+  alt="SQLite connection form in QueryEditor with database file path field"
+  caption="Point QueryEditor to your .sqlite, .db, or .sqlite3 file — or enter a new path to create one automatically."
+/>
+
+## Connection Testing
+
+Click **Test Connection** to open the file, run a quick version check, and close it immediately. If the file does not exist, it will be created transparently and the test will pass.
+
+<Image
+  src={props.images.sqlite.message}
+  alt="SQLite connection test success message in QueryEditor"
+  caption="A successful test opens the SQLite file, runs a version check, and immediately closes it."
+/>
+
+## Running Queries
+
+QueryEditor executes statements sequentially, one by one. Both read and write statements are fully supported. Duration is measured across all statements and reported in seconds. If you have multiple statements, each result set is accessible individually in the Data Grid. Cancellation is honored between statements.
+
+## Auto-Completions (IntelliSense)
+
+When a workspace opens, QueryEditor silently reads your schema to build a completions map of all tables and columns. These appear in the Monaco editor as you type.
+
+## Supported File Extensions
+
+SQLite files are identified by their actual binary content rather than their extension, so any extension will work. Common ones include: `.sqlite`, `.db`, and `.sqlite3`.
+
+## Session Management
+
+- **Disconnect** — Closes the database handle cleanly.
+- **Reconnect** — Opens a new handle and resumes.
+- All handles are automatically closed when the application exits.

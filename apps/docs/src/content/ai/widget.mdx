@@ -1,0 +1,53 @@
+﻿---
+title: Widget
+description: Interact with the QueryEditor AI Widget. Learn how to pin SQL context, generate queries, and apply AI-driven code modifications directly into the Monaco editor.
+---
+
+## The Floating Command Center
+
+The AI Assistant is accessed through a sleek, floating widget that sits elegantly on top of the Monaco editor.
+
+<Image
+  src={props.images.ai.widget.light}
+  darksrc={props.images.ai.widget.dark}
+  alt="QueryEditor AI Widget floating over the Monaco SQL editor"
+  caption="The AI Widget floats above the Monaco editor and can be invoked with Cmd+K or Ctrl+K."
+/>
+
+## Invoking the Widget
+
+You can summon the AI widget in several ways:
+
+1. **Keyboard Shortcut**: Press `Cmd+K` (Mac) or `Ctrl+K` (Windows/Linux) while focused in the editor.
+2. **Context Menu**: Right-click anywhere in the editor and select **Ask AI**.
+3. **Error Handling**: If a query fails in the Data Grid, a prominent **Ask AI** button appears in the error card to immediately diagnose the issue.
+
+## Interaction Mechanics
+
+### The Chat Interface
+
+Type your prompt in the input box and press `Enter`. The AI will respond in the chat area above. If the AI needs to check your database schema, you will see a loading indicator showing what it is fetching (e.g., `Fetching tables...`).
+
+### Pinning Context
+
+If you select a block of code in the editor before pressing `Cmd+K`, the AI widget will pin that selection as context. This is useful for asking the AI to modify a specific part of a large query without it touching the rest.
+
+### Applying Code Changes
+
+When the AI generates SQL modifications, it outputs a **diff block**.
+
+- Click **Accept** to merge the changes into your editor.
+- Click **Reject** to discard them entirely.
+
+The changes are highlighted inside the editor using Monaco's native diff viewer *before* you accept them.
+
+<Image
+  src={props.images.ai.diffs.light}
+  darksrc={props.images.ai.diffs.dark}
+  alt="QueryEditor AI Widget displaying an inline SQL diff before accepting changes"
+  caption="AI-suggested SQL changes appear as an inline diff inside the editor — click Accept or Reject to finalize."
+/>
+
+## Cancelling a Request
+
+Press the **Stop** button or hit `Escape` to abort any in-progress AI request immediately.

@@ -1,0 +1,91 @@
+# Privacy Policy
+
+<div class="pb-6 opacity-70">
+  **Effective Date:**{' '}
+  <time datetime="2026-05-19T00:00:00.000Z">May 19, 2026</time>
+</div>
+
+Welcome to QueryEditor ("App", "we", "us", or "our"). We deeply respect your privacy and are fully committed to protecting it.
+
+This Privacy Policy covers two distinct contexts: **(1) the QueryEditor desktop application** and **(2) this website (queryeditor.com)**.
+
+---
+
+## Desktop Application
+
+### 1. Local-First Architecture
+
+QueryEditor runs entirely on your local machine. All database connections, credentials (passwords, connection URIs, AI API keys), configurations, queries, and workspace files (`.sql` files) are stored exclusively on your device.
+
+The application does not operate any backend server or cloud service that receives, monitors, or intercepts your database schemas, table contents, or behavioral logs. You are the sole administrator of your environment.
+
+**Credentials are encrypted at rest** on your hard drive using platform-level encryption. Securing your operating system and controlling access to your computer remains your responsibility.
+
+### 2. What the App Sends Over the Network
+
+The desktop application makes the following and **only** the following outbound network connections:
+
+| Destination | Purpose | Data sent |
+|---|---|---|
+| **GitHub Releases API** | Automatic update checks (every 30 min) | App version, OS version, IP address (handled by GitHub — see [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)) |
+| **Your configured AI provider** (OpenAI, Anthropic, Google, etc.) | AI assistant responses | Your prompt, editor SQL content, and selected database schema metadata — only when you explicitly trigger the AI |
+| **Your configured database server** | Query execution | Your SQL queries — only to the database you connect to |
+
+We have **zero** access to any of the above transmissions. No telemetry, usage metrics, crash reports, or analytics are collected by QueryEditor or its developer.
+
+### 3. Artificial Intelligence Features
+
+AI features are entirely optional. If you enable them:
+
+- **Bring Your Own Key (BYOK):** You must supply your own API key from a third-party provider (OpenAI, Anthropic, or Google). The key is stored locally and encrypted on your device.
+- **Read-Only Schema Access:** The AI reads your database schema (tables, columns, indexes, triggers, constraints) in read-only mode. It cannot write, alter, or execute queries on its own.
+- **Explicit Per-Session Permission:** Every time the AI needs to access a new schema resource during a conversation, the App shows a native system dialog asking for your explicit approval. You can deny it at any time.
+- **Direct Transmission:** When you submit a prompt, your message and any approved schema context are sent directly from your device to your chosen AI provider. This data never passes through QueryEditor servers.
+- **Review your AI provider's privacy policy** to understand how they handle your data.
+
+### 4. Automatic Updates
+
+QueryEditor uses `electron-updater` to check for and download new versions from our public [GitHub Releases](https://github.com/queryeditor). The app checks for updates every 30 minutes while running.
+
+- GitHub may collect standard connection metadata (IP address, user-agent) as described in their Privacy Statement.
+- We do not have access to this metadata.
+- You can see exactly what is downloaded by inspecting the public GitHub Releases page.
+
+### 5. Connection Modes and Query Safety
+
+QueryEditor includes per-connection safety modes that run entirely locally:
+
+- **Silent:** No restrictions.
+- **Read-Only:** Blocks all write operations at the app level.
+- **Safe:** Allows writes but blocks destructive operations without a WHERE clause (e.g., `DELETE FROM` without `WHERE`).
+- **Confirm:** Shows a confirmation dialog before every query execution.
+- **Production:** Combines Safe and Confirm for maximum protection.
+
+These modes do not transmit any data externally; they are regex-based guards processed locally before any query reaches your database.
+
+---
+
+## Website (queryeditor.com)
+
+This landing page is a static website hosted on a standard web hosting provider. When you visit the site:
+
+- **Standard server logs** may record your IP address, browser user-agent, and the pages you visit. These are standard HTTP access logs managed by our hosting provider, not by us directly.
+- **No analytics, tracking pixels, cookies, or fingerprinting scripts** are used on this site. We do not use Google Analytics, Mixpanel, or any similar service.
+- **No account, registration, or personal data collection** takes place on this website.
+- **Download links** redirect to GitHub Releases. GitHub's privacy policy governs those interactions.
+
+---
+
+## Changes to This Policy
+
+The App is in Alpha and is maintained by a single developer. If data collection practices ever change (for example, if optional cloud features are added), this policy will be updated and active users will be notified.
+
+## Contact Us
+
+- **Legal & Privacy:** legal@queryeditor.com
+- **General Inquiries:** hi@queryeditor.com
+- **GitHub:** [https://github.com/queryeditor](https://github.com/queryeditor)
+- **X (Twitter):** [https://x.com/queryeditor](https://x.com/queryeditor)
+
+QueryEditor is created and maintained by [David Bendezú (Daustinn)](https://daustinn.com).
+**Jurisdiction:** Ayacucho, Peru.

@@ -1,0 +1,67 @@
+---
+import { cn } from '@queryeditor/shared/lib/cn'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'img'> & {
+  darkImage?: string
+  lightImage?: string
+}
+
+const {
+  src = '',
+  alt,
+  class: className,
+  darkImage,
+  lightImage,
+  ...props
+} = Astro.props
+
+let lightURL = ''
+let darkURL = ''
+
+if (src) {
+  const qm = src.indexOf('?')
+  const hash = src.indexOf('#')
+  let suffixIndex = src.length
+  if (qm !== -1 && hash !== -1) suffixIndex = Math.min(qm, hash)
+  else if (qm !== -1) suffixIndex = qm
+  else if (hash !== -1) suffixIndex = hash
+
+  const pathOnly = src.slice(0, suffixIndex)
+  const suffix = src.slice(suffixIndex)
+
+  const lastSlash = pathOnly.lastIndexOf('/')
+  const filenameStart = lastSlash + 1
+  const lastDot = pathOnly.lastIndexOf('.')
+
+  if (lastDot >= filenameStart + 1) {
+    const base = pathOnly.slice(0, lastDot)
+    const ext = pathOnly.slice(lastDot + 1)
+    lightURL = `${base}.light.${ext}${suffix}`
+    darkURL = `${base}.dark.${ext}${suffix}`
+  } else {
+    lightURL = `${pathOnly}.light${suffix}`
+    darkURL = `${pathOnly}.dark${suffix}`
+  }
+} else {
+  lightURL = ''
+  darkURL = ''
+}
+
+const extraProps = {
+  loading: 'lazy',
+  alt: alt || 'Astro image with no alt text',
+  ...props
+} as Props
+---
+
+<img
+  src={lightImage ?? lightURL}
+  class={cn('dark:hidden', className)}
+  {...extraProps}
+/>
+<img
+  src={darkImage ?? darkURL}
+  class={cn('hidden dark:block', className)}
+  {...extraProps}
+/>

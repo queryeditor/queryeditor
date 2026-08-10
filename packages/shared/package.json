@@ -1,0 +1,32 @@
+{
+  "name": "@queryeditor/shared",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./images/*": "./images/*",
+    "./icons/*": "./icons/*",
+    "./lib/*": "./dist/index.js",
+    "./theme.css": "./theme.css"
+  },
+  "files": [
+    "dist",
+    "images",
+    "icons",
+    "theme.css"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "tailwind-merge": "3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.29",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "5.8.3"
+  }
+}

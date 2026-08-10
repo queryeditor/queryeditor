@@ -1,0 +1,134 @@
+---
+import { BUY_ME_A_COFFEE_URL } from '@/const/index'
+import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
+import Download from '@queryeditor/shared/icons/download.svg'
+import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
+
+const items = {
+  Legal: [
+    {
+      name: 'Privacy policy',
+      href: '/legal/privacy-policy'
+    },
+    {
+      name: 'Terms and Conditions',
+      href: '/legal/terms-and-conditions'
+    },
+    {
+      name: 'EULA',
+      href: '/legal/eula'
+    }
+  ],
+  Links: [
+    {
+      name: 'Github',
+      href: 'https://github.com/queryeditor'
+    },
+    {
+      name: 'X',
+      href: 'https://x.com/queryeditor'
+    }
+  ],
+  Navigation: [
+    {
+      name: 'Changelog',
+      href: '/changelog'
+    },
+    {
+      name: 'Docs',
+      href: DOCS_PAGE_URL
+    },
+    {
+      name: 'About',
+      href: '/about'
+    }
+  ],
+  Daustinn: [
+    {
+      name: 'X',
+      href: 'https://x.com/daustinndev'
+    },
+    {
+      name: 'Github',
+      href: 'https://github.com/daustinn'
+    },
+    {
+      name: 'Website',
+      href: 'https://daustinn.com'
+    },
+    {
+      name: 'Buy me a coffee',
+      href: BUY_ME_A_COFFEE_URL
+    }
+  ]
+}
+---
+
+<footer class="min-h-svh root__footer flex flex-col bg-black text-white">
+  <div class="grow flex flex-col justify-center">
+    <h4
+      class="text-6xl tracking-tighter font-semibold font-google-sans max-w-3xl mx-auto text-center"
+    >
+      Download and start <span
+        class="bg-linear-to-l bg-clip-text text-transparent from-yellow-400 via-violet-400 to-blue-400"
+        >querying</span
+      > in under a minute.
+    </h4>
+    <button
+      class="flex font-google-sans text-base font-medium mx-auto download-button w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-4 bg-white text-black rounded-full px-10 py-4 mt-7 text-nowrap"
+    >
+      Download for Windows
+      <Download width={20} />
+    </button>
+  </div>
+  <div class="container py-10 grid grid-cols-5 gap-10">
+    <div class="flex justify-center">
+      <div>
+        <div class="mb-2 mx-auto flex justify-center">
+          <QueryEditor width={40} />
+        </div>
+        <!-- <h4 class="text-5xl text-center">Try now.</h4>
+        <button
+          class="flex download-button w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-2 bg-foreground text-background rounded-full px-6 py-2 mt-7 text-nowrap"
+        >
+          Download for Windows
+        </button> -->
+      </div>
+    </div>
+    {
+      Object.entries(items).map(([key, value]) => (
+        <div>
+          <h3 class="pb-3 opacity-50">{key}</h3>
+          <ul>
+            {value.map((item) => (
+              <li>
+                <a
+                  target={item.href.startsWith('https') ? '_blank' : undefined}
+                  rel={
+                    item.href.startsWith('https')
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
+                  class="py-0.5 inline-block hover:underline"
+                  href={item.href}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  <div class="container text-sm pb-5 text-center opacity-50">
+    © {new Date().getFullYear()} QueryEditor. Developed by <a
+      target="_blank"
+      rel="noopener noreferrer"
+      class="underline"
+      href="https://daustinn.com"
+    >
+      Daustinn
+    </a>.
+  </div>
+</footer>

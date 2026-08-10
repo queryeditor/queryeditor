@@ -1,0 +1,26 @@
+---
+import { DATABASES } from '@/const/index'
+---
+
+<section class="container pt-10">
+  <h3 class="text-center text-lg opacity-70">
+    Connects to MySQL, SQLite, and Cloudflare D1. More on the way.
+  </h3>
+  <div class="py-10 flex gap-3">
+    {
+      Object.entries(DATABASES).map(([key, database]) => (
+        <div
+          data-unavailable={database.available ? undefined : ''}
+          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center dark:bg-stone-900/90 bg-stone-200/40 border border-border/30 dark:border-border rounded-lg w-full data-unavailable:[&>svg]:opacity-50"
+          data-key={key}
+        >
+          <database.icon width={25} />
+          <h4 class="text-sm">{database.name}</h4>
+          {!database.available && (
+            <p class="text-xs pt-1 text-amber-600">Coming soon</p>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</section>

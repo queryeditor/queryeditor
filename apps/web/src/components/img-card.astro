@@ -1,0 +1,17 @@
+---
+import { cn } from '@queryeditor/shared/lib/cn'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'>
+const { class: className, children, ...restProps } = Astro.props
+---
+
+<div
+  {...restProps}
+  class={cn(
+    'dark:shadow-[0_5px_50px_rgba(0,0,0,.7)] shadow-[0_5px_30px_rgba(0,0,0,0.2)] overflow-hidden rounded-xl !border-neutral-400/50 dark:!border-neutral-700/60 border',
+    className
+  )}
+>
+  <slot />
+</div>

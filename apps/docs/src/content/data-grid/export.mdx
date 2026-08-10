@@ -1,0 +1,38 @@
+﻿---
+title: Exporting Data
+description: Export your SQL query results locally from QueryEditor. Save your data grid rows directly to CSV, JSON, or raw text formats instantly without server roundtrips.
+---
+
+## Getting Data Out
+
+You can easily export your query results from the Data Grid into several formats for reporting or external analysis. Exporting operates entirely on the client-side, using the data currently loaded in memory, making it incredibly fast.
+
+## Supported Formats
+
+QueryEditor supports exporting results to:
+
+1. **JSON (`.json`)**: An array of objects, pretty-printed.
+2. **CSV (`.csv`)**: Comma-separated values, automatically escaping fields containing commas or quotes.
+3. **Text (`.txt`)**: A raw, unformatted text representation of the data grid.
+
+## Export Workflows
+
+There are two main ways to export data depending on your needs:
+
+### 1. Exporting the Entire Result Set
+
+1. Locate the **Export** button in the top right corner of the Data Grid.
+2. Click it to open the export dropdown menu.
+3. Select your desired format.
+4. An OS-native file save dialog will prompt you to choose where to save the file on your disk.
+
+### 2. Exporting Selected Rows
+
+1. Select one or more rows in the Data Grid (use `Shift` or `Ctrl/Cmd` to multi-select).
+2. Right-click the selection to open the context menu.
+3. Hover over **Export** in the menu and select your format.
+4. The exported file will strictly contain only the rows you highlighted.
+
+### Copying to Clipboard
+
+Instead of saving to a physical file, you can copy the data directly to your clipboard in any of the supported formats. This is available in both the main Export menu and the right-click context menu.

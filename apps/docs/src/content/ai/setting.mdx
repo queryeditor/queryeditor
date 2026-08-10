@@ -1,0 +1,39 @@
+﻿---
+title: AI Settings
+description: Configure your preferred AI providers in QueryEditor. Connect OpenAI, Anthropic, Google Gemini, or Groq API keys to power your intelligent database assistant.
+---
+
+## Configuring Your Provider
+
+Before using the AI Assistant, you need to configure an API key for your preferred provider. Open the **Settings** window (gear icon) and navigate to the **AI** tab.
+
+<Image
+  src={props.images.ai.setting.light}
+  darksrc={props.images.ai.setting.dark}
+  alt="QueryEditor AI settings panel showing provider selection and API key configuration"
+  caption="Configure your AI provider and API key in Settings > AI to enable the intelligent assistant."
+/>
+
+## Supported Providers
+
+QueryEditor supports the following AI providers natively:
+
+### OpenAI
+- Requires an OpenAI API Key.
+- Recommended models: `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`.
+
+### Anthropic
+- Requires an Anthropic API Key.
+- Recommended models: `claude-3-5-sonnet-20240620`, `claude-3-opus-20240229`, `claude-3-haiku-20240307`.
+
+### Google (Gemini)
+- Requires a Google AI Studio API Key.
+- Recommended models: `gemini-1.5-pro-latest`, `gemini-1.5-flash-latest`.
+
+### Groq
+- Requires a Groq API Key.
+- Recommended models: `llama-3.1-70b-versatile`, `llama-3.1-8b-instant`, `mixtral-8x7b-32768`.
+
+## Default Model Preference
+
+You can set your **Default Model** in the settings. This model will be pre-selected every time you open the AI Widget, but you can always change it on the fly within the widget itself.

@@ -1,0 +1,306 @@
+---
+import { evaluate } from '@mdx-js/mdx'
+import remarkGfm from 'remark-gfm'
+import * as runtime from 'preact/jsx-runtime'
+import { getNodeData, type NodeFolder, type NodePage } from 'slugtree'
+import MDXComponents from './mdx-components'
+import path from '@/lib/path'
+
+import mainLight from '@queryeditor/shared/images/main-light.png'
+import mainDark from '@queryeditor/shared/images/main-dark.png'
+
+import welcomeLight from '@queryeditor/shared/images/docs.welcome.light.png'
+import welcomeDark from '@queryeditor/shared/images/docs.welcome.dark.png'
+
+import welcome2Dark from '@queryeditor/shared/images/docs.welcome2.dark.png'
+import welcome2Light from '@queryeditor/shared/images/docs.welcome2.light.png'
+
+import startLight from '@queryeditor/shared/images/docs.start.light.png'
+import startDark from '@queryeditor/shared/images/docs.start.dark.png'
+
+import emptyworkspaceDark from '@queryeditor/shared/images/docs.emptyworkspace.dark.png'
+import emptyworkspaceLight from '@queryeditor/shared/images/docs.emptyworkspace.light.png'
+
+import filesContextMenuDark from '@queryeditor/shared/images/files-contextmenu-dark.png'
+import filesContextMenuLight from '@queryeditor/shared/images/files-contextmenu-light.png'
+
+import filesDark from '@queryeditor/shared/images/files-dark.png'
+import filesLight from '@queryeditor/shared/images/files-light.png'
+
+import connectionsButtonDark from '@queryeditor/shared/images/docs.connectionsbutton.dark.png'
+import connectionsButtonLight from '@queryeditor/shared/images/docs.connectionsbutton.light.png'
+
+import tabsDark from '@queryeditor/shared/images/tabs-dark.png'
+import tabsLight from '@queryeditor/shared/images/tabs-light.png'
+
+import mysqlDark from '@queryeditor/shared/images/mysql-dark.png'
+import mysqlLight from '@queryeditor/shared/images/mysql-light.png'
+import mysqlMessage from '@queryeditor/shared/images/mysql-message.png'
+
+import sqliteLight from '@queryeditor/shared/images/sqlite-light.png'
+import sqliteDark from '@queryeditor/shared/images/sqlite-dark.png'
+import sqliteMessage from '@queryeditor/shared/images/sqlite-message.png'
+
+import d1Light from '@queryeditor/shared/images/d1-light.png'
+import d1Dark from '@queryeditor/shared/images/d1-dark.png'
+import d1Message from '@queryeditor/shared/images/d1-message.png'
+
+import importFromURLLight from '@queryeditor/shared/images/import-from-url-light.png'
+import importFromURLDark from '@queryeditor/shared/images/import-from-url-dark.png'
+import importFromURLTriggerLight from '@queryeditor/shared/images/import-from-url-trigger-light.png'
+import importFromURLTriggerDark from '@queryeditor/shared/images/import-from-url-trigger-dark.png'
+
+import modesLight from '@queryeditor/shared/images/modes-light.png'
+import modesDark from '@queryeditor/shared/images/modes-dark.png'
+
+import toolbarLight from '@queryeditor/shared/images/toolbar-light.png'
+import toolbarDark from '@queryeditor/shared/images/toolbar-dark.png'
+
+import primarySidebarDark from '@queryeditor/shared/images/primary-sidebar-dark.png'
+import primarySidebarLight from '@queryeditor/shared/images/primary-sidebar-light.png'
+
+import primarySidebarContextMenuDark from '@queryeditor/shared/images/primary-sidebar-contextmenu-dark.png'
+import primarySidebarContextMenuLight from '@queryeditor/shared/images/primary-sidebar-contextmenu-light.png'
+
+import secondarySidebarDark from '@queryeditor/shared/images/secondary-sidebar-dark.png'
+import secondarySidebarLight from '@queryeditor/shared/images/secondary-sidebar-light.png'
+
+import bottomPanelDark from '@queryeditor/shared/images/bottom-dark.png'
+import bottomPanelLight from '@queryeditor/shared/images/bottom-light.png'
+import bottomPanelErrorDark from '@queryeditor/shared/images/bottom-error-dark.png'
+import bottomPanelErrorLight from '@queryeditor/shared/images/bottom-error-light.png'
+
+import monacoDark from '@queryeditor/shared/images/monaco-dark.png'
+import monacoLight from '@queryeditor/shared/images/monaco-light.png'
+import monacoCompletionsDark from '@queryeditor/shared/images/monaco-completions-dark.png'
+import monacoCompletionsLight from '@queryeditor/shared/images/monaco-completions-light.png'
+
+import statusbarDark from '@queryeditor/shared/images/statusbar-dark.png'
+import statusbarLight from '@queryeditor/shared/images/statusbar-light.png'
+
+import generalSettingsLight from '@queryeditor/shared/images/general-settings-light.png'
+import generalSettingsDark from '@queryeditor/shared/images/general-settings-dark.png'
+
+import aboutDark from '@queryeditor/shared/images/about-dark.png'
+import aboutLight from '@queryeditor/shared/images/about-light.png'
+
+import datagridDark from '@queryeditor/shared/images/datagrid-dark.png'
+import datagridLight from '@queryeditor/shared/images/datagrid-light.png'
+
+import tableDark from '@queryeditor/shared/images/table-dark.png'
+import tableLight from '@queryeditor/shared/images/table-light.png'
+
+import tableContextmenuDark from '@queryeditor/shared/images/table-contextmenu-dark.png'
+import tableContextmenuLight from '@queryeditor/shared/images/table-contextmenu-light.png'
+
+import aiwidgetDiffsDark from '@queryeditor/shared/images/aiwidget-diffs-dark.png'
+import aiwidgetDiffsLight from '@queryeditor/shared/images/aiwidget-diffs-light.png'
+
+import aiwidgetDark from '@queryeditor/shared/images/aiwidget-dark.png'
+import aiwidgetLight from '@queryeditor/shared/images/aiwidget-light.png'
+
+import aiSettingDark from '@queryeditor/shared/images/aisetting-dark.png'
+import aiSettingLight from '@queryeditor/shared/images/aisetting-light.png'
+
+import settingDark from '@queryeditor/shared/images/setting-dark.png'
+import settingLight from '@queryeditor/shared/images/setting-light.png'
+
+import shortcutsDark from '@queryeditor/shared/images/shortcuts-dark.png'
+import shortcutsLight from '@queryeditor/shared/images/shortcuts-light.png'
+
+import editorSettingDark from '@queryeditor/shared/images/editor-setting-dark.png'
+import editorSettingLight from '@queryeditor/shared/images/editor-setting-light.png'
+
+import updaterToastDark from '@queryeditor/shared/images/updater-toast-dark.png'
+import updaterToastLight from '@queryeditor/shared/images/updater-toast-light.png'
+
+import connectionManagerDark from '@queryeditor/shared/images/connection-manager-dark.png'
+import connectionManagerLight from '@queryeditor/shared/images/connection-manager-light.png'
+
+import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
+
+export interface Props {
+  node: NodePage | NodeFolder
+}
+
+const { node } = Astro.props
+const data = getNodeData(node.slug)
+let Content = null
+
+if (data) {
+  const result = await evaluate(data.rawContent, {
+    ...runtime,
+    remarkPlugins: [remarkGfm],
+    baseUrl: import.meta.url
+  })
+  Content = result.default
+}
+---
+
+{
+  Content && (
+    <Content
+      components={MDXComponents}
+      env={import.meta.env}
+      path={path}
+      homePage={HOME_PAGE_URL}
+      images={{
+        main: {
+          light: mainLight.src,
+          dark: mainDark.src
+        },
+        welcome: {
+          light: welcomeLight.src,
+          dark: welcomeDark.src
+        },
+        welcome2: {
+          dark: welcome2Dark.src,
+          light: welcome2Light.src
+        },
+        start: {
+          dark: startDark.src,
+          light: startLight.src
+        },
+        emptyworkspace: {
+          dark: emptyworkspaceDark.src,
+          light: emptyworkspaceLight.src
+        },
+        filesContextMenu: {
+          dark: filesContextMenuDark.src,
+          light: filesContextMenuLight.src
+        },
+        files: {
+          dark: filesDark.src,
+          light: filesLight.src
+        },
+        connectionsButton: {
+          dark: connectionsButtonDark.src,
+          light: connectionsButtonLight.src
+        },
+        tabs: {
+          dark: tabsDark.src,
+          light: tabsLight.src
+        },
+        mysql: {
+          dark: mysqlDark.src,
+          light: mysqlLight.src,
+          message: mysqlMessage.src
+        },
+        sqlite: {
+          dark: sqliteDark.src,
+          light: sqliteLight.src,
+          message: sqliteMessage.src
+        },
+        d1: {
+          dark: d1Dark.src,
+          light: d1Light.src,
+          message: d1Message.src
+        },
+        importFromURL: {
+          dark: importFromURLDark.src,
+          light: importFromURLLight.src,
+          trigger: {
+            dark: importFromURLTriggerDark.src,
+            light: importFromURLTriggerLight.src
+          }
+        },
+        modes: {
+          dark: modesDark.src,
+          light: modesLight.src
+        },
+        toolbar: {
+          dark: toolbarDark.src,
+          light: toolbarLight.src
+        },
+        primarySidebar: {
+          dark: primarySidebarDark.src,
+          light: primarySidebarLight.src,
+          contextMenu: {
+            dark: primarySidebarContextMenuDark.src,
+            light: primarySidebarContextMenuLight.src
+          }
+        },
+        secondarySidebar: {
+          dark: secondarySidebarDark.src,
+          light: secondarySidebarLight.src
+        },
+        bottomPanel: {
+          dark: bottomPanelDark.src,
+          light: bottomPanelLight.src,
+          error: {
+            dark: bottomPanelErrorDark.src,
+            light: bottomPanelErrorLight.src
+          }
+        },
+        monaco: {
+          dark: monacoDark.src,
+          light: monacoLight.src,
+          completions: {
+            dark: monacoCompletionsDark.src,
+            light: monacoCompletionsLight.src
+          }
+        },
+        statusbar: {
+          dark: statusbarDark.src,
+          light: statusbarLight.src
+        },
+        settings: {
+          general: {
+            dark: generalSettingsDark.src,
+            light: generalSettingsLight.src
+          }
+        },
+        about: {
+          dark: aboutDark.src,
+          light: aboutLight.src
+        },
+        datagrid: {
+          dark: datagridDark.src,
+          light: datagridLight.src
+        },
+        table: {
+          dark: tableDark.src,
+          light: tableLight.src,
+          contextMenu: {
+            dark: tableContextmenuDark.src,
+            light: tableContextmenuLight.src
+          }
+        },
+        ai: {
+          setting: {
+            dark: aiSettingDark.src,
+            light: aiSettingLight.src
+          },
+          widget: {
+            dark: aiwidgetDark.src,
+            light: aiwidgetLight.src
+          },
+          diffs: {
+            dark: aiwidgetDiffsDark.src,
+            light: aiwidgetDiffsLight.src
+          }
+        },
+        setting: {
+          dark: settingDark.src,
+          light: settingLight.src
+        },
+        shortcuts: {
+          dark: shortcutsDark.src,
+          light: shortcutsLight.src
+        },
+        editorSetting: {
+          dark: editorSettingDark.src,
+          light: editorSettingLight.src
+        },
+        updaterToast: {
+          dark: updaterToastDark.src,
+          light: updaterToastLight.src
+        },
+        connectionManager: {
+          dark: connectionManagerDark.src,
+          light: connectionManagerLight.src
+        }
+      }}
+    />
+  )
+}

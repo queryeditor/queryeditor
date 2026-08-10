@@ -1,0 +1,93 @@
+﻿---
+title: Getting Started
+description: Learn how to install QueryEditor and set up your first database connection. Discover the Welcome Wizard, hardware requirements, and your initial workspace setup.
+---
+
+## Prerequisites
+
+QueryEditor is a native application bundled with everything you need. You don't have to install database CLI tools or extra runtimes on your operating system because all the required drivers (like `better-sqlite3` and `mysql2`) are baked right in.
+
+| Platform | Support          |
+| -------- | ---------------- |
+| Windows  | x64 architecture |
+| macOS    | `Coming soon`    |
+| Linux    | `Coming soon`    |
+
+## Installation Process
+
+1. Download the installer for your system from the [QueryEditor website](https://queryeditor.com).
+2. Run the downloaded file and follow your OS standard instructions.
+3. Launch **QueryEditor** from your applications menu.
+
+<Image
+  src={props.images.welcome.light}
+  darksrc={props.images.welcome.dark}
+  alt="QueryEditor Welcome Wizard first screen displayed on initial launch"
+  caption="The Welcome Wizard greets you on first launch and guides you through the initial setup in seconds."
+/>
+
+## The Welcome Wizard
+
+On your first run, you will be greeted by a **Welcome Wizard** designed to set up your environment in seconds.
+
+### 1. The First Look
+
+A warm welcome introducing you to the fast and simple philosophy of QueryEditor.
+
+### 2. Tailoring Your Environment
+
+Here you configure the foundation of your visual and working experience:
+
+- **Appearance**: Choose between Light, Dark, or Auto (synced with your OS).
+- **Workspace Directory**: Define the global root folder on your hard drive where your `.sql` files will reside.
+- **Editor Preferences**: Toggle Line Numbers, the Minimap, or Word Wrap on the fly.
+
+<Image
+  src={props.images.welcome2.light}
+  darksrc={props.images.welcome2.dark}
+  alt="QueryEditor Welcome Wizard step 2 with appearance, workspace directory, and editor preference options"
+  caption="Choose your preferred appearance, set a global workspace directory, and configure editor settings before diving in."
+/>
+### 3. Support the Project
+
+QueryEditor is free. In this final step, you have the option to support the ongoing development via Buy Me a Coffee before clicking **Get Started** to dive into the app.
+
+## Your First Connection
+
+Once the wizard is complete, the **Connections Manager** will appear.
+
+<Image
+  src={props.images.start.light}
+  darksrc={props.images.start.dark}
+  alt="QueryEditor Connections Manager ready to add a first database connection"
+  caption="After the wizard, the Connections Manager opens so you can create your first database connection immediately."
+/>
+
+1. Click the **+** button in the top toolbar.
+2. Select your preferred database engine (e.g. SQLite).
+3. Fill in the required fields.
+4. Press **Test** to ensure everything is working correctly.
+5. Click **Save** and then double-click your newly created connection to open it.
+
+<Image
+  src={props.images.sqlite.light}
+  darksrc={props.images.sqlite.dark}
+  alt="SQLite connection configuration form in QueryEditor with file path input"
+  caption="Select your SQLite database file to pre-fill the connection form and get connected in seconds."
+/>
+
+## Entering the Workspace
+
+Upon opening your connection, the main **Workspace** unfolds. You are now ready to:
+
+- Write code in the Monaco editor.
+- Explore your tables in the Data Grid.
+- Manage your files in the left sidebar.
+- Consult the AI using `Ctrl+K`.
+
+<Image
+  src={props.images.emptyworkspace.light}
+  darksrc={props.images.emptyworkspace.dark}
+  alt="QueryEditor empty workspace with Monaco editor, Primary Sidebar, and Data Grid after connecting to a database"
+  caption="Your workspace is ready — write SQL in the editor, manage files in the sidebar, and view results in the Data Grid below."
+/>

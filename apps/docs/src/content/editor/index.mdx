@@ -1,0 +1,36 @@
+﻿---
+title: Editor
+description: Write SQL like a pro in QueryEditor's Monaco-powered code editor. Benefit from syntax highlighting, multi-cursor editing, block execution, and smart hovers.
+---
+
+## A World-Class Code Engine
+
+The **Editor** is the primary area in the top half of the workspace where you write SQL queries. QueryEditor utilizes **Monaco Editor**, the exact same text engine that powers Microsoft Visual Studio Code, providing a deeply familiar and incredibly powerful editing experience.
+
+## Core Capabilities
+
+Because it is built on Monaco, the editor inherits advanced features out of the box:
+
+- **Syntax Highlighting**: Full colorization for SQL keywords, strings, numbers, and comments.
+- **Auto-Completion**: Intelligent suggestions for SQL syntax, augmented by your actual live database schema.
+- **Multi-Cursor Editing**: Hold `Option`/`Alt` and click to add multiple cursors, or use `Cmd+D` / `Ctrl+D` to select next occurrences.
+- **Code Folding**: Collapse long queries or comments using the gutter icons to keep your view clean.
+- **Minimap**: A high-level overview of your file on the right edge of the editor (can be disabled in Settings).
+- **Find and Replace**: Press `Cmd+F` / `Ctrl+F` for a robust search panel with full Regex support.
+
+## Executing Code
+
+To execute the SQL written in the editor:
+
+1. Press `Cmd+Enter` (Mac) or `Ctrl+Enter` (Windows/Linux).
+2. Alternatively, click the **Run Query** button (Play icon) in the title bar.
+
+If you have multiple statements in the editor, QueryEditor will send them all to the database engine. Depending on the engine's capabilities, they will execute sequentially and return multiple result sets directly to the Data Grid.
+
+## Editor Preferences
+
+You can customize the editor's behavior globally via the Settings window (gear icon):
+
+- **Line Numbers**: Toggle line numbers in the left gutter.
+- **Word Wrap**: Wrap long lines of SQL instead of scrolling horizontally.
+- **Font Size**: Control the scale of the editor and the rest of the UI using the global zoom controls (`Cmd/Ctrl +` and `Cmd/Ctrl -`).

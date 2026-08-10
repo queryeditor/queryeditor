@@ -1,0 +1,21 @@
+---
+const stats = [
+  { value: '100%', label: 'local-first' },
+  { value: '0', label: 'telemetry' },
+  { value: 'Free', label: 'forever (core)' },
+  { value: 'Alpha', label: 'actively maintained' }
+]
+---
+
+<section class="container pt-6 pb-2">
+  <ul class="flex flex-wrap gap-x-8 gap-y-3">
+    {
+      stats.map((stat) => (
+        <li class="flex items-baseline gap-2">
+          <span class="text-base font-medium font-google-sans">{stat.value}</span>
+          <span class="text-xs opacity-50">{stat.label}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>

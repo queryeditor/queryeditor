@@ -1,0 +1,5 @@
+{
+  "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "title": "AI",
+  "nodes": ["index", "widget", "setting"]
+}

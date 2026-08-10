@@ -1,0 +1,103 @@
+---
+import { getNodeToc, type NodeFolder, type NodePage } from 'slugtree'
+import Item from './item.astro'
+
+export type Props = {
+  node: NodePage | NodeFolder
+}
+
+const { node } = Astro.props
+const toc = getNodeToc(node.slug)
+---
+
+<aside
+  class="hidden lg:flex flex-col min-w-70 max-w-70 sticky top-14 px-10 h-[calc(100svh-3.5rem)] overflow-y-auto"
+>
+  <div class="pb-2 text-xs pt-10 text-foreground/60">
+    <span> ON THIS PAGE </span>
+  </div>
+  <ul>
+    {toc.map((item) => <Item tocItem={item} />)}
+  </ul>
+</aside>
+
+<script>
+  import gsap from 'gsap'
+  import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+  import { $$, $ } from '@queryeditor/shared/lib/dom'
+
+  gsap.registerPlugin(ScrollToPlugin)
+
+  function init() {
+    const $tocItems = $$('.toc__item')
+    const $headings = $$('.prose__heading')
+
+    let activeId = ''
+
+    const handleScroll = () => {
+      const threshold = 122
+      let closestHeading = null
+      const isAtBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 10
+
+      if (isAtBottom && $headings.length > 0) {
+        closestHeading = $headings[$headings.length - 1]
+      } else {
+        for (let i = $headings.length - 1; i >= 0; i--) {
+          const $heading = $headings[i]
+          const rect = $heading.getBoundingClientRect()
+          if (rect.top <= threshold) {
+            closestHeading = $heading
+            break
+          }
+        }
+      }
+
+      if (!closestHeading && $headings.length > 0) {
+        closestHeading = $headings[0]
+      }
+
+      if (closestHeading) {
+        const $icon = $('.prose__heading__icon', closestHeading)
+        const id = $icon?.dataset['slugId']
+        if (id && id !== activeId) {
+          activeId = id
+          $tocItems.forEach(($item) => {
+            if ($item.dataset['slugId'] === activeId) {
+              $item.dataset['highlighted'] = 'true'
+            } else {
+              delete $item.dataset['highlighted']
+            }
+          })
+        }
+      }
+    }
+
+    $tocItems.forEach(($item) => {
+      $item.addEventListener('click', () => {
+        const slugId = $item.dataset['slugId']
+        if (!slugId) return
+        activeId = slugId
+        $tocItems.forEach(($i) => {
+          if ($i.dataset['slugId'] === activeId) {
+            $i.dataset['highlighted'] = 'true'
+          } else {
+            delete $i.dataset['highlighted']
+          }
+        })
+      })
+    })
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        requestAnimationFrame(handleScroll)
+      },
+      { passive: true }
+    )
+
+    handleScroll()
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>

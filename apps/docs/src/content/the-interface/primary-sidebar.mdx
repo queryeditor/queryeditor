@@ -1,0 +1,44 @@
+﻿---
+title: Primary Sidebar
+description: Navigate your local SQL files using the Primary Sidebar in QueryEditor. Enjoy real-time synchronization, native context menus, and disk-backed workspaces.
+---
+
+## Your File Explorer
+
+The **Primary Sidebar** is located on the left edge of the workspace. It acts as the main navigation hub and file explorer for your active connection.
+
+<Image
+  src={props.images.primarySidebar.light}
+  darksrc={props.images.primarySidebar.dark}
+  alt="QueryEditor Primary Sidebar displaying a real-time file tree of SQL scripts and folders"
+  caption="The Primary Sidebar shows a live view of your workspace directory, synced automatically with your file system."
+/>
+
+## Disk-Backed Workspaces
+
+Because QueryEditor links every connection to a physical directory on your local computer, this sidebar displays a real-time tree view of your actual files and folders.
+
+### Core Capabilities
+
+- **Create**: Right-click anywhere in the sidebar to create new `.sql` files or subdirectories.
+- **Manage**: Rename, duplicate, or delete files (moving them to your OS Trash) directly from the UI.
+- **Native Context**: The sidebar utilizes native OS context menus for file operations, providing a seamless desktop experience.
+- **Organize**: Fluidly drag and drop files to move them between folders.
+
+<Image
+  src={props.images.primarySidebar.contextMenu.light}
+  darksrc={props.images.primarySidebar.contextMenu.dark}
+  alt="Native OS context menu in the QueryEditor Primary Sidebar with file management options"
+  caption="Right-click in the sidebar to create, rename, duplicate, delete, or reveal files using native OS context menus."
+/>
+
+### Real-Time Sync
+
+The sidebar monitors your workspace directory for changes in the background. If you create, edit, or delete a file externally (for example, via your terminal or VS Code), the sidebar updates instantly without requiring a manual refresh.
+
+## Status Header
+
+At the very bottom of the sidebar sits a compact status header that displays:
+- Your connection name.
+- The active engine (e.g. MySQL, SQLite).
+- Connection target details (e.g. host IP or database path).

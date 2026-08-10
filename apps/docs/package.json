@@ -1,0 +1,28 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --port 4322",
+    "build": "astro build",
+    "start": "astro preview --port 4322",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^6.0.2",
+    "@mdx-js/mdx": "3.1.1",
+    "@queryeditor/shared": "workspace:*",
+    "astro": "7.2.0",
+    "preact": "^10.29.8",
+    "remark-gfm": "4.0.1",
+    "slugtree": "0.9.0"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "7.0.5",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1"
+  }
+}

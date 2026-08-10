@@ -1,0 +1,48 @@
+---
+import { cn, DOCS_PAGE_URL } from '@queryeditor/shared/lib/cn'
+const items = {
+  Changelog: '/changelog',
+  Docs: DOCS_PAGE_URL,
+  About: '/about'
+}
+import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
+const pathname = Astro.url.pathname
+---
+
+<nav
+  class="sticky group root__nav duration-700 top-0 data-[section=footer]:bg-black data-[section=footer]:text-white transition-colors bg-background z-50 py-3"
+>
+  <div class="flex items-center justify-between container">
+    <a href="/" class="flex items-center gap-3 basis-0 grow">
+      <QueryEditor width={15} />
+      <p class="tracking-tight font-medium text-xl font-google-sans">
+        QueryEditor
+      </p>
+    </a>
+    <ul class="flex items-center">
+      {
+        Object.entries(items).map(([name, href]) => (
+          <li>
+            <a
+              data-current={pathname.endsWith(href) ? '' : undefined}
+              href={href}
+              class="opacity-60 data-current:opacity-100 text-sm p-1 px-4 hover:opacity-100"
+            >
+              {name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <nav class="flex basis-0 items-center gap-3 grow justify-end">
+      <button
+        class={cn(
+          'flex download-button items-center text-xs download-button font-medium bg-foreground text-background rounded-full p-1 px-3 gap-2',
+          'group-data-[section=footer]:bg-white group-data-[section=footer]:text-black'
+        )}
+      >
+        Download
+      </button>
+    </nav>
+  </div>
+</nav>

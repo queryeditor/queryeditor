@@ -1,0 +1,123 @@
+---
+import '@/styles/global.css'
+import '@queryeditor/shared/theme.css'
+import Nav from '@/components/nav.astro'
+import seo from '@/const/seo'
+import Footer from '@/sections/footer.astro'
+import { ClientRouter } from 'astro:transitions'
+
+type Props = {
+  title?: string
+  description?: string
+  image?: string
+  noindex?: boolean
+}
+
+const {
+  description = seo.description,
+  title = seo.title,
+  image = seo.ogImage,
+  noindex = false
+} = Astro.props
+
+const pageTitle = title === seo.title ? `${seo.name} — ${title}` : `${title} — ${seo.name}`
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || seo.url).toString()
+const ogImageURL = new URL(image, Astro.site || seo.url).toString()
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: seo.name,
+  description: description,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Cross-platform',
+  url: canonicalURL,
+  author: {
+    '@type': 'Person',
+    name: seo.author
+  }
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <ClientRouter />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={seo.keywords.join(', ')} />
+    <meta name="author" content={seo.author} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="theme-color" content="#09090b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={seo.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content={seo.locale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={seo.xHandle} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="flex flex-col min-h-svh">
+    <Nav />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<script>
+  import { $$, $ } from '@queryeditor/shared/lib/dom'
+  import { actions } from 'astro:actions'
+
+  console.log('load script')
+
+  $$('.download-button').forEach(($btn) => {
+    $btn.addEventListener('click', async () => {
+      $btn.setAttribute('disabled', 'disabled')
+      try {
+        const res = await actions.getDownloadURL()
+        if (res.data) window.open(res.data, '_blank')
+      } catch (error) {
+        console.error('Download failed:', error)
+      } finally {
+        $btn.removeAttribute('disabled')
+      }
+    })
+  })
+
+  function init() {
+    const $nav = $<HTMLElement>('.root__nav')
+    const $footer = $<HTMLElement>('.root__footer')
+
+    if ($nav && $footer) {
+      const onScroll = () => {
+        if ($footer.getBoundingClientRect().top <= 50) {
+          $nav.dataset.section = 'footer'
+        } else {
+          delete $nav.dataset.section
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true })
+      onScroll()
+    }
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>

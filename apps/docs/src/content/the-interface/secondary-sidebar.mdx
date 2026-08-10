@@ -1,0 +1,34 @@
+﻿---
+title: Secondary Sidebar
+description: Perform deep-dive data inspection with the QueryEditor Secondary Sidebar. Analyze complex records using vertical Fields and interactive JSON tree views.
+---
+
+## Deep-Dive Data Inspection
+
+The **Secondary Sidebar** (Right Panel) provides specialized tools for data inspection. By default, it remains collapsed and only expands when you open the JSON viewer from the Data Grid context menu.
+
+<Image
+  src={props.images.secondarySidebar.light}
+  darksrc={props.images.secondarySidebar.dark}
+  alt="QueryEditor Secondary Sidebar showing a selected row rendered as a JSON tree and a Fields key-value list"
+  caption="Switch between JSON tree and Fields view to inspect any selected row from the Data Grid in detail."
+/>
+
+## Available Views
+
+The sidebar contains a tabbed interface at the bottom to quickly switch between different data representation views:
+
+### 1. JSON View
+
+- Displays the selected row(s) from the Data Grid as a fully interactive, syntax-highlighted, and collapsible JSON tree.
+- Excellent for inspecting native JSON columns or arrays stored within a single text field (like in MySQL or SQLite).
+
+### 2. Fields View
+
+- Pivots the selected row(s) into a vertical key-value list.
+- Ideal for tables with dozens of columns. It allows you to scroll vertically through a single record instead of scrolling horizontally across the massive Data Grid.
+
+## Selection Behavior
+
+- **Empty State**: If no rows are selected in the Data Grid, the Secondary Sidebar displays a helpful prompt asking you to select at least one row.
+- **Multi-select Arrays**: Selecting multiple rows in the Data Grid will render all selected rows as an array format in both the JSON and Fields views.

@@ -1,0 +1,48 @@
+﻿---
+title: Overview
+description: QueryEditor is a powerful desktop SQL client built with Electron and Monaco Editor. It supports MySQL, SQLite and Cloudflare D1, integrating an AI Assistant for a seamless workflow.
+---
+
+<Image
+  src={props.images.main.light}
+  darksrc={props.images.main.dark}
+  alt="QueryEditor desktop SQL client main interface showing the Monaco editor, Data Grid, and Primary Sidebar"
+  caption="QueryEditor — a modern desktop SQL client powered by Monaco Editor with AI assistance built in."
+/>
+
+## Meet QueryEditor
+
+QueryEditor was born as a modern desktop solution to write and execute SQL queries quickly and efficiently. At its core, it leverages **Monaco Editor** (the same engine powering VS Code) to deliver a world-class coding environment.
+
+The application is currently in **Alpha** (version `0.1.0-alpha.1`) and is completely free to use.
+
+## Supported Database Engines
+
+QueryEditor is built to scale. We currently offer native support for the following engines:
+
+| Engine | Status | Protocol |
+|---|---|---|
+| MySQL | Available | TCP/IP, Unix Socket |
+| SQLite | Available | Local File |
+| Cloudflare D1 | Available | REST API |
+| PostgreSQL | Coming soon | — |
+| MariaDB | Coming soon | — |
+| SQL Server | Coming soon | — |
+
+## Core Concepts
+
+To get the most out of QueryEditor, it helps to understand how we structure your work:
+
+- **Connections**: The core access point. It saves your credentials and preferences for a specific database engine.
+- **Workspaces**: Unlike other clients, QueryEditor links every connection to a physical directory on your local disk where your `.sql` files are saved.
+- **Tabs**: Every open `.sql` file is an interactive tab that remembers its own layout, editor state, and query results.
+- **Groups**: Organizational folders within the Connections Manager to keep your databases tidy.
+
+## Key Experience Highlights
+
+- A supercharged Monaco Editor with SQL syntax highlighting and intelligent auto-completion tailored to your schema.
+- 5 Connection Modes (Security Levels) to prevent accidental data wipes in production environments.
+- A native AI Assistant powered by your choice of AI provider.
+- A lightning-fast Data Grid with local search, versatile exports, and a dual JSON/Fields viewer.
+- Silent, automatic updates in the background.
+- UI persistence: Your panel proportions are saved per tab and per connection, restoring perfectly every time.

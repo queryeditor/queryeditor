@@ -1,0 +1,2 @@
+- All code in english, not comments and not logs if no necessary
+- not emojis in logs o comments.

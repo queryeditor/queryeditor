@@ -1,0 +1,12 @@
+{
+  "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "nodes": [
+    "index",
+    "mysql",
+    "sqlite",
+    "d1",
+    "import-from-url",
+    "--- Settings ---",
+    "modes"
+  ]
+}

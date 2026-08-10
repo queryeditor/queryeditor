@@ -1,0 +1,35 @@
+﻿---
+title: Tabs
+description: Multitask efficiently in QueryEditor using stateful tabs. Each SQL tab remembers its layout, query results, and unsaved changes for an uninterrupted workflow.
+---
+
+## Multitasking with Tabs
+
+Every `.sql` file you open in the workspace creates a **Tab**. Tabs appear above the editor panel and allow you to multitask effortlessly between different queries and scripts.
+
+<Image
+  src={props.images.tabs.light}
+  darksrc={props.images.tabs.dark}
+  alt="QueryEditor tab bar above the editor with multiple open SQL file tabs"
+  caption="Each open .sql file becomes a stateful tab that remembers its editor content, query results, and layout."
+/>
+
+## Stateful Memory
+
+Tabs in QueryEditor are completely stateful. The application remembers the following for each tab individually:
+- The currently selected file path.
+- The SQL content (including unsaved text changes).
+- The query results currently displayed in the data grid.
+- The layout ratio between the Editor (top) and the Data Grid (bottom).
+
+If you switch from Tab A to Tab B, the Editor and Data Grid instantly restore to the exact state of Tab B. 
+
+## Handling Unsaved Changes
+
+If a tab has unsaved changes, a small dot appears next to the file name in the tab header. Press `Cmd+S` or `Ctrl+S` to save. If you attempt to close an unsaved tab (or quit the application), QueryEditor will prompt you to save your changes first to prevent data loss.
+
+## Closing Options
+
+- Click the `x` icon on the tab.
+- Middle-click anywhere on the tab.
+- Right-click and choose **Close**, **Close Others**, or **Close All** from the context menu.

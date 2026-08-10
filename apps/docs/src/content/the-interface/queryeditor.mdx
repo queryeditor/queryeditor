@@ -1,0 +1,33 @@
+﻿---
+title: QueryEditor
+description: Dive into the QueryEditor SQL editor. Experience Monaco's IntelliSense, real-time database schema integration, and seamless AI assistance right where you code.
+---
+
+## Where the Magic Happens
+
+The central piece of the application is the **QueryEditor**. This is where you write, modify, and execute your SQL. It is powered by Monaco Editor, bringing a world-class code editing experience directly within the app.
+
+
+<Image
+  src={props.images.monaco.light}
+  darksrc={props.images.monaco.dark}
+  alt="QueryEditor Monaco SQL editor with syntax highlighting and multi-statement support"
+  caption="Write and execute SQL directly in the Monaco-powered editor with full syntax highlighting and block execution."
+/>
+
+## Editing Features
+
+- **IntelliSense**: Automatic suggestions for SQL keywords, tables, and columns fetched directly from your database schema in real-time.
+- **Syntax Highlighting**: Real-time syntax coloring for SQL, making code easier to read, parse, and debug.
+- **Block Execution**: If you have multiple queries in the editor separated by empty lines, you can place your cursor inside one block and execute *only* that block, rather than running the entire file.
+- **Smart Hovers**: Hovering over tables or columns will display tooltip information derived from the schema (feature currently in development).
+
+<Image
+  src={props.images.monaco.completions.light}
+  darksrc={props.images.monaco.completions.dark}
+  alt="QueryEditor Monaco editor showing live IntelliSense suggestions for table names and SQL keywords"
+  caption="IntelliSense surfaces accurate table and column suggestions pulled directly from your connected database schema."
+/>
+## AI Integration
+
+The editor isn't just for typing. Select any block of code and press `Cmd+K` / `Ctrl+K` to open the AI Assistant. When the AI suggests modifications, it applies diffs directly to the text using Monaco's native inline-diff viewer, allowing you to seamlessly Accept or Reject changes without copy-pasting.

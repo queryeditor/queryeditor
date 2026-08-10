@@ -1,0 +1,41 @@
+﻿---
+title: Files
+description: Manage your SQL scripts effortlessly using QueryEditor's Primary Sidebar. Utilize native OS context menus and background file watching for seamless development.
+---
+
+## Managing Your SQL Scripts
+
+The **Primary Sidebar** doubles as a file explorer for your connection's workspace directory. Because QueryEditor is a native desktop app, all your SQL scripts are saved as physical files directly on your local disk.
+
+<Image
+  src={props.images.files.light}
+  darksrc={props.images.files.dark}
+  alt="QueryEditor Primary Sidebar showing the workspace file tree with SQL scripts organized in folders"
+  caption="Each connection has its own workspace directory. Your .sql files are stored as real files on your local disk."
+/>
+
+## Working with Files
+
+- **Creating**: Click the **New Query** button (`+` icon) in the title bar or use `Cmd+N` / `Ctrl+N`. This creates an untitled `.sql` file in memory. It will prompt you for a save location when you first hit `Cmd+S` / `Ctrl+S`.
+- **Organizing**: Drag and drop files to move them into subdirectories.
+
+### Native Context Menu
+
+Right-click any file or folder in the sidebar to access the OS-native context menu:
+
+- **New File / Folder**
+- **Rename**
+- **Delete** (Moves the file securely to the system trash)
+- **Duplicate**
+- **Reveal in File Explorer / Finder** (Instantly opens the folder in your OS file manager)
+
+<Image
+  src={props.images.filesContextMenu.light}
+  darksrc={props.images.filesContextMenu.dark}
+  alt="Native OS file context menu in the QueryEditor workspace sidebar with rename, delete, and reveal options"
+  caption="Right-click any file or folder to access native OS operations like Rename, Delete, Duplicate, or Reveal in Finder/Explorer."
+/>
+
+## External Editor Sync
+
+Because the workspace is just a standard folder on your computer, you can edit files using another tool (like VS Code or vim). QueryEditor watches the directory for changes and will automatically refresh the sidebar and update open tabs if the file is modified externally.

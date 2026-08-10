@@ -1,0 +1,36 @@
+﻿---
+title: Bottom Panel
+description: Manage query outputs and errors with the QueryEditor Bottom Panel. Switch between tabular data grids, success summaries, and interactive AI debugging cards.
+---
+
+## Handling Your Output
+
+The **Bottom Panel** occupies the lower half of the workspace's main area. It is entirely dedicated to handling the output of your actions, primarily query results and errors.
+
+<Image
+  src={props.images.bottomPanel.light}
+  darksrc={props.images.bottomPanel.dark}
+  alt="QueryEditor Bottom Panel displaying the Data Grid with query results and the Action Bar"
+  caption="The Bottom Panel renders your query results — tabular data for SELECT statements and info cards for data modifications."
+/>
+
+## Panel Components
+
+The panel consists of three main components working together:
+
+1. **Top Navigation**: When a batch query returns multiple result sets, horizontal tabs appear here (Result 1, Result 2, etc.), allowing you to paginate through different tables effortlessly.
+2. **Action Bar**: The thin status strip attached to the top, providing execution metrics and a local table filter input.
+
+### Main Content Area
+
+This is dynamic depending on the type of query you executed:
+- **Tabular Data**: If the query returns data (e.g. `SELECT`), this area renders the **Data Grid** (a high-performance, virtualized table).
+- **Execution Info**: If the query modifies data (e.g. `UPDATE`, `INSERT`), this area renders an **Info Card** summarizing the affected rows or execution status parsed from the database headers.
+- **Error Handling**: If the query fails, this area renders a red **Error Card** with the raw database error message and a prominent "Ask AI" button to instantly debug the issue.
+
+<Image
+  src={props.images.bottomPanel.error.light}
+  darksrc={props.images.bottomPanel.error.dark}
+  alt="QueryEditor Bottom Panel showing a red error card with the database error message and an Ask AI button"
+  caption="When a query fails, the error card displays the raw database message and offers a one-click Ask AI button to debug it."
+/>

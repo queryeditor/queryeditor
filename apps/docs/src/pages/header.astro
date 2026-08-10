@@ -1,0 +1,27 @@
+---
+import { getNodeLabel, type NodeFolder, type NodePage } from 'slugtree'
+
+export type Props = {
+  node: NodePage | NodeFolder
+}
+
+const { node } = Astro.props
+
+const label = getNodeLabel(node.slug)
+---
+
+<header class="pt-10 pb-5 border-b">
+  {
+    label && (
+      <div class="pb-4">
+        <span class="text-accent">{label?.label}</span>
+      </div>
+    )
+  }
+  <h1 class="text-3xl font-medium">{node.title}</h1>
+  {
+    node.description && (
+      <p class="pt-4 text-base text-foreground/70">{node.description}</p>
+    )
+  }
+</header>

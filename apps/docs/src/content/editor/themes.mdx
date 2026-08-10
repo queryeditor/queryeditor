@@ -1,0 +1,36 @@
+﻿---
+title: Themes
+description: Customize the visual appearance of QueryEditor. Switch between Light, Dark, or System UI modes and select beautifully crafted JSON themes for the Monaco editor.
+---
+
+## Visual Appearance
+
+QueryEditor supports a modern appearance system that can adapt to your environment or personal preference. You can change this during the Welcome Wizard or anytime in the Settings window.
+
+- **Light**: Forces a clean, bright user interface.
+- **Dark**: Forces a sleek, dark user interface.
+- **Auto (System)**: Automatically switches between Light and Dark based on your operating system's current schedule.
+
+## Code Editor Themes
+
+The Monaco Editor's syntax colors are decoupled from the app's overall appearance, but they ship with carefully selected default themes designed to look great out of the box.
+
+<Image
+  src={props.images.settings.general.light}
+  darksrc={props.images.settings.general.dark}
+  alt="QueryEditor General Settings panel showing appearance mode, Monaco theme, and zoom options"
+  caption="Switch between Light, Dark, or System appearance and choose a Monaco editor theme from the General Settings."
+/>
+
+### Built-in Options
+
+The application bundles several JSON-based Monaco themes. By default:
+
+- The **Light** appearance uses the custom `QueryEditor (Light)` theme.
+- The **Dark** appearance uses the custom `QueryEditor (Dark)` theme.
+
+Other popular themes like Ayu Dark/Light are bundled but may be restricted in the current alpha build.
+
+## Customization Pipeline
+
+Currently, themes are defined inside the `core/themes` directory as `.json` files compatible with standard VS Code theme definitions. In future updates, the ability to import your own custom VS Code themes directly through the UI will be fully supported.

@@ -1,0 +1,28 @@
+﻿---
+title: Status Bar
+description: Monitor your SQL execution metrics with the QueryEditor Status Bar. View query previews, execution durations, row counts, and error states at a single glance.
+---
+
+## Execution Metrics at a Glance
+
+The **Status Bar** (Action Bar) is a thin strip located directly below the QueryEditor and above the Data Grid. It provides immediate context and performance metrics for the currently active tab.
+
+<Image
+  src={props.images.statusbar.light}
+  darksrc={props.images.statusbar.dark}
+  alt="QueryEditor Status Bar showing query preview, row count, execution duration, and a local filter input"
+  caption="The Status Bar provides instant execution feedback — including the query preview, record count, and precise duration."
+/>
+## Information Displayed
+
+- **Query Preview**: The left side displays a single-line, colorized, truncated preview (up to 200 characters) of the exact SQL text that was executed. This is highly useful when you have multiple statements in the editor and want to remember which one produced the currently visible result.
+- **Data Filter**: An inline search input that allows you to locally filter the tabular data currently rendered in the Data Grid.
+- **Execution State**: 
+  - If a query is currently running, it displays a `Running...` indicator.
+  - If a query fails, it clearly displays `Status: Error`.
+
+## Success Metrics
+
+Upon successful execution, the right side displays:
+- **Records**: The total number of rows returned (e.g. `100 Records`).
+- **Duration**: The time taken to execute the query, precise to three decimal places (e.g. `0.045s`).

@@ -1,0 +1,33 @@
+﻿---
+title: AI Assistant
+description: Leverage QueryEditor AI Assistant to write, debug, and explain SQL queries. Enjoy real-time schema awareness and native inline code diffs for database management.
+---
+
+## Your Intelligent Database Companion
+
+QueryEditor features a deeply integrated AI Assistant that actually understands your database schema. It is designed to help you write, debug, explain, and optimize SQL queries without leaving your workspace.
+
+## Core Capabilities
+
+The AI Assistant can:
+
+1. **Write queries from scratch**: Describe what you want in plain English (e.g., "Find the top 5 users by sales this month"), and the AI will generate the correct SQL using your actual tables and columns.
+2. **Explain complex SQL**: Get a plain-English breakdown of what a query actually does.
+3. **Debug errors instantly**: When a query fails, the AI analyzes the error message alongside your code and suggests an immediate fix.
+4. **Modify existing code**: Ask the AI to add a `WHERE` clause, join another table, or optimize a slow query using inline diffs.
+
+## True Schema Awareness
+
+The AI doesn't work in the dark. It queries your live connection directly to gather the context it needs — without you having to paste anything manually. It can read:
+
+- Available schemas and tables.
+- Column definitions and data types.
+- A preview of actual row data to understand content structure.
+
+## How It Works
+
+When you submit a prompt, QueryEditor:
+1. Builds a system prompt tailored to your connection type (MySQL, SQLite, D1) to ensure dialect-accurate SQL.
+2. Streams the AI response back in real time so you see output as it's generated.
+3. Executes any data-fetching tools the AI requests (like reading your schema) and feeds the results back to the model.
+4. Delivers code changes as diff blocks that you can accept or reject directly inside the Monaco editor.

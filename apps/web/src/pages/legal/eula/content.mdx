@@ -1,0 +1,68 @@
+# End-User License Agreement (EULA)
+
+<div class="pb-6 opacity-70">
+  **Effective Date:**{' '}
+  <time datetime="2026-05-19T00:00:00.000Z">May 19, 2026</time>
+</div>
+
+This End-User License Agreement ("EULA") is a legal agreement between you (either an individual or a single entity) and David Bendezú ("Daustinn", "we", "us") for the QueryEditor desktop application ("Software").
+
+By downloading, installing, or using the Software, you agree to be bound by the terms of this EULA. If you do not agree, do not download, install, or use the Software.
+
+## 1. General License Grant
+
+QueryEditor is licensed, not sold. We grant you a personal, revocable, non-exclusive, non-transferable, and limited license to download, install, and use the Software strictly for your personal or internal business purposes, in accordance with the terms of this Agreement.
+
+## 2. License Restrictions
+
+The core desktop application is proprietary and closed-source. You agree not to, and you will not permit others to:
+
+- **Reverse engineer or decompile:** Decompile, disassemble, or attempt to derive the source code of or decrypt the Software.
+- **Modify or distribute:** Modify, adapt, create derivative works from, distribute, rent, lease, sell, or sublicense the Software to third parties.
+- **Bypass security:** Circumvent any encryption or security mechanisms built into the Software.
+
+_Note: The landing page/website repository is public and governed by its own separate license._
+
+## 3. Intellectual Property Rights
+
+All rights, titles, and interests in and to the Software — including copyrights, trademarks, trade secrets, and any UI components, logos, or graphics — remain the exclusive property of David Bendezú.
+
+## 4. Automatic Updates and Network Activity
+
+The Software connects to the internet for the following specific purposes only:
+
+**a) Automatic update checks**
+QueryEditor uses `electron-updater` to automatically check for new versions from our public [GitHub Releases](https://github.com/queryeditor) page. The app checks for updates **every 30 minutes** while it is running. When an update is available, the app notifies you and downloads it only upon your confirmation (`autoDownload` is disabled by default). Updates are installed on next restart. You cannot opt out of update checks; however, no personally identifiable information is sent — only your current app version, operating system, and architecture are included in the standard GitHub API request. GitHub's own privacy policy governs how they handle that request.
+
+**b) Your AI provider (optional)**
+If you configure an AI API key, the app communicates directly with that provider (OpenAI, Anthropic, or Google) when you use the AI assistant. See the Privacy Policy for full details on what is transmitted.
+
+**c) Your database server**
+The app connects to whatever database servers you configure. We have no access to those connections.
+
+The Software makes **no other outbound network connections**. No telemetry, crash reporting, usage analytics, or any other data is transmitted to QueryEditor or its developer.
+
+## 5. Data Storage on Your Device
+
+The Software stores the following data locally on your device:
+
+- **Connection credentials** (hostnames, ports, usernames, passwords, API tokens) — encrypted at rest.
+- **Workspace files** (`.sql` query files) — stored as plain text files in a directory of your choosing.
+- **Application settings** (editor preferences, AI model selection, theme) — stored in the OS application data directory.
+- **AI API keys** (if configured) — stored encrypted in the application data directory.
+
+No data is uploaded to any QueryEditor server. You can delete all application data by uninstalling the Software and removing its application data directory.
+
+## 6. Alpha Release and Liability Limitation
+
+The Software is provided as an **Alpha version** on an "AS IS" basis without warranties of any kind.
+
+Refer to the [Terms and Conditions](/legal/terms-and-conditions) for the full Disclaimer of Warranties and Exemption of Liability regarding database integrity, credential management, and AI usage.
+
+## 7. Termination
+
+This EULA is effective until terminated. Your rights terminate automatically if you fail to comply with any term. Upon termination, you must cease all use and destroy all copies of the Software.
+
+## 8. Contact
+
+- **Legal Matters:** legal@queryeditor.com

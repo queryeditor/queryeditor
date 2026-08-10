@@ -1,0 +1,29 @@
+﻿---
+title: Toolbar
+description: Navigate QueryEditor using the global Toolbar. Quickly run queries, switch connection modes, toggle sidebars, and access global settings from the window header.
+---
+
+## The Command Header
+
+The **Toolbar** (or Title Bar) sits at the very top of the workspace window. It acts as both the draggable window header and the primary action center for your current connection.
+
+<Image
+  src={props.images.toolbar.light}
+  darksrc={props.images.toolbar.dark}
+  alt="QueryEditor Toolbar at the top of the workspace with run query, connection switcher, and settings controls"
+  caption="The Toolbar is both the draggable window header and the primary action center for your active database connection."
+/>
+
+## Left-Side Actions
+
+- **Sidebar Toggle**: A quick button to collapse or expand the Primary Sidebar (`Cmd+B` / `Ctrl+B`).
+- **Context Information**: Displays the currently active file name and the connection target (e.g. `query.sql : MySQL : 127.0.0.1`).
+
+## Right-Side Actions
+
+- **Run Query**: A play button to execute the SQL in the active editor tab. If a query is already running, this dynamically turns into a Stop button to cancel the execution mid-flight.
+- **New Query (`+`)**: Instantly spawns a new, untitled SQL tab.
+- **Connect (Plug icon)**: Summons the Connections Manager to browse or add other databases.
+- **Switch Connection**: A handy dropdown to quickly jump between recent connections without opening the full manager.
+- **Connection Mode**: A dropdown to toggle the active protection level (Silent, Read-Only, Safe, Confirm, Production) for the current window.
+- **Global Menu (`...`)**: Provides immediate access to App Settings, Check for Updates, and the About window.

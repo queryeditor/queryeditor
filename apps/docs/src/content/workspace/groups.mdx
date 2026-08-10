@@ -1,0 +1,47 @@
+﻿---
+title: Groups
+description: Organize your database connections into hierarchical groups in QueryEditor. Use fluid drag-and-drop mechanics to manage complex multi-environment setups.
+---
+
+## Keeping Things Tidy **Connections Manager**
+
+In the Connections Manager, **Groups** allow you to organize your database connections into logical folders. This is highly useful if you manage many databases across different projects, environments (e.g., Staging vs Production), or clients.
+
+<Image
+  src={props.images.connectionsButton.light}
+  darksrc={props.images.connectionsButton.dark}
+  alt="QueryEditor toolbar button to open the Connections and Group Manager"
+  caption="Click the Connections button in the toolbar to open the manager and start organizing your connections into groups."
+/>
+
+
+<Image
+  src={props.images.connectionManager.light}
+  darksrc={props.images.connectionManager.dark}
+  alt="QueryEditor Connections Manager showing database connections organized inside named groups"
+  caption="Groups act as logical folders inside the Connections Manager, keeping your databases organized by project or environment."
+/>
+
+## Creating and Managing
+
+1. Open the **Connections Manager**.
+2. Click the **+** button in the top right.
+3. Select **Group**.
+4. Enter a name for the group (e.g., "Acme Corp Prod") and pick a distinctive color tag.
+5. Click **Save**.
+
+## Drag and Drop Organization
+
+Groups support fluid drag-and-drop operations:
+
+- **Moving Connections**: Simply drag an existing connection and drop it into a group.
+- **Nested Groups**: Groups can be placed inside other groups to create a deep, organized hierarchy.
+
+## Editing and Deleting
+
+Right-click a group to open its context menu.
+
+- Select **Edit** to change its name or color.
+- Select **Delete** to remove it.
+
+_Warning: If the group contains connections, a dialog will ask you to confirm, as deleting a group also permanently deletes all connections nested inside it._

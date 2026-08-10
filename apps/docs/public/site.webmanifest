@@ -1,0 +1,21 @@
+{
+  "name": "QueryEditor Documentation",
+  "short_name": "QueryEditor Docs",
+  "description": "Documentation for the local-first SQL editor and client.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

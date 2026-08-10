@@ -1,0 +1,35 @@
+﻿---
+title: JSON Viewer
+description: Inspect complex JSON columns and wide database rows using QueryEditor's Secondary Sidebar. Switch between interactive JSON trees and vertical key-value field views.
+---
+
+## Taming Complex Data
+
+When working with incredibly wide tables or tables containing complex JSON blobs, reading rows in a traditional horizontal data grid can be cumbersome. QueryEditor provides a **JSON Viewer** in the right sidebar to inspect selected rows in a vertical, expandable format.
+
+<Image
+  src={props.images.secondarySidebar.light}
+  darksrc={props.images.secondarySidebar.dark}
+  alt="QueryEditor Secondary Sidebar showing JSON Viewer with an expanded row from the Data Grid"
+  caption="Select any row in the Data Grid to inspect its full content as a syntax-highlighted JSON tree in the right sidebar."
+/>
+
+## How it Works
+
+1. Execute a `SELECT` query.
+2. Click on any row in the Data Grid.
+3. The Secondary Sidebar on the right will automatically populate with the exact data of the selected row(s).
+
+## Viewer Modes
+
+The right sidebar has two tabs at the bottom to switch parsing contexts:
+
+### 1. JSON Mode
+Displays the raw row data as an interactive, syntax-highlighted JSON tree. You can expand and collapse nested objects and arrays. This is particularly useful for database engines that support native JSON columns (like MySQL or PostgreSQL).
+
+### 2. Fields Mode
+Displays the row data as a two-column vertical list (Key and Value). This is ideal for quickly scanning the columns of a single record without endless horizontal scrolling.
+
+## Array Multi-Selection
+
+If you select multiple rows in the Data Grid, the Viewer will wrap them in a parent array, allowing you to inspect multiple records simultaneously in both modes.

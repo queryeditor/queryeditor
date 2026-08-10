@@ -1,0 +1,29 @@
+﻿---
+title: Monaco Integration
+description: Understand how QueryEditor injects live database schemas into Monaco Editor, providing intelligent SQL auto-completions and native AI-driven inline code diffs.
+---
+
+## Intelligent Schema Injection
+
+QueryEditor extends the Monaco Editor SQL language service by actively injecting context from your live database connection.
+
+When you connect to a database, QueryEditor reads your schema metadata and maps it seamlessly to Monaco's completion providers, giving you accurate suggestions that reflect your actual data model.
+
+<Image
+  src={props.images.monaco.completions.light}
+  darksrc={props.images.monaco.completions.dark}
+  alt="Monaco Editor in QueryEditor showing live SQL IntelliSense completions for database tables and columns"
+  caption="QueryEditor injects your live schema into Monaco, providing accurate table and column completions as you type."
+/>
+
+### What Gets Auto-Completed?
+
+- **Keywords**: Standard SQL commands like `SELECT`, `INSERT`, `WHERE`, `JOIN`.
+- **Tables**: Names of tables in your currently active schema.
+- **Columns**: When you type a table name followed by a dot (e.g. `users.`), Monaco will contextually suggest only the columns belonging to that specific table.
+
+## AI Diffing Integration
+
+When you ask the AI Assistant to modify your SQL, it uses Monaco's internal text-edit APIs to apply the changes directly to your file.
+
+If the AI suggests a modification, you will see a native inline diff view directly inside the editor — similar to a Git merge conflict resolution. You can then click **Accept** or **Reject** in the AI Widget to finalize the edit.

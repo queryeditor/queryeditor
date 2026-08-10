@@ -1,0 +1,117 @@
+---
+import Item from './item.astro'
+import highlightDark from '@queryeditor/shared/images/highlight.dark.png'
+import highlightLight from '@queryeditor/shared/images/highlight.light.png'
+import workspaceDark from '@queryeditor/shared/images/workspace.dark.png'
+import workspaceLight from '@queryeditor/shared/images/workspace.light.png'
+import aiDark from '@queryeditor/shared/images/ai.dark.png'
+import aiLight from '@queryeditor/shared/images/ai.light.png'
+
+import sqliteDark from '@queryeditor/shared/images/sqlite-dark.png'
+import sqliteLight from '@queryeditor/shared/images/sqlite-light.png'
+import d1Dark from '@queryeditor/shared/images/d1-dark.png'
+import d1Light from '@queryeditor/shared/images/d1-light.png'
+import datagridDark from '@queryeditor/shared/images/datagrid.dark.png'
+import datagridLight from '@queryeditor/shared/images/datagrid.light.png'
+
+import ImgCard from '@/components/img-card.astro'
+import { DOCS_HOME_URL } from '@/const/env'
+---
+
+<section class="container pt-20">
+  <h2 class="py-10 text-center text-lg tracking-tight">
+    Built for developers who work with SQL daily.
+  </h2>
+  <article class="relative py-5 space-y-20">
+    <Item
+      title="Monaco Editor at the core"
+      description="The same engine that powers VS Code. Full SQL autocomplete, syntax highlighting, multi-cursor editing, and keyboard shortcuts you already know — no learning curve."
+      lightImage={highlightLight}
+      darkImage={highlightDark}
+      class="min-h-[620px]"
+      index={0}
+      link={{
+        label: 'Learn about Editor',
+        href: DOCS_HOME_URL + '/editor'
+      }}
+      card={{
+        class: '-right-50 mt-8'
+      }}
+    />
+    <Item
+      title="Workspace that stays out of your way"
+      description="Queries are real .sql files in a real folder on your disk. Organize them however you want — subfolders, rename, drag. Open them in any editor, commit them to Git. No proprietary format."
+      lightImage={workspaceLight}
+      darkImage={workspaceDark}
+      class="min-h-[600px]"
+      position="right"
+      index={1}
+      link={{
+        label: 'Learn about Workspace',
+        href: DOCS_HOME_URL + '/workspaces'
+      }}
+      card={{
+        class: '-right-40 mt-8'
+      }}
+    />
+    <Item
+      title="AI that understands your schema"
+      description="Ask it to write a query, explain a result, or refactor a slow statement. The AI assistant has context about your connected database — not just generic SQL."
+      class="min-h-[800px]"
+      lightImage={aiLight}
+      darkImage={aiDark}
+      link={{
+        label: 'Learn about AI Assistant',
+        href: DOCS_HOME_URL + '/ai'
+      }}
+      card={{
+        class: '-right-30 mt-8'
+      }}
+      index={2}
+    />
+    <Item
+      position="right"
+      index={3}
+      class="min-h-[670px]"
+      title="One tool, multiple databases"
+      description="Connect to MySQL, SQLite, and Cloudflare D1 today. More drivers on the way. Switch between connections without closing anything."
+      link={{
+        label: 'Learn about Connections',
+        href: DOCS_HOME_URL + '/connections'
+      }}
+    >
+      <div class="absolute top-10">
+        <ImgCard>
+          <picture>
+            <source
+              srcset={sqliteDark.src}
+              media="(prefers-color-scheme: dark)"
+            />
+            <img src={sqliteLight.src} alt="SQlite Connection | QueryEditor" />
+          </picture>
+        </ImgCard>
+        <ImgCard class="-translate-y-50 translate-x-15">
+          <picture>
+            <source srcset={d1Dark.src} media="(prefers-color-scheme: dark)" />
+            <img src={d1Light.src} alt="D1 Connection | QueryEditor" />
+          </picture>
+        </ImgCard>
+      </div>
+    </Item>
+    <Item
+      title="Data grid built for results"
+      index={4}
+      description="Query results land in a fast, scrollable grid. Sort or resize any column, copy rows as CSV, JSON, or plain text, and handle thousands of rows without stuttering."
+      link={{
+        label: 'Learn about Data Grid',
+        href: DOCS_HOME_URL + '/data-grid'
+      }}
+      lightImage={datagridLight}
+      darkImage={datagridDark}
+      card={{
+        class: '-right-40 mt-8'
+      }}
+      class="min-h-[920px]"
+    />
+  </article>
+</section>

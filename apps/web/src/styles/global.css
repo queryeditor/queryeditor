@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Google Sans';
+  src: url('/fonts/GoogleSansVariableFont.ttf') format('truetype');
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+@utility container {
+  max-width: 81rem;
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-google-sans: var(--font-google-sans);
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}

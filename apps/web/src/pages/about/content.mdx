@@ -1,0 +1,41 @@
+# About
+
+QueryEditor is a highly optimized, local-first SQL client. It is designed exclusively for writing, editing, and executing queries.
+
+Instead of relying on a traditional table-building UI, QueryEditor provides a distraction-free, code-centric workspace for your database interactions.
+
+Currently available for Windows in its Alpha phase, this tool is built for developers who prefer to write raw SQL while enjoying a modern development experience.
+
+## The Vision
+
+QueryEditor shifts the traditional paradigm of database clients. It is not just an unopinionated list of databases and tables. Instead, it operates as a file-system-driven workspace.
+
+Every connection you create generates its own workspace directory. All your queries and folders are securely stored locally as `.sql` files.
+
+Our primary mission is to deliver an interface that feels as native and powerful as your favorite code editor. We achieve this by combining the robust capabilities of Monaco Editor with a high-performance results grid.
+
+## Core Features
+
+- **Advanced Query Editing**: Enjoy syntax highlighting, intelligent autocompletion, formatting, and a multiple tabs/folders system powered by a real local file structure.
+- **Local-First & Privacy-Focused**: QueryEditor operates entirely locally. We do not collect telemetry, usage metrics, or your queries. It works seamlessly entirely offline.
+- **AI-Powered Assistance**: Connect seamlessly to your preferred AI models (such as OpenAI, Anthropic, or Google Gemini) using your own API keys. The AI can understand your database schema, fix errors, generate complex queries, and much more.
+- **Intelligent Context Permissions (Read-Only)**: The AI integration operates strictly in read-only mode. The application will always prompt you for explicit, action-by-action permission before allowing the AI to extract context from your schema (such as tables, views, relations, or triggers). The AI cannot write, alter databases, or directly execute commands on its own.
+- **Safe Modes**: Prevent accidental destructive queries with built-in, per-connection rules. Features include _read-only_, _safe-mode_, _confirm_, and _silent_ modes—ideal for protecting production environments.
+- **Optimized Data Grid**: Our data grid is engineered to handle large query results effectively, ensuring blazing-fast performance.
+
+## Currently in Alpha
+
+QueryEditor is actively maintained as a personal project. The application is currently in its Alpha stage, which means it is highly experimental.
+
+It is provided entirely for free. However, please be aware that you may encounter bugs, missing features, and experience rapid iteration.
+
+While the core application remains closed-source, the source code for this landing page is public. This repository serves as our vehicle for delivering automatic updates via [GitHub Releases](https://github.com/queryeditor).
+
+## Connect with Us
+
+We hope you enjoy using QueryEditor as much as we enjoy building it. If you would like to reach out, support the project, or follow our updates, please check the links below:
+
+- **General Inquiries:** hi@queryeditor.com
+- **GitHub:** [https://github.com/queryeditor](https://github.com/queryeditor)
+- **X (Twitter):** [https://x.com/queryeditor](https://x.com/queryeditor)
+- **Developed by:** [David Bendezú (Daustinn)](https://daustinn.com)
