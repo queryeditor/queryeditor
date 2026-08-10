@@ -12,13 +12,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "14.2.0",
     "@astrojs/preact": "^6.0.2",
     "@mdx-js/mdx": "3.1.1",
     "@queryeditor/shared": "workspace:*",
     "astro": "7.2.0",
     "preact": "^10.29.8",
     "remark-gfm": "4.0.1",
-    "slugtree": "0.9.0"
+    "slugtree": "0.9.0",
+    "wrangler": "4.68.0"
   },
   "devDependencies": {
     "@astrojs/mdx": "7.0.5",
