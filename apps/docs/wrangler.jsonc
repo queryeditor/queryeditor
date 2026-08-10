@@ -1,5 +1,4 @@
 {
-	"main": "dist/_worker.js/index.js",
 	"name": "queryeditor-docs",
 	"compatibility_date": "2026-02-24",
 	"compatibility_flags": [
@@ -7,7 +6,6 @@
 		"global_fetch_strictly_public"
 	],
 	"assets": {
-		"binding": "ASSETS",
 		"directory": "./dist"
 	},
 	"observability": {

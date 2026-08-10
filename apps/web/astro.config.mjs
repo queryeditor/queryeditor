@@ -9,7 +9,7 @@ export default defineConfig({
   site: process.env.HOME_PAGE_URL || import.meta.env.HOME_PAGE_URL,
   output: 'server',
   adapter:
-    import.meta.env.NODE_ENV === 'production'
+    process.argv.includes('build') || process.env.NODE_ENV === 'production'
       ? cloudflare()
       : node({
           mode: 'standalone'

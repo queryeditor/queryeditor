@@ -9,7 +9,7 @@ import preact from '@astrojs/preact'
 export default defineConfig({
   output: 'server',
   adapter:
-    import.meta.env.NODE_ENV === 'production'
+    process.argv.includes('build') || process.env.NODE_ENV === 'production'
       ? cloudflare()
       : node({
           mode: 'standalone'
