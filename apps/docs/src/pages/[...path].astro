@@ -3,9 +3,9 @@ import Layout from '@/layouts/root.astro'
 import NotFound from '@/pages/404.astro'
 
 import { getNode, getSlugs } from 'slugtree'
-import Header from './header.astro'
-import Footer from './footer.astro'
-import Sidebar from './sidebar/index.astro'
+import Header from '@/components/header.astro'
+import Footer from '@/components/footer.astro'
+import Sidebar from '@/components/sidebar/index.astro'
 import MDXRenderer from '@/components/mdx-renderer.astro'
 
 export async function getStaticPaths() {

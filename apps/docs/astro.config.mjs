@@ -1,19 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
-import cloudflare from '@astrojs/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import slugtree from 'slugtree/astro'
-import node from '@astrojs/node'
 import preact from '@astrojs/preact'
 
 export default defineConfig({
-  output: 'server',
-  adapter:
-    process.argv.includes('build') || process.env.NODE_ENV === 'production'
-      ? cloudflare()
-      : node({
-          mode: 'standalone'
-        }),
+  output: 'static',
   integrations: [
     slugtree({
       basePath: import.meta.env.BASE_URL || '/'

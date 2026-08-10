@@ -1,110 +1,21 @@
 ---
-import { type Node } from 'slugtree'
-import Item from './item.astro'
-import path from '@/lib/path'
-import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
-import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
+import type { TocItem } from 'slugtree'
 
 export type Props = {
-  node: Node
+  tocItem: TocItem
 }
 
-const { pathname } = Astro.url
+const { tocItem } = Astro.props
 
-const { node } = Astro.props
-
-const nodeRef = ((node.type !== 'label' && node.href) || '/').replace(
-  '{homePage}',
-  HOME_PAGE_URL
-)
-
-const isCurrentNode =
-  path(nodeRef) === path('/')
-    ? path(pathname) === path(nodeRef)
-    : path(pathname).startsWith(path(nodeRef))
+const paddingLeft = (tocItem.depth - 2) * 1 + 'rem'
 ---
 
-{
-  node.type === 'label' && (
-    <label class="text-foreground/50 px-2.5 font-semibold text-xs mt-6 mb-2">
-      {node.label}
-    </label>
-  )
-}
-
-{
-  node.type === 'page' && (
-    <a
-      title={node.title}
-      data-current={isCurrentNode ? '' : undefined}
-      href={nodeRef}
-      class="min-h-8 h-8 flex items-center data-current:text-accent hover:bg-foreground/5 rounded-lg px-3"
-    >
-      {node.title}
-    </a>
-  )
-}
-
-{
-  node.type === 'folder' && (
-    <div class="node group/node" data-open={isCurrentNode ? 'true' : undefined}>
-      <a
-        title={node.title}
-        data-current={isCurrentNode ? 'true' : undefined}
-        href={nodeRef || '#'}
-        class="min-h-8 h-8 flex hover:bg-foreground/5 items-center data-current:text-accent rounded-lg pl-3"
-      >
-        <span class="grow inline-flex">{node.title}</span>
-        <div class="node__button p-1.5 px-3">
-          <ChevronRight
-            width={12}
-            class="group-data-open/node:rotate-90 transition-transform"
-          />
-        </div>
-      </a>
-      <div
-        data-open={isCurrentNode ? 'true' : undefined}
-        class="flex-col pl-4 node__children data-open:flex hidden"
-      >
-        {node.children.map((child) =>
-          child.type === 'page' && child.href === node.href ? null : (
-            <Item node={child} />
-          )
-        )}
-      </div>
-    </div>
-  )
-}
-
-<script>
-  import { $$, $ } from '@queryeditor/shared/lib/dom'
-
-  function init() {
-    const $nodes = $$('.node')
-
-    $nodes.forEach(($node) => {
-      const $btn = $('.node__button', $node)
-      const $children = $('.node__children', $node)
-
-      if (!$btn || !$children) return
-
-      const toggle = (value: boolean) => {
-        if (value) {
-          $node.removeAttribute('data-open')
-          $children.removeAttribute('data-open')
-        } else {
-          $node.dataset.open = 'true'
-          $children.dataset.open = 'true'
-        }
-      }
-
-      $btn.addEventListener('click', (e) => {
-        e.stopPropagation()
-        e.preventDefault()
-        toggle(Boolean($node.dataset.open))
-      })
-    })
-  }
-
-  document.addEventListener('astro:page-load', init)
-</script>
+<li style={{ paddingLeft }}>
+  <a
+    href={`#${tocItem.id}`}
+    data-slug-id={tocItem.id}
+    class="py-1 toc__item text-foreground/70 data-highlighted:text-accent text-sm inline-flex"
+  >
+    {tocItem.text}
+  </a>
+</li>
