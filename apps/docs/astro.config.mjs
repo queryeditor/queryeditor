@@ -15,7 +15,9 @@ const BASE = process.env.BASE_URL || import.meta.env.BASE_URL || '/'
 export default defineConfig({
   site: PAGE,
   output: 'static',
-  // adapter: cloudflare(),
+  adapter: cloudflare({
+    prerenderEnvironment: 'node'
+  }),
   integrations: [
     slugtree({
       basePath: BASE
@@ -24,6 +26,21 @@ export default defineConfig({
   ],
   vite: {
     envDir: '../../',
-    plugins: [tailwindcss()]
+    plugins: [
+      tailwindcss(),
+      {
+        name: 'ssr-gray-matter-stub',
+        enforce: 'pre',
+        resolveId(id, _importer, opts) {
+          if (opts?.ssr && id === 'gray-matter') return '\0gray-matter-stub'
+        },
+        load(id) {
+          if (id === '\0gray-matter-stub') {
+            return `const matter = () => ({ data: {}, content: '' });
+export default matter;`
+          }
+        }
+      }
+    ]
   }
 })

@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro'
 import { searchContent } from 'slugtree'
 
-export const prerender = true
+export const prerender = false
 
 export const GET: APIRoute = async ({ url }) => {
   const query = url.searchParams.get('query')
