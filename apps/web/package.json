@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "bun run --filter=@queryeditor/shared build && astro build",
     "preview": "wrangler dev",
     "start": "astro preview",
     "astro": "astro"
