@@ -5,6 +5,7 @@ import slugtree from 'slugtree/astro'
 import preact from '@astrojs/preact'
 
 export default defineConfig({
+  site: process.env.DOCS_PAGE_URL || import.meta.env.DOCS_PAGE_URL || 'https://docs.queryeditor.dev',
   output: 'static',
   integrations: [
     slugtree({
@@ -12,7 +13,6 @@ export default defineConfig({
     }),
     preact()
   ],
-  site: process.env.DOCS_PAGE_URL || import.meta.env.DOCS_PAGE_URL,
   vite: {
     envDir: '../../',
     plugins: [tailwindcss()]
