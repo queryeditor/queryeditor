@@ -28,7 +28,7 @@
         "astro": "7.2.0",
         "preact": "^10.29.8",
         "remark-gfm": "4.0.1",
-        "slugtree": "0.9.0",
+        "slugtree": "0.9.1",
         "wrangler": "4.68.0",
       },
       "devDependencies": {
@@ -1194,7 +1194,7 @@
 
     "sisteransi": ["sisteransi@1.0.5", "", {}, "sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg=="],
 
-    "slugtree": ["slugtree@0.9.0", "", { "dependencies": { "chokidar": "5.0.0", "gray-matter": "4.0.3", "picocolors": "1.1.1" }, "peerDependencies": { "next": ">=16.0.0", "react": "19.0.0", "react-dom": "19.0.0" } }, "sha512-sAItY4NWKK5dRx5i5ZmNnlxSQr/437tcPTl9W4ofTyv/nPTdsugiu/omF/0pSVwfc+kxgHOeKk6WQ0DW/7SOaw=="],
+    "slugtree": ["slugtree@0.9.1", "", { "dependencies": { "chokidar": "5.0.0", "gray-matter": "4.0.3", "picocolors": "1.1.1" }, "peerDependencies": { "next": ">=16.0.0", "react": "19.0.0", "react-dom": "19.0.0" } }, "sha512-QZOitMiQvkkffPlcK5xePxEN0ip/dsxMqwJBHbUVoXcho5MO7qijbwq22SYi4PKwaAuQKuiVPsoCBK99AHZGxQ=="],
 
     "smol-toml": ["smol-toml@1.7.1", "", {}, "sha512-PPlsspAZ4jbMBu5DMFhfUGDQLu/vrL4SyBROVS37x8ynnVmFIs1VPBz1Co8Xks3TvpIaZXmU85y4DrQ+UyVFoQ=="],
 

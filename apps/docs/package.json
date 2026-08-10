@@ -19,7 +19,7 @@
     "astro": "7.2.0",
     "preact": "^10.29.8",
     "remark-gfm": "4.0.1",
-    "slugtree": "0.9.0",
+    "slugtree": "0.9.1",
     "wrangler": "4.68.0"
   },
   "devDependencies": {
