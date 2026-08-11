@@ -1,18 +1,16 @@
 ---
-import darkHeroImage from '@queryeditor/shared/images/hero.dark.png'
-import lightHeroImage from '@queryeditor/shared/images/hero.light.png'
+import darkHeroImage from '@queryeditor/shared/images/hero-dark.webp'
+import lightHeroImage from '@queryeditor/shared/images/hero-light.webp'
 import background from '@queryeditor/shared/images/background.avif'
 ---
 
-<div class="max-w-340 mx-auto">
-  <div class="relative rounded-xl overflow-hidden py-10 px-10 w-full">
-    <div class="absolute inset-0">
-      <img
-        src={background.src}
-        alt="QueryEditor Hero Background"
-        class="w-full h-full object-cover"
-      />
-    </div>
+<div class="max-w-370 mx-auto">
+  <div
+    class="relative rounded-xl overflow-hidden bg-center bg-cover py-10 px-10 w-full"
+    style={{
+      backgroundImage: `url(${background.src})`
+    }}
+  >
     <div class="flex gap-5 justify-center w-full h-full relative">
       <picture>
         <source
@@ -24,7 +22,7 @@ import background from '@queryeditor/shared/images/background.avif'
           height="500"
           src={lightHeroImage.src}
           alt="QueryEditor Light Hero Image"
-          class="shadow-[0_5px_20px_rgba(0,0,0,0.3)] w-max! rounded-sm md:rounded-xl border-neutral-400 dark:border-neutral-600 border"
+          class="shadow-[0_5px_20px_rgba(0,0,0,0.3)] w-max! rounded-sm md:rounded-xl border-transparent! dark:border-neutral-600 border"
         />
       </picture>
     </div>

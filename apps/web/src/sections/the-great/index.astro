@@ -1,18 +1,18 @@
 ---
 import Item from './item.astro'
-import highlightDark from '@queryeditor/shared/images/highlight.dark.png'
-import highlightLight from '@queryeditor/shared/images/highlight.light.png'
-import workspaceDark from '@queryeditor/shared/images/workspace.dark.png'
-import workspaceLight from '@queryeditor/shared/images/workspace.light.png'
-import aiDark from '@queryeditor/shared/images/ai.dark.png'
-import aiLight from '@queryeditor/shared/images/ai.light.png'
+import highlightDark from '@queryeditor/shared/images/highlight-dark.webp'
+import highlightLight from '@queryeditor/shared/images/highlight-light.webp'
+import workspaceDark from '@queryeditor/shared/images/workspace-dark.webp'
+import workspaceLight from '@queryeditor/shared/images/workspace-light.webp'
+import aiDark from '@queryeditor/shared/images/ai-dark.webp'
+import aiLight from '@queryeditor/shared/images/ai-light.webp'
 
 import sqliteDark from '@queryeditor/shared/images/sqlite-dark.png'
 import sqliteLight from '@queryeditor/shared/images/sqlite-light.png'
-import d1Dark from '@queryeditor/shared/images/d1-dark.png'
-import d1Light from '@queryeditor/shared/images/d1-light.png'
-import datagridDark from '@queryeditor/shared/images/datagrid.dark.png'
-import datagridLight from '@queryeditor/shared/images/datagrid.light.png'
+import d1Dark from '@queryeditor/shared/images/d1-dark.webp'
+import d1Light from '@queryeditor/shared/images/d1-light.webp'
+import datagridDark from '@queryeditor/shared/images/datagrid-dark.webp'
+import datagridLight from '@queryeditor/shared/images/datagrid-light.webp'
 
 import ImgCard from '@/components/img-card.astro'
 import { DOCS_HOME_URL } from '@/const/env'
@@ -90,7 +90,7 @@ import { DOCS_HOME_URL } from '@/const/env'
             <img src={sqliteLight.src} alt="SQlite Connection | QueryEditor" />
           </picture>
         </ImgCard>
-        <ImgCard class="-mt-20 md:-translate-y-50 translate-x-15">
+        <ImgCard class="max-md:-mt-20 md:-translate-y-50 translate-x-15">
           <picture>
             <source srcset={d1Dark.src} media="(prefers-color-scheme: dark)" />
             <img src={d1Light.src} alt="D1 Connection | QueryEditor" />
