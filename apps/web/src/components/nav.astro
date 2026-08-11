@@ -103,16 +103,40 @@ const pathname = Astro.url.pathname
       }
     }
 
+    let menuHistoryPushed = false
+
+    const openMenu = () => {
+      history.pushState({ navMenu: true }, '')
+      menuHistoryPushed = true
+      toggleOpen(true)
+    }
+
+    const closeMenu = (fromPopstate = false) => {
+      if (!fromPopstate && menuHistoryPushed) {
+        menuHistoryPushed = false
+        history.back()
+        return
+      }
+      menuHistoryPushed = false
+      toggleOpen(false)
+    }
+
     $navTrigger.addEventListener('click', () => {
-      console.log('navTrigger click')
       const isOpen = $navMenu.dataset.open === 'true'
-      toggleOpen(!isOpen)
+      if (isOpen) closeMenu()
+      else openMenu()
+    })
+
+    window.addEventListener('popstate', (e) => {
+      if ($navMenu.dataset.open === 'true') {
+        closeMenu(true)
+      }
     })
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && $navMenu.dataset.open === 'true') {
         e.preventDefault()
-        toggleOpen(false)
+        closeMenu()
       }
     })
   }
