@@ -5,8 +5,9 @@ import Nav from '@/components/nav.astro'
 import seo from '@/const/seo'
 import Footer from '@/sections/footer.astro'
 import { ClientRouter } from 'astro:transitions'
-import darkHeroImage from '@queryeditor/shared/images/hero.dark.png'
-import lightHeroImage from '@queryeditor/shared/images/hero.light.png'
+import darkHeroImage from '@queryeditor/shared/images/hero-dark.webp'
+import lightHeroImage from '@queryeditor/shared/images/hero-light.webp'
+import background from '@queryeditor/shared/images/background.avif'
 
 type Props = {
   title?: string
@@ -70,6 +71,7 @@ const jsonLd = {
       fetchpriority="high"
       media="(prefers-color-scheme: dark)"
     />
+    <link rel="preload" href={background.src} as="image" fetchpriority="high" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
