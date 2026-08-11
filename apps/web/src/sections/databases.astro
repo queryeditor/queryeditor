@@ -6,7 +6,9 @@ import { DATABASES } from '@/const/index'
   <p class="text-center text-lg opacity-70">
     Connects to MySQL, SQLite, and Cloudflare D1. More on the way.
   </p>
-  <div class="py-10 flex gap-3">
+  <div
+    class="py-10 flex max-lg:grid max-lg:grid-cols-3 max-sm:grid-cols-2 gap-3"
+  >
     {
       Object.entries(DATABASES).map(([key, database]) => (
         <div
@@ -15,9 +17,11 @@ import { DATABASES } from '@/const/index'
           data-key={key}
         >
           <database.icon width={25} />
-          <h4 class="text-sm">{database.name}</h4>
+          <p class="text-sm">{database.name}</p>
           {!database.available && (
-            <p class="text-xs pt-1 text-amber-700 dark:text-amber-600">Coming soon</p>
+            <p class="text-xs pt-1 text-amber-700 dark:text-amber-600">
+              Coming soon
+            </p>
           )}
         </div>
       ))

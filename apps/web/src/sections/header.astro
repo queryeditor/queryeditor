@@ -8,7 +8,9 @@ import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
   <span class="rounded-full border bg-border/20 w-fit px-2 py-px text-xs">
     Alpha
   </span>
-  <h1 class="text-5xl font-google-sans font-medium pt-3 leading-13 pl-2">
+  <h1
+    class="text-4xl md:text-5xl font-google-sans font-semibold pt-3 md:leading-13 pl-2"
+  >
     The SQL client that<br />
     keeps your queries<br />
     <span
@@ -29,13 +31,13 @@ import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
     </button>
     <a
       href={DOCS_PAGE_URL}
-      class="flex w-full text-base font-google-sans md:w-fit justify-center transition-transform items-center gap-2 rounded-full px-5 py-3"
+      class="flex w-full text-base font-google-sans md:w-fit justify-center transition-transform items-center gap-2 rounded-full px-10 py-3 bg-foreground/5 hover:bg-foreground/10"
     >
       Docs
       <ArrowBack class="rotate-180" width={20} />
     </a>
   </div>
-  <p class="text-xs lg:text-left text-center pt-3 px-2 text-foreground/70">
+  <p class="text-xs md:text-left text-center pt-3 px-2 text-foreground/70">
     Currently Windows only. Alpha — use at your own risk.
   </p>
 </header>

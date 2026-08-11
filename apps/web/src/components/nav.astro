@@ -11,31 +11,49 @@ const pathname = Astro.url.pathname
 ---
 
 <nav
-  class="sticky group root__nav duration-700 top-0 data-[section=footer]:bg-black data-[section=footer]:text-white transition-colors bg-background z-50 py-3"
+  class="sticky transition-colors group root__nav duration-700 top-0 data-[section=footer]:bg-black data-[section=footer]:text-white bg-background z-50 h-12"
 >
-  <div class="flex items-center justify-between container">
-    <a href="/" class="flex items-center gap-3 basis-0 grow">
+  <div class="flex h-full items-center justify-between container">
+    <a
+      href="/"
+      class="flex h-full z-1 relative items-center gap-3 px-1 basis-0 grow"
+    >
       <QueryEditor width={15} />
       <p class="tracking-tight font-medium text-xl font-google-sans">
         QueryEditor
       </p>
     </a>
-    <ul class="flex items-center">
-      {
-        Object.entries(items).map(([name, href]) => (
-          <li>
-            <a
-              data-current={pathname.endsWith(href) ? '' : undefined}
-              href={href}
-              class="opacity-70 data-current:opacity-100 text-sm py-3 px-4 hover:opacity-100"
-            >
-              {name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <nav class="flex basis-0 items-center gap-3 grow justify-end">
+    <div>
+      <div
+        class={cn(
+          'max-md:fixed transition-all overflow-hidden nav__menu group top-0 inset-x-0',
+          'data-open:max-md:text-foreground data-open:max-md:bg-background',
+          'h-12 data-open:h-svh'
+        )}
+      >
+        <ul
+          class={cn(
+            'font-google-sans flex max-md:flex-col max-md:items-start items-center',
+            'max-md:opacity-0 max-md:pt-20 group-data-open:opacity-100 transition-opacity'
+          )}
+        >
+          {
+            Object.entries(items).map(([name, href]) => (
+              <li>
+                <a
+                  data-current={pathname.endsWith(href) ? '' : undefined}
+                  href={href}
+                  class="md:opacity-70 nav__menuItem max-md:font-semibold max-md:py-1 inline-flex data-current:opacity-100 max-md:text-lg text-sm py-3 px-4 hover:opacity-100"
+                >
+                  {name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <nav class="flex relative z-1 basis-0 items-center gap-3 grow justify-end">
       <button
         class={cn(
           'flex download-button items-center text-xs download-button font-medium bg-foreground text-background rounded-full p-1 px-3 gap-2',
@@ -44,6 +62,54 @@ const pathname = Astro.url.pathname
       >
         Download
       </button>
+      <button class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1">
+        <div
+          class="w-full group-data-open:rotate-45 group-data-open:translate-y-1.25 h-0.5 bg-foreground"
+        >
+        </div>
+        <div
+          class="w-full group-data-open:-rotate-45 group-data-open:-translate-y-1.25 h-0.5 bg-foreground"
+        >
+        </div>
+      </button>
     </nav>
   </div>
 </nav>
+
+<script>
+  import { $ } from '@queryeditor/shared/lib/dom'
+
+  function init() {
+    const $navTrigger = $('.nav__menuTrigger')
+    const $navMenu = $('.nav__menu')
+
+    if (!$navTrigger || !$navMenu) return
+
+    const toggleOpen = (value: boolean) => {
+      if (value) {
+        document.body.style.overflow = 'hidden'
+        $navMenu.dataset.open = 'true'
+        $navTrigger.dataset.open = 'true'
+      } else {
+        delete $navMenu.dataset.open
+        delete $navTrigger.dataset.open
+        document.body.style.overflow = 'auto'
+      }
+    }
+
+    $navTrigger.addEventListener('click', () => {
+      console.log('navTrigger click')
+      const isOpen = $navMenu.dataset.open === 'true'
+      toggleOpen(!isOpen)
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && $navMenu.dataset.open === 'true') {
+        e.preventDefault()
+        toggleOpen(false)
+      }
+    })
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>

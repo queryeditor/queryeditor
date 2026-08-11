@@ -57,13 +57,14 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
   class={cn(
     'dark:bg-stone-900/90 bg-stone-200/40 shadow-sm p-4 rounded-md overflow-hidden',
     'flex',
+    'max-md:flex-col',
     props.class,
-    position === 'right' ? 'flex-row-reverse *:text-right' : ''
+    position === 'right' ? 'md:flex-row-reverse md:*:text-right' : ''
   )}
   {...props}
 >
   <div
-    class="w-full relative rounded-md bg-center overflow-hidden bg-cover bg-no-repeat flex justify-center"
+    class="max-md:p-4 w-full relative rounded-md bg-center overflow-hidden bg-cover bg-no-repeat flex justify-center"
     style={`background-image: url(${backgroundImage.src});`}
   >
     {
@@ -73,7 +74,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
         darkImage &&
         lightImage && (
           <div
-            class={cn('absolute pointer-events-none', card?.class)}
+            class={cn('md:absolute pointer-events-none', card?.class)}
             {...card}
           >
             <ImgCard>
@@ -95,10 +96,12 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
       )
     }
   </div>
-  <div class="relative w-150 flex text-lg flex-col justify-center p-10">
+  <div
+    class="relative w-full md:w-150 flex text-lg flex-col justify-center p-4 md:p-10"
+  >
     <h3
       class={cn('text-2xl relative', titleClass, {
-        'ml-auto text-right': position === 'right'
+        'md:ml-auto md:text-right': position === 'right'
       })}
     >
       {title}
@@ -107,7 +110,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
       description && (
         <p
           class={cn('opacity-80 pt-3 text-pretty', descriptionClass, {
-            'ml-auto text-right': position === 'right'
+            'md:ml-auto md:text-right': position === 'right'
           })}
         >
           {description}
@@ -118,7 +121,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
       features && features.length > 0 && (
         <ul
           class={cn('pt-3 space-y-1.5', {
-            'ml-auto': position === 'right'
+            'md:ml-auto': position === 'right'
           })}
         >
           {features.map((feat) => (
@@ -144,7 +147,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
               link.href.startsWith('https') ? 'noopener noreferrer' : undefined
             }
             class={cn('text-accent hover:underline', {
-              'ml-auto': position === 'right'
+              'md:ml-auto': position === 'right'
             })}
           >
             {link.label}

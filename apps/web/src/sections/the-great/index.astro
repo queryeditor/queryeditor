@@ -18,24 +18,24 @@ import ImgCard from '@/components/img-card.astro'
 import { DOCS_HOME_URL } from '@/const/env'
 ---
 
-<section class="container pt-20">
+<section class="container pt-0 md:pt-20">
   <h2 class="py-10 text-center text-lg tracking-tight">
     Built for developers who work with SQL daily.
   </h2>
-  <article class="relative py-5 space-y-20">
+  <article class="relative py-5 space-y-10 md:space-y-20">
     <Item
       title="Monaco Editor at the core"
       description="The same engine that powers VS Code. Full SQL autocomplete, syntax highlighting, multi-cursor editing, and keyboard shortcuts you already know — no learning curve."
       lightImage={highlightLight}
       darkImage={highlightDark}
-      class="min-h-[620px]"
+      class="md:min-h-155"
       index={0}
       link={{
         label: 'Learn about Editor',
         href: DOCS_HOME_URL + '/editor'
       }}
       card={{
-        class: '-right-50 mt-8'
+        class: '-right-50 md:mt-8'
       }}
     />
     <Item
@@ -43,7 +43,7 @@ import { DOCS_HOME_URL } from '@/const/env'
       description="Queries are real .sql files in a real folder on your disk. Organize them however you want — subfolders, rename, drag. Open them in any editor, commit them to Git. No proprietary format."
       lightImage={workspaceLight}
       darkImage={workspaceDark}
-      class="min-h-[600px]"
+      class="md:min-h-150"
       position="right"
       index={1}
       link={{
@@ -51,13 +51,13 @@ import { DOCS_HOME_URL } from '@/const/env'
         href: DOCS_HOME_URL + '/workspaces'
       }}
       card={{
-        class: '-right-40 mt-8'
+        class: '-right-40 md:mt-8'
       }}
     />
     <Item
       title="AI that understands your schema"
       description="Ask it to write a query, explain a result, or refactor a slow statement. The AI assistant has context about your connected database — not just generic SQL."
-      class="min-h-[800px]"
+      class="md:min-h-200"
       lightImage={aiLight}
       darkImage={aiDark}
       link={{
@@ -65,14 +65,14 @@ import { DOCS_HOME_URL } from '@/const/env'
         href: DOCS_HOME_URL + '/ai'
       }}
       card={{
-        class: '-right-30 mt-8'
+        class: '-right-30 md:mt-8'
       }}
       index={2}
     />
     <Item
       position="right"
       index={3}
-      class="min-h-[670px]"
+      class="md:min-h-167"
       title="One tool, multiple databases"
       description="Connect to MySQL, SQLite, and Cloudflare D1 today. More drivers on the way. Switch between connections without closing anything."
       link={{
@@ -80,7 +80,7 @@ import { DOCS_HOME_URL } from '@/const/env'
         href: DOCS_HOME_URL + '/connections'
       }}
     >
-      <div class="absolute top-10">
+      <div class="md:absolute md:top-10">
         <ImgCard>
           <picture>
             <source
@@ -90,7 +90,7 @@ import { DOCS_HOME_URL } from '@/const/env'
             <img src={sqliteLight.src} alt="SQlite Connection | QueryEditor" />
           </picture>
         </ImgCard>
-        <ImgCard class="-translate-y-50 translate-x-15">
+        <ImgCard class="-mt-20 md:-translate-y-50 translate-x-15">
           <picture>
             <source srcset={d1Dark.src} media="(prefers-color-scheme: dark)" />
             <img src={d1Light.src} alt="D1 Connection | QueryEditor" />
@@ -109,9 +109,9 @@ import { DOCS_HOME_URL } from '@/const/env'
       lightImage={datagridLight}
       darkImage={datagridDark}
       card={{
-        class: '-right-40 mt-8'
+        class: '-right-40 md:mt-8'
       }}
-      class="min-h-[920px]"
+      class="md:min-h-230"
     />
   </article>
 </section>

@@ -8,12 +8,16 @@ const stats = [
 ---
 
 <section class="container pt-6 pb-2">
-  <ul class="flex flex-wrap gap-x-8 gap-y-3">
+  <ul class="grid grid-cols-1 sm:flex flex-wrap gap-x-8 gap-y-3">
     {
       stats.map((stat) => (
         <li class="flex items-baseline gap-2">
-          <span class="text-base font-medium font-google-sans">{stat.value}</span>
-          <span class="text-xs text-foreground/70">{stat.label}</span>
+          <span class="text-base font-medium font-google-sans">
+            {stat.value}
+          </span>
+          <span class="text-xs text-foreground/70 text-nowrap">
+            {stat.label}
+          </span>
         </li>
       ))
     }
