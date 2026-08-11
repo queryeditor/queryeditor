@@ -2,12 +2,16 @@
 import { getTree } from 'slugtree'
 import Item from './item.astro'
 import Search from './search'
+import cn from '@queryeditor/shared/lib/cn'
 const tree = getTree()
 ---
 
 <aside
-  class="hidden md:flex flex-col min-w-70 max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto"
-  class="hidden lg:flex flex-col min-w-70 max-w-70 sticky top-14 px-10 h-[calc(100svh-3.5rem)] overflow-y-auto"
+  class={cn(
+    'side__primaryPanel flex flex-col md:min-w-70 md:max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto',
+    'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-10 max-md:bg-background max-md:pt-2',
+    'data-open:max-md:h-svh max-md:transition-all'
+  )}
 >
   <Search client:load transition:persist />
 

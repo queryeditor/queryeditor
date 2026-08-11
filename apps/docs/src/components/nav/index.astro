@@ -9,17 +9,94 @@ import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
     <nav class="basis-0 grow flex">
       <a href={path('/')} class="flex gap-2.5 h-full text-lg items-center">
         <QueryEditor width={15} />
-        <h1>QueryEditor Docs</h1>
+        <h1>Docs</h1>
       </a>
     </nav>
     <div class=""></div>
-    <nav class="grow basis-0 flex items-center justify-end">
+    <nav class="grow basis-0 flex gap-3 items-center justify-end">
       <a
         href={HOME_PAGE_URL}
-        class="flex bg-foreground font-medium text-background gap-2 rounded-full px-3 py-0.5 items-center"
+        class="flex text-nowrap bg-foreground font-medium text-background gap-2 rounded-full px-3 py-0.5 items-center"
       >
         Try Editor
       </a>
+      <button
+        aria-label="Open menu"
+        class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1"
+      >
+        <div
+          class="w-full group-data-open:rotate-45 group-data-open:translate-y-1.25 h-0.5 bg-foreground"
+        >
+        </div>
+        <div
+          class="w-full group-data-open:-rotate-45 group-data-open:-translate-y-1.25 h-0.5 bg-foreground"
+        >
+        </div>
+      </button>
     </nav>
   </nav>
 </header>
+
+<script>
+  import { $ } from '@queryeditor/shared/lib/dom'
+
+  function init() {
+    const $navTrigger = $('.nav__menuTrigger')
+    const $primaryPanel = $('.side__primaryPanel')
+
+    if (!$navTrigger || !$primaryPanel) return
+
+    const toggleOpen = (value: boolean) => {
+      if (value) {
+        document.body.style.overflow = 'hidden'
+        $primaryPanel.dataset.open = 'true'
+        $navTrigger.dataset.open = 'true'
+        $navTrigger.ariaExpanded = 'true'
+      } else {
+        delete $primaryPanel.dataset.open
+        delete $navTrigger.dataset.open
+        document.body.style.overflow = 'auto'
+        $navTrigger.ariaExpanded = 'false'
+      }
+    }
+
+    let menuHistoryPushed = false
+
+    const openMenu = () => {
+      history.pushState({ navMenu: true }, '')
+      menuHistoryPushed = true
+      toggleOpen(true)
+    }
+
+    const closeMenu = (fromPopstate = false) => {
+      if (!fromPopstate && menuHistoryPushed) {
+        menuHistoryPushed = false
+        history.back()
+        return
+      }
+      menuHistoryPushed = false
+      toggleOpen(false)
+    }
+
+    $navTrigger.addEventListener('click', () => {
+      const isOpen = $primaryPanel.dataset.open === 'true'
+      if (isOpen) closeMenu()
+      else openMenu()
+    })
+
+    window.addEventListener('popstate', (e) => {
+      if ($primaryPanel.dataset.open === 'true') {
+        closeMenu(true)
+      }
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && $primaryPanel.dataset.open === 'true') {
+        e.preventDefault()
+        closeMenu()
+      }
+    })
+  }
+
+  document.addEventListener('astro:page-load', init)
+</script>

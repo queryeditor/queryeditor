@@ -28,7 +28,7 @@ const node = getNode(slug)
 {
   node ? (
     <Layout title={node.title} description={node.description}>
-      <section class="flex max-w-2xl px-5 mx-auto w-full flex-col">
+      <section class="flex md:max-w-2xl px-2 md:px-5 mx-auto w-full flex-col">
         <Header node={node} />
         <div class="prose__content grow pt-5">
           <MDXRenderer node={node} />

@@ -72,7 +72,7 @@ export default function Search() {
 
   return (
     <>
-      <nav class="mt-10 mb-3 relative px-2 w-full min-h-12 h-12">
+      <nav class="mt-0 md:mt-10 mb-3 relative px-2 w-full min-h-12 h-12">
         <label class="flex items-center h-full relative">
           <SearchIcon
             width={17}

@@ -147,9 +147,18 @@ const jsonLd = {
       if (!$image || !$overlay) return
 
       let clone: HTMLImageElement | null = null
+      let imageHistoryPushed = false
 
-      const closeImage = () => {
+      const closeImage = (fromPopstate = false) => {
         if (!clone) return
+
+        if (!fromPopstate && imageHistoryPushed) {
+          imageHistoryPushed = false
+          history.back()
+          return
+        }
+
+        imageHistoryPushed = false
 
         const state = Flip.getState(clone)
         Flip.fit(clone, $image)
@@ -199,6 +208,9 @@ const jsonLd = {
         $fig.dataset['open'] = 'true'
         document.body.style.overflow = 'hidden'
 
+        history.pushState({ figureOpen: true }, '')
+        imageHistoryPushed = true
+
         clone.addEventListener('click', (ev) => {
           ev.stopPropagation()
           closeImage()
@@ -210,6 +222,24 @@ const jsonLd = {
         e.preventDefault()
         if ($fig.dataset['open']) closeImage()
       })
+    })
+
+    window.addEventListener('popstate', () => {
+      const $openFig = document.querySelector<HTMLElement>('.figure__container[data-open]')
+      if ($openFig) {
+        const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
+        closeBtn?.click()
+      }
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return
+      const $openFig = document.querySelector<HTMLElement>('.figure__container[data-open]')
+      if ($openFig) {
+        e.preventDefault()
+        const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
+        closeBtn?.click()
+      }
     })
 
     const $tocItems = $$('.toc__item')

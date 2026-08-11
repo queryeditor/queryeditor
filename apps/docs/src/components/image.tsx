@@ -10,7 +10,7 @@ export default function Image({
   caption?: string
 }) {
   return (
-    <figure className="px-4 group figure__container first:mt-0 mt-10">
+    <figure className="md:px-4 group figure__container first:mt-0 mt-10">
       <span class="opacity-0 transition-opacity bg-white/60 backdrop-blur-sm figure__overlay z-10 fixed dark:bg-black/80 pointer-events-none inset-0 group-data-open:pointer-events-auto group-data-open:opacity-100" />
       <picture>
         {darksrc && (
