@@ -55,6 +55,7 @@ const pathname = Astro.url.pathname
     </div>
     <nav class="flex relative z-1 basis-0 items-center gap-3 grow justify-end">
       <button
+        aria-label="Download"
         class={cn(
           'flex download-button items-center text-xs download-button font-medium bg-foreground text-background rounded-full p-1 px-3 gap-2',
           'group-data-[section=footer]:bg-white group-data-[section=footer]:text-black'
@@ -62,7 +63,10 @@ const pathname = Astro.url.pathname
       >
         Download
       </button>
-      <button class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1">
+      <button
+        aria-label="Open menu"
+        class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1"
+      >
         <div
           class="w-full group-data-open:rotate-45 group-data-open:translate-y-1.25 h-0.5 bg-foreground"
         >
@@ -90,10 +94,12 @@ const pathname = Astro.url.pathname
         document.body.style.overflow = 'hidden'
         $navMenu.dataset.open = 'true'
         $navTrigger.dataset.open = 'true'
+        $navTrigger.ariaExpanded = 'true'
       } else {
         delete $navMenu.dataset.open
         delete $navTrigger.dataset.open
         document.body.style.overflow = 'auto'
+        $navTrigger.ariaExpanded = 'false'
       }
     }
 
