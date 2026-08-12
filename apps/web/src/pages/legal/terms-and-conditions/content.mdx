@@ -5,94 +5,55 @@
   <time datetime="2026-05-19T00:00:00.000Z">May 19, 2026</time>
 </div>
 
-Please read these Terms and Conditions ("Terms") carefully before using the QueryEditor desktop application (the "App").
+Please read these Terms ("Terms") before using the QueryEditor desktop application ("App"). By using the App, you agree to be bound by them.
 
-This software is operated by David Bendezú ("Daustinn", "we", "us", or "our").
+## 1. Alpha Release
 
-By accessing or using the App, you agree to be legally bound by these Terms. If you disagree with any part of these terms, do not use the App.
+QueryEditor is in **Alpha**. The software is under active development and may contain bugs, crashes, or breaking changes between versions. It is provided for testing and evaluation purposes.
 
-## 1. Alpha Version Disclaimer
+## 2. Disclaimer of Warranties & Limitation of Liability
 
-QueryEditor is currently in an **Alpha release stage**. The software is under active development, is experimental, and may contain bugs, crashes, or missing features.
+**THE APP IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.**
 
-It is provided strictly for testing and evaluation purposes. Breaking changes between versions may occur without prior notice.
-
-## 2. Disclaimer of Warranties and Limitation of Liability
-
-**THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.**
-
-Database interaction carries inherent risk. Executing incorrect queries can cause permanent data loss. Under no circumstances shall David Bendezú, QueryEditor, or its contributors be liable for any direct, indirect, incidental, special, or consequential damages, including but not limited to:
+Database interaction carries inherent risk. Executing incorrect queries can cause permanent data loss. Under no circumstances shall David Bendezú or QueryEditor be liable for any direct, indirect, incidental, or consequential damages, including:
 
 - Loss of data or database corruption.
-- Loss of profits or business interruption.
-- Damages arising from queries you execute manually.
-- Damages arising from queries generated, suggested, or modified by the AI assistant. You are solely responsible for reviewing and approving any AI-generated SQL before execution.
-
-The connection safety modes described in Section 3 are best-effort local guards and do not constitute a warranty against data loss.
+- Damages from queries you execute manually.
+- Damages from queries generated or suggested by the AI assistant. You are solely responsible for reviewing any AI-generated SQL before execution.
 
 ## 3. Connection Safety Modes
 
-QueryEditor provides per-connection safety modes that restrict which queries can be executed. These operate entirely locally via regex-based validation before any query reaches your database:
+QueryEditor provides per-connection safety modes that restrict which queries can be sent to your database. These are local guards — they do not replace proper database access controls, backups, or careful query review. You remain solely responsible for all queries executed.
 
-| Mode | Behavior |
-|---|---|
-| **Silent** | No restrictions. Full database access. |
-| **Read-Only** | Blocks all write operations (INSERT, UPDATE, DELETE, DROP, ALTER, CREATE, etc.). |
-| **Safe** | Allows writes but blocks destructive operations without a WHERE clause (e.g., `DELETE FROM` without `WHERE`, `DROP TABLE`). |
-| **Confirm** | Shows a native confirmation dialog before every query execution. |
-| **Production** | Combines Safe restrictions and Confirm dialog for maximum protection. |
+## 4. End-User License Agreement
 
-These modes are provided as a convenience tool. They do not replace proper database access controls, backups, or careful review of every query. You remain solely responsible for all queries executed against your databases.
+Use of the closed-source binary is governed by the **[EULA](/legal/eula)**, which covers license restrictions, network activity, and data stored on your device.
 
-## 4. End-User License Agreement (EULA)
+## 5. AI & Third-Party Providers
 
-Usage of the closed-source binary is governed by our **[End-User License Agreement](/legal/eula)**, which details license restrictions, automatic update behavior, and data stored on your device. By using the App, you agree to its terms.
+QueryEditor integrates with AI providers via API keys you supply. Currently supported: OpenAI, Anthropic, and Google. By configuring a provider, you agree to:
 
-## 5. Artificial Intelligence & Third-Party Services
+- Comply with that provider's Terms of Service.
+- Accept all costs incurred by your API key.
+- Understand that we do not warrant the accuracy or correctness of AI-generated content.
 
-QueryEditor integrates with third-party AI providers via API keys you supply. Currently supported providers:
+AI schema access is strictly read-only. The AI cannot execute queries autonomously.
 
-- **OpenAI** (GPT-4o and later models)
-- **Anthropic** (Claude Sonnet, Haiku, Opus)
-- **Google** (Gemini 2.5 Pro and later models)
+## 6. Pricing
 
-By configuring an AI provider, you agree to:
+The App is currently free to use. Development is supported by voluntary donations.
 
-- Comply with that provider's Terms of Service and Acceptable Use Policy.
-- Accept all costs and charges incurred by your API key usage.
-- Understand that we do not warrant the accuracy, safety, or correctness of AI-generated queries or explanations.
+Donations do not grant commercial rights or warranties. We reserve the right to introduce paid tiers in the future. You will never be charged retroactively for past usage.
 
-AI schema access is strictly read-only. The App requests your explicit permission each time the AI needs to read schema metadata (tables, columns, indexes, triggers) from a connection. The AI cannot execute queries autonomously.
+## 7. Security
 
-## 6. Free Nature and Donations
-
-The App is provided free of charge. Development is supported by voluntary community donations (e.g., via Buy Me a Coffee).
-
-Donations do not grant commercial rights, exclusive warranties, or premium licenses.
-
-We reserve the right to modify features, change the distribution model, or introduce paid tiers in the future. If a paid model is introduced, you will never be charged retroactively for past usage.
-
-## 7. Credential Management and Security
-
-QueryEditor connects to databases that may contain sensitive or confidential data. While the App encrypts your credentials at rest, no software is entirely invulnerable — especially in Alpha.
-
-You are responsible for:
-
-- Securing your local network and operating system.
-- Using appropriate connection safety modes for sensitive environments.
-- Maintaining regular database backups.
-
-David Bendezú does not have access to your databases, credentials, or local machine. We decline any liability for data breaches, unauthorized access, or security incidents originating from your local environment.
+QueryEditor encrypts your credentials at rest. You are responsible for securing your local machine and maintaining regular database backups. We have no access to your databases or credentials, and we disclaim liability for security incidents originating from your local environment.
 
 ## 8. Governing Law
 
-These Terms shall be governed by the laws of Peru, within the jurisdiction of Ayacucho, without regard to conflict of law provisions.
+These Terms are governed by the laws of Peru, jurisdiction of Ayacucho.
 
-## 9. Contact Us
+## 9. Contact
 
-- **Legal Matters:** legal@queryeditor.com
-- **General Support:** hi@queryeditor.com
-- **GitHub:** [https://github.com/queryeditor](https://github.com/queryeditor)
-- **X (Twitter):** [https://x.com/queryeditor](https://x.com/queryeditor)
-
-**Developed by:** [David Bendezú (Daustinn)](https://daustinn.com)
+- **Legal:** legal@queryeditor.com
+- **Support:** hi@queryeditor.com

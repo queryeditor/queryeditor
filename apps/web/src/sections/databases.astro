@@ -13,7 +13,7 @@ import { DATABASES } from '@/const/index'
       Object.entries(DATABASES).map(([key, database]) => (
         <div
           data-unavailable={database.available ? undefined : ''}
-          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center dark:bg-stone-900/90 bg-stone-200/40 border border-border/30 dark:border-border rounded-lg w-full data-unavailable:[&>svg]:opacity-50"
+          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center dark:bg-neutral-900/90 bg-neutral-200/40 border border-border/30 dark:border-border rounded-lg w-full data-unavailable:[&>svg]:opacity-50"
           data-key={key}
         >
           <database.icon width={25} />

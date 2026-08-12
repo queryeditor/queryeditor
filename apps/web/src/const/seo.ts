@@ -1,20 +1,23 @@
 import { HOME_URL } from './env'
 
 export default {
-  title: 'The SQL client that keeps your queries on your machine.',
+  title: 'A query editor that lives on your machine.',
   name: 'QueryEditor',
   description:
-    'AI-powered SQL client, local-first, file-based workspace, free, no account needed.',
+    'Desktop SQL editor with a file-based workspace, schema-aware autocompletion, and optional AI assistance. Free, no account required. Windows.',
   keywords: [
     'sql',
-    'editor',
-    'client',
-    'database',
-    'ai',
-    'ai tool',
-    'query',
-    'tool',
-    'manager'
+    'sql editor',
+    'desktop sql client',
+    'query editor',
+    'database tool',
+    'database client',
+    'monaco editor',
+    'windows sql tool',
+    'local sql editor',
+    'ai sql',
+    'sqlite client',
+    'mysql client'
   ],
   url: HOME_URL,
   ogImage: '/og-image.png',
