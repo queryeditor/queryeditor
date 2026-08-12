@@ -7,78 +7,150 @@ const items = {
   About: '/about'
 }
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
-const pathname = Astro.url.pathname
+import Bmc from '@queryeditor/shared/icons/bmc.svg'
+import { DAUSTINN, WAITLIST_URL } from '@/const'
+
+const classButton =
+  'hidden items-center font-google-sans text-sm download-button font-semibold bg-foreground text-background rounded-xl p-1.5 px-3 gap-2'
 ---
 
-<nav
-  class="sticky transition-colors group root__nav duration-700 top-0 data-[section=footer]:bg-black data-[section=footer]:text-white bg-background z-50 h-12"
->
-  <div class="flex h-full items-center justify-between container">
-    <a
-      href="/"
-      class="flex h-full z-1 relative items-center gap-3 px-1 basis-0 grow"
-    >
-      <QueryEditor width={15} />
-      <p class="tracking-tight font-medium text-xl font-google-sans">
-        QueryEditor
-      </p>
-    </a>
-    <div>
-      <div
-        class={cn(
-          'max-md:fixed transition-all overflow-hidden nav__menu group top-0 inset-x-0',
-          'data-open:max-md:text-foreground data-open:max-md:bg-background',
-          'h-12 data-open:h-dvh'
-        )}
-      >
-        <ul
+<header class="sticky transition-colors group root__nav top-0 z-50 h-20">
+  <div
+    class="h-full relative dark:shadow-none! group-data-notop:drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] duration-600 transition-[filter]"
+  >
+    <div class="flex h-full items-center pb-1 justify-between container">
+      <div class="flex items-center grow basis-0 justify-start">
+        <a href="/" class="flex h-full z-1 items-center gap-3 px-2 md:px-1">
+          <QueryEditor width={18} />
+          <p
+            class="tracking-tight max-xxs:hidden line-clamp-1 font-medium text-xl font-google-sans"
+          >
+            QueryEditor
+          </p>
+        </a>
+        <nav
           class={cn(
-            'font-google-sans flex max-md:flex-col max-md:items-start items-center',
-            'max-md:opacity-0 max-md:pt-20 group-data-open:opacity-100 transition-opacity'
+            'max-md:fixed transition-all overflow-hidden nav__menu group max-md:top-0 max-md:inset-x-0',
+            'data-open:max-md:text-foreground data-open:max-md:bg-background',
+            'max-md:h-0 h-full max-md:data-open:h-dvh'
           )}
         >
-          {
-            Object.entries(items).map(([name, href]) => (
-              <li>
-                <a
-                  data-current={pathname.endsWith(href) ? '' : undefined}
-                  href={href}
-                  class="md:opacity-70 nav__menuItem max-md:font-semibold max-md:py-1 inline-flex data-current:opacity-100 max-md:text-lg text-sm py-3 px-4 hover:opacity-100"
-                >
-                  {name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+          <ul
+            class={cn(
+              'font-google-sans flex max-md:flex-col max-md:items-start items-center',
+              'max-md:pt-20 transition-opacity max-md:opacity-0 max-md:group-data-open:opacity-100'
+            )}
+          >
+            {
+              Object.entries(items).map(([name, href]) => (
+                <li>
+                  <a
+                    href={href}
+                    class="md:opacity-70 font-medium nav__menuItem max-md:font-semibold max-md:py-1 inline-flex max-md:text-lg text-sm py-3 px-4 hover:opacity-100"
+                  >
+                    {name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <ul
+            class="md:hidden border-t mt-5 pt-5 transition-opacity max-md:opacity-0 max-md:group-data-open:opacity-100"
+          >
+            <li>
+              <a
+                href={DAUSTINN.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav__menuItem font-semibold py-1 inline-flex text-lg px-4"
+              >
+                Daustinn
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
+      <div></div>
+      <nav
+        class="flex relative z-1 max-md:px-2 basis-0 items-center gap-5 md:gap-3 grow justify-end"
+      >
+        <a
+          href={DAUSTINN.buyMeACoffee}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Buy me a coffee Button"
+          class={cn(
+            'flex shadow-sm items-center font-google-sans text-sm font-semibold dark:bg-neutral-900 bg-background text-foreground rounded-xl p-1.5 px-3 gap-2'
+          )}
+        >
+          <Bmc width={18} />
+          <span class="max-md:hidden">Buy me a coffee</span>
+        </a>
+        <button
+          aria-label="Download the app"
+          class={cn(classButton, 'pwindows:md:flex download-button')}
+        >
+          Try on Windows
+        </button>
+        <a
+          href={WAITLIST_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={cn(classButton, 'pmac:md:flex')}
+        >
+          Join the waitlist
+        </a>
+        <a
+          href={WAITLIST_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={cn(classButton, 'plinux:md:flex')}
+        >
+          Join the waitlist
+        </a>
+        <button class={cn(classButton, 'pother:md:flex share__button')}>
+          Send download link
+        </button>
+        <button
+          aria-label="Open menu"
+          class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1"
+        >
+          <div
+            class="w-full group-data-open:rotate-45 group-data-open:translate-y-1.25 h-0.5 bg-foreground"
+          >
+          </div>
+          <div
+            class="w-full group-data-open:-rotate-45 group-data-open:-translate-y-1.25 h-0.5 bg-foreground"
+          >
+          </div>
+        </button>
+      </nav>
     </div>
-    <nav class="flex relative z-1 basis-0 items-center gap-3 grow justify-end">
-      <button
-        aria-label="Download"
-        class={cn(
-          'flex download-button items-center text-xs download-button font-medium bg-foreground text-background rounded-full p-1 px-3 gap-2',
-          'group-data-[section=footer]:bg-white group-data-[section=footer]:text-black'
-        )}
-      >
-        Download
-      </button>
-      <button
-        aria-label="Open menu"
-        class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1"
-      >
-        <div
-          class="w-full group-data-open:rotate-45 group-data-open:translate-y-1.25 h-0.5 bg-foreground"
-        >
-        </div>
-        <div
-          class="w-full group-data-open:-rotate-45 group-data-open:-translate-y-1.25 h-0.5 bg-foreground"
-        >
-        </div>
-      </button>
-    </nav>
+    <div
+      class="gradient__background opacity-0 duration-600 group-data-notop:opacity-100 transition-opacity pointer-events-none"
+    >
+    </div>
   </div>
-</nav>
+</header>
+
+<style>
+  .gradient__background {
+    background-image: url('/header-gradient-background.webp');
+    mask-image: url('/mask.svg');
+    mask-size: auto 100%;
+    mask-repeat: repeat-x;
+    background-size: cover;
+    inset: 0px;
+    background-position: center center;
+    z-index: -1;
+    position: absolute;
+  }
+  @media (prefers-color-scheme: dark) {
+    .gradient__background {
+      background: black;
+    }
+  }
+</style>
 
 <script>
   import { $ } from '@queryeditor/shared/lib/dom'
@@ -86,8 +158,9 @@ const pathname = Astro.url.pathname
   function init() {
     const $navTrigger = $('.nav__menuTrigger')
     const $navMenu = $('.nav__menu')
+    const $rootNav = $('.root__nav')
 
-    if (!$navTrigger || !$navMenu) return
+    if (!$navTrigger || !$navMenu || !$rootNav) return
 
     const toggleOpen = (value: boolean) => {
       if (value) {
@@ -139,6 +212,15 @@ const pathname = Astro.url.pathname
         closeMenu()
       }
     })
+
+    const handleScroll = () => {
+      if (window.scrollY > 0) $rootNav.dataset.notop = 'true'
+      else delete $rootNav.dataset.notop
+    }
+
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll)
   }
 
   document.addEventListener('astro:page-load', init)

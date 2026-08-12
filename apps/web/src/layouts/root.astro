@@ -47,12 +47,19 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-platform="other">
   <head>
     <ClientRouter />
     <link
       rel="preload"
       href="/fonts/google-sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/young-serif.woff2"
       as="font"
       type="font/woff2"
       crossorigin="anonymous"
@@ -105,8 +112,48 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImageURL} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- <script is:inline>
+      ;(function () {
+        function detectPlatform() {
+          const uaData = navigator.userAgentData
+          if (uaData && uaData.mobile) return 'other'
+
+          const userAgent = (navigator.userAgent || '').toLowerCase()
+          const isMobileOrTablet =
+            /mobile|tablet|android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+              userAgent
+            )
+          if (isMobileOrTablet) return 'other'
+
+          if (uaData && uaData.platform) {
+            const platform = uaData.platform.toLowerCase()
+            if (platform.includes('mac')) return 'mac'
+            if (platform.includes('win')) return 'windows'
+            if (platform.includes('linux')) return 'linux'
+          }
+          if (userAgent.includes('mac') || userAgent.includes('darwin'))
+            return 'mac'
+          if (userAgent.includes('win')) return 'windows'
+          if (userAgent.includes('linux') || userAgent.includes('x11'))
+            return 'linux'
+          return 'other'
+        }
+        function setPlatform() {
+          document.documentElement.dataset.platform = detectPlatform()
+        }
+        setPlatform()
+        document.addEventListener('astro:page-load', setPlatform)
+      })()
+    </script> -->
   </head>
   <body class="flex flex-col min-h-svh">
+    <div
+      aria-hidden="true"
+      class="h-svh bg-cover dark:hidden bg-center absolute top-0 inset-x-0 -z-1 pointer-events-none"
+      style="background-image: url('/gradient-background.webp');"
+    >
+    </div>
     <Nav />
     <main class="grow flex flex-col">
       <slot />
@@ -119,38 +166,44 @@ const jsonLd = {
   import { $$, $ } from '@queryeditor/shared/lib/dom'
   import { actions } from 'astro:actions'
 
-  console.log('load script')
-
-  $$('.download-button').forEach(($btn) => {
-    $btn.addEventListener('click', async () => {
-      $btn.setAttribute('disabled', 'disabled')
-      try {
-        const res = await actions.getDownloadURL()
-        if (res.data) window.open(res.data, '_blank')
-      } catch (error) {
-        console.error('Download failed:', error)
-      } finally {
-        $btn.removeAttribute('disabled')
-      }
-    })
-  })
-
   function init() {
-    const $nav = $<HTMLElement>('.root__nav')
-    const $footer = $<HTMLElement>('.root__footer')
-
-    if ($nav && $footer) {
-      const onScroll = () => {
-        if ($footer.getBoundingClientRect().top <= 50) {
-          $nav.dataset.section = 'footer'
-        } else {
-          delete $nav.dataset.section
+    $$('.download-button').forEach(($btn) => {
+      $btn.addEventListener('click', async () => {
+        $btn.setAttribute('disabled', 'disabled')
+        try {
+          const res = await actions.getDownloadURL()
+          if (res.data) window.open(res.data, '_blank')
+        } catch (error) {
+          console.error('Download failed:', error)
+        } finally {
+          $btn.removeAttribute('disabled')
         }
-      }
+      })
+    })
 
-      window.addEventListener('scroll', onScroll, { passive: true })
-      onScroll()
-    }
+    const $shareButtons = $$('.share__button')
+
+    $shareButtons.forEach(($btn) => {
+      $btn.addEventListener('click', async () => {
+        const url = $btn.dataset.url || window.location.href
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: 'QueryEditor',
+              text: 'A desktop SQL editor that keeps your queries on your machine.',
+              url
+            })
+          } catch (err) {
+            if ((err as Error).name !== 'AbortError') {
+              console.error('Sharing failed:', err)
+            }
+          }
+        } else {
+          await navigator.clipboard.writeText(window.location.href)
+          alert('Link copied to clipboard')
+        }
+      })
+    })
   }
 
   document.addEventListener('astro:page-load', init)

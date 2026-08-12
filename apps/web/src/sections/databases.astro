@@ -13,11 +13,12 @@ import { DATABASES } from '@/const/index'
       Object.entries(DATABASES).map(([key, database]) => (
         <div
           data-unavailable={database.available ? undefined : ''}
-          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center dark:bg-neutral-900/90 bg-neutral-200/40 border border-border/30 dark:border-border rounded-lg w-full data-unavailable:[&>svg]:opacity-50"
+          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center bg-white shadow-md rounded-xl w-full data-unavailable:[&>svg]:opacity-50"
           data-key={key}
+          aria-label={`Database: ${database.name}`}
         >
-          <database.icon width={25} />
-          <p class="text-sm">{database.name}</p>
+          <database.icon width={35} />
+          <p class="text-sm pt-5">{database.name}</p>
           {!database.available && (
             <p class="text-xs pt-1 text-orange-700 dark:text-orange-400">
               Coming soon

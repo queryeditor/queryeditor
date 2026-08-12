@@ -21,13 +21,13 @@ const { description, title } = Astro.props
   <main
     class="flex container lg:flex-row flex-col pt-5 lg:pt-36 justify-between"
   >
-    <nav class="grow basis-0 pb-10 lg:sticky top-14 h-fit self-start">
+    <nav class="grow basis-0 pb-10 lg:sticky top-24 h-fit self-start">
       <ul>
         {
           Object.entries(items).map(([label, href]) => (
             <li>
               <a
-                data-current={pathname.endsWith(href) ? '' : undefined}
+                data-current={pathname.startsWith(href) ? '' : undefined}
                 class="py-1 data-current:opacity-100 data-current:underline text-base tracking-tight inline-block opacity-60 hover:opacity-90"
                 href={href}
               >
@@ -38,7 +38,7 @@ const { description, title } = Astro.props
         }
       </ul>
     </nav>
-    <section class="markdown-main pb-40 lg:max-w-162.5 mx-auto w-full">
+    <section class="prose__contet pb-40 lg:max-w-162.5 mx-auto w-full">
       <slot />
     </section>
     <nav class="grow basis-0"></nav>

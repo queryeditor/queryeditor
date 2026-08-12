@@ -1,7 +1,6 @@
 ---
-import { BUY_ME_A_COFFEE_URL } from '@/const/index'
+import { DAUSTINN } from '@/const/index'
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
-import Download from '@queryeditor/shared/icons/download.svg'
 import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
 
 const items = {
@@ -55,44 +54,28 @@ const items = {
     {
       ariaLabel: 'X of Daustinn',
       name: 'X',
-      href: 'https://x.com/daustinndev'
+      href: DAUSTINN.x
     },
     {
       ariaLabel: 'Github of Daustinn',
       name: 'Github',
-      href: 'https://github.com/daustinn'
+      href: DAUSTINN.github
     },
     {
       ariaLabel: 'Website of Daustinn',
       name: 'Website',
-      href: 'https://daustinn.com'
+      href: DAUSTINN.website
     },
     {
       ariaLabel: 'Buy me a coffee of Daustinn',
       name: 'Buy me a coffee',
-      href: BUY_ME_A_COFFEE_URL
+      href: DAUSTINN.buyMeACoffee
     }
   ]
 } as const
 ---
 
-<footer class="min-h-svh root__footer flex flex-col bg-black text-white">
-  <div class="grow max-md:py-40 flex flex-col justify-center">
-    <p
-      class="max-md:px-10 text-4xl sm:text-6xl tracking-tighter font-semibold font-google-sans max-w-3xl mx-auto text-center"
-    >
-      Download and start <span
-        class="bg-linear-to-l bg-clip-text text-transparent from-yellow-400 via-violet-400 to-blue-400"
-        >querying</span
-      > in under a minute.
-    </p>
-    <button
-      class="flex font-google-sans text-base font-medium mx-auto download-button w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-4 bg-white text-black rounded-full px-10 py-4 mt-7 text-nowrap"
-    >
-      Download for Windows
-      <Download width={20} />
-    </button>
-  </div>
+<footer class="root__footer flex flex-col relative">
   <div
     class="container py-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10"
   >

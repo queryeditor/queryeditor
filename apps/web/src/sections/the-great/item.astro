@@ -55,7 +55,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
 
 <div
   class={cn(
-    'dark:bg-neutral-900/90 bg-neutral-200/40 shadow-sm p-4 rounded-md overflow-hidden',
+    'dark:bg-neutral-900/90 bg-neutral-200/40 shadow-sm p-4 rounded-lg md:rounded-3xl overflow-hidden',
     'flex',
     'max-md:flex-col',
     props.class,
@@ -64,7 +64,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
   {...props}
 >
   <div
-    class="max-md:p-4 w-full relative rounded-md bg-center overflow-hidden bg-cover bg-no-repeat flex justify-center"
+    class="max-md:p-4 w-full relative rounded-md md:rounded-2xl bg-center overflow-hidden bg-cover bg-no-repeat flex justify-center"
     style={`background-image: url(${backgroundImage.src});`}
   >
     {
@@ -100,7 +100,7 @@ const backgroundImage = backgrounds[index % backgrounds.length] ?? background
     class="relative w-full md:w-150 flex text-lg flex-col justify-center p-4 md:p-10"
   >
     <h3
-      class={cn('text-2xl relative', titleClass, {
+      class={cn('text-2xl relative font-young-serif', titleClass, {
         'md:ml-auto md:text-right': position === 'right'
       })}
     >

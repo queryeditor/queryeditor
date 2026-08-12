@@ -1,43 +1,54 @@
 ---
-import Download from '@queryeditor/shared/icons/download.svg'
-import ArrowBack from '@queryeditor/shared/icons/arrow-back.svg'
-import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
+import Window from '@queryeditor/shared/icons/window.svg'
+import Apple from '@queryeditor/shared/icons/apple.svg'
+import Linux from '@queryeditor/shared/icons/linux.svg'
+import Send from '@queryeditor/shared/icons/send.svg'
+import cn from '@queryeditor/shared/lib/cn'
+import { WAITLIST_URL } from '@/const'
+const classButton =
+  'hidden w-full text-base md:w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-3 font-google-sans bg-foreground text-background rounded-3xl font-semibold shadow-md px-5 py-6'
 ---
 
 <header class="text-left container py-16 flex flex-col">
-  <span class="rounded-full border bg-border/20 w-fit px-2 py-px text-xs">
-    Alpha
-  </span>
   <h1
-    class="text-4xl md:text-5xl font-google-sans font-semibold pt-3 md:leading-13 pl-2"
+    class="text-4xl md:text-5xl max-w-lg mx-auto text-center font-young-serif tracking-tight pt-10"
   >
-    The SQL client that<br />
-    keeps your queries<br />
-    <span
-      class="bg-linear-to-l bg-clip-text text-transparent from-yellow-500 via-violet-500 to-blue-500 dark:from-yellow-400 dark:via-violet-400 dark:to-blue-400"
-      >on your machine.</span
-    >
+    The SQL client that keeps your queries on your machine.
   </h1>
-  <p class="pt-4 pl-2 opacity-60 max-w-sm text-sm leading-relaxed">
+  <p
+    class="pt-4 opacity-60 max-w-lg text-center mx-auto font-google-sans text-base leading-relaxed"
+  >
     Local-first, file-based workspace. Monaco editor. AI that knows your schema.
     Free, no account needed.
   </p>
-  <div class="flex md:flex-row flex-col items-center gap-2 mt-7">
-    <button
-      class="flex w-full text-base download-button md:w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-2 font-google-sans bg-foreground text-background rounded-full px-10 py-3"
-    >
-      Download for Windows
-      <Download width={16} />
+  <div
+    class="flex justify-center md:flex-row flex-col items-center gap-2 mt-15"
+  >
+    <button class={cn(classButton, 'pwindows:flex download-button')}>
+      <Window width={24} />
+      Try on Windows
     </button>
     <a
-      href={DOCS_PAGE_URL}
-      class="flex w-full text-base font-google-sans md:w-fit justify-center transition-transform items-center gap-2 rounded-full px-10 py-3 bg-foreground/5 hover:bg-foreground/10"
+      href={WAITLIST_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={cn(classButton, 'pmac:flex')}
     >
-      Docs
-      <ArrowBack class="rotate-180" width={20} />
+      <Apple width={24} />
+      Join the waitlist
     </a>
+    <a
+      href={WAITLIST_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={cn(classButton, 'plinux:flex')}
+    >
+      <Linux width={24} />
+      Join the waitlist
+    </a>
+    <button class={cn(classButton, 'pother:flex share__button')}>
+      <Send width={24} />
+      Send download link
+    </button>
   </div>
-  <p class="text-xs md:text-left text-center pt-3 px-2 text-foreground/70">
-    Currently Windows only. Alpha — use at your own risk.
-  </p>
 </header>
