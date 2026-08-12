@@ -4,6 +4,7 @@
   "nodes": [
     "index",
     "getting-started",
+    "download",
     "--- Concepts ---",
     "workspace",
     "connections",

@@ -3,17 +3,19 @@ import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
 export default {
   title: 'QueryEditor Documentation',
   name: 'QueryEditor Docs',
-  description: 'Documentation for the local-first SQL editor and client',
+  description:
+    'Documentation for QueryEditor — a desktop SQL editor with file-based workspaces, schema-aware autocompletion, and optional AI assistance.',
   keywords: [
     'sql',
-    'editor',
-    'client',
-    'database',
-    'ai',
-    'ai tool',
-    'query',
-    'tool',
-    'manager',
+    'sql editor',
+    'desktop sql client',
+    'query editor',
+    'database tool',
+    'monaco editor',
+    'windows sql tool',
+    'local sql editor',
+    'sqlite',
+    'mysql',
     'documentation',
     'docs'
   ],

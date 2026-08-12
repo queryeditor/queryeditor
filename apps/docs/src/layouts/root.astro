@@ -267,6 +267,19 @@ const jsonLd = {
         }, 2000)
       })
     })
+
+    $$<HTMLFormElement>('.waitlist-form').forEach(($form) => {
+      $form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const email = ($form.elements.namedItem('email') as HTMLInputElement)?.value ?? ''
+        const platform = $form.dataset.platform ?? ''
+        const subject = encodeURIComponent(`Waitlist: QueryEditor for ${platform}`)
+        const body = encodeURIComponent(
+          `I'd like to be notified when QueryEditor is available for ${platform}.\n\nEmail: ${email}`
+        )
+        window.location.href = `mailto:hi@queryeditor.com?subject=${subject}&body=${body}`
+      })
+    })
   }
 
   document.addEventListener('astro:page-load', init)
