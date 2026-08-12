@@ -3,9 +3,8 @@
 A desktop SQL editor that keeps your queries on your machine. Local-first, file-based workspace with Monaco editor and optional AI assistance.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="packages/shared/images/hero-dark.webp" />
-  <source media="(prefers-color-scheme: light)" srcset="packages/shared/images/hero-light.webp" />
-  <img alt="QueryEditor Preview" src="packages/shared/images/hero-light.webp" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.webp" />
+  <img alt="QueryEditor Preview" src="assets/hero-light.webp" />
 </picture>
 
 ## Links
