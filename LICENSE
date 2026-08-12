@@ -1,0 +1,81 @@
+Proprietary Software License
+
+Copyright (c) 2025–present David Bendezú. All rights reserved.
+
+DEFINITIONS
+
+"Software" refers to the QueryEditor desktop application, including its source
+code, compiled binaries, assets, configuration files, and all associated files
+distributed as part of QueryEditor.
+
+"Author" refers to David Bendezú, the sole copyright holder of the Software.
+
+GRANT OF LICENSE
+
+The Author grants you a personal, non-exclusive, non-transferable, revocable,
+and limited license to download, install, and use the Software free of charge,
+subject to the restrictions below.
+
+RESTRICTIONS
+
+You may not, and you may not permit others to:
+
+  a) copy, modify, merge, adapt, translate, or create derivative works of the
+     Software or any portion of it;
+
+  b) decompile, disassemble, reverse engineer, or otherwise attempt to derive
+     the source code or internal structure of the Software;
+
+  c) distribute, publish, sublicense, rent, lease, sell, or otherwise transfer
+     the Software or any rights in it to any third party;
+
+  d) remove, alter, or obscure any proprietary notice, copyright, trademark, or
+     other legend on or in the Software;
+
+  e) use the Software to build a product or service that competes with
+     QueryEditor.
+
+INTELLECTUAL PROPERTY
+
+All right, title, and interest in and to the Software — including all
+copyrights, trade secrets, trademarks, and other intellectual property rights —
+remain the exclusive property of David Bendezú. This license does not convey
+any ownership interest in the Software.
+
+DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. THE
+AUTHOR DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, UNINTERRUPTED,
+OR FREE OF HARMFUL COMPONENTS.
+
+LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, LOSS OF DATA, BUSINESS
+INTERRUPTION, OR LOSS OF PROFITS) ARISING OUT OF OR IN CONNECTION WITH YOUR
+USE OF OR INABILITY TO USE THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+TERMINATION
+
+This license is effective until terminated. It terminates automatically if you
+fail to comply with any of its terms. Upon termination, you must cease all use
+of the Software and destroy all copies in your possession.
+
+GOVERNING LAW
+
+This license is governed by the laws of Peru, jurisdiction of Ayacucho, without
+regard to conflict-of-law provisions.
+
+ADDITIONAL TERMS
+
+Use of the Software is also governed by the End-User License Agreement (EULA)
+available at https://queryeditor.com/legal/eula. In the event of a conflict
+between this license and the EULA, the EULA prevails.
+
+CONTACT
+
+  legal@queryeditor.com
