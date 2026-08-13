@@ -13,7 +13,7 @@ import { DATABASES } from '@/const/index'
       Object.entries(DATABASES).map(([key, database]) => (
         <div
           data-unavailable={database.available ? undefined : ''}
-          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center bg-white shadow-md rounded-xl w-full data-unavailable:[&>svg]:opacity-50"
+          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center bg-white dark:bg-neutral-500/15 shadow-md rounded-xl w-full data-unavailable:[&>svg]:opacity-50"
           data-key={key}
           aria-label={`Database: ${database.name}`}
         >

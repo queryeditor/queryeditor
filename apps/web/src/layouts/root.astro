@@ -47,7 +47,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en" data-platform="other">
+<html lang="en">
   <head>
     <ClientRouter />
     <link
@@ -113,7 +113,7 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- <script is:inline>
+    <script is:inline>
       ;(function () {
         function detectPlatform() {
           const uaData = navigator.userAgentData
@@ -145,7 +145,7 @@ const jsonLd = {
         setPlatform()
         document.addEventListener('astro:page-load', setPlatform)
       })()
-    </script> -->
+    </script>
   </head>
   <body class="flex flex-col min-h-svh">
     <div
