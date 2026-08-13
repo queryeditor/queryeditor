@@ -6,7 +6,7 @@ export const GET: APIRoute = async ({ site }) => {
   const routes = [
     '',
     '/about',
-    '/changelog',
+    '/changelogs',
     '/legal/terms-and-conditions',
     '/legal/privacy-policy',
     '/legal/eula'
