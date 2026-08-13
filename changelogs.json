@@ -1,1 +1,40 @@
-[]
+[
+  {
+    "title": "AI-Enhanced Query Editor",
+    "version": "0.0.101",
+    "date": "2026-08-13",
+    "sha": "8309fc735cf1793a27089aeb7fe3c0e35fb17b3b",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.101",
+    "data": [
+      {
+        "category": "Features",
+        "body": [
+          {
+            "subcategory": "AI",
+            "body": [
+              "Integrated AI assistance for building queries."
+            ]
+          },
+          {
+            "subcategory": "Editor",
+            "body": [
+              "React-based interface with Monaco code editor, customizable layouts, and new themes."
+            ]
+          },
+          {
+            "subcategory": "Languages",
+            "body": [
+              "Support for multiple database drivers and a built-in SQL parser."
+            ]
+          },
+          {
+            "subcategory": "Other",
+            "body": [
+              "Electron main process with IPC communication and automatic updater."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
