@@ -31,19 +31,27 @@ const canonicalURL = new URL(
 ).toString()
 const ogImageURL = new URL(image, Astro.site || seo.url).toString()
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: seo.name,
-  description: description,
-  applicationCategory: 'DeveloperApplication',
-  operatingSystem: 'Windows',
-  url: canonicalURL,
-  author: {
-    '@type': 'Person',
-    name: seo.author
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: seo.name,
+    url: canonicalURL
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: seo.name,
+    description: description,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Windows',
+    url: canonicalURL,
+    author: {
+      '@type': 'Person',
+      name: seo.author
+    }
   }
-}
+]
 ---
 
 <!doctype html>
