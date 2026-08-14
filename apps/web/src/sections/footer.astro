@@ -1,5 +1,6 @@
 ---
-import { DAUSTINN } from '@/const/index'
+import DownloadButton from '@/components/download-button.astro'
+import { DAUSTINN } from '@/const'
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
 import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
 
@@ -76,8 +77,14 @@ const items = {
 ---
 
 <footer class="root__footer flex flex-col relative">
+  <div class="pt-70">
+    <p class="font-young-serif text-6xl text-center">Try Cursor now.</p>
+    <div class="flex justify-center mt-15">
+      <DownloadButton />
+    </div>
+  </div>
   <div
-    class="container py-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10"
+    class="container py-10 pt-70 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10"
   >
     <div class="flex max-md:hidden justify-center">
       <QueryEditor width={40} />
@@ -85,7 +92,7 @@ const items = {
     {
       Object.entries(items).map(([key, value]) => (
         <div>
-          <h3 class="pb-3 opacity-50 px-2">{key}</h3>
+          <h3 class="pb-4 text-foreground/60 px-2">{key}</h3>
           <ul>
             {value.map((item) => (
               <li>
@@ -109,7 +116,7 @@ const items = {
       ))
     }
   </div>
-  <div class="container text-sm pb-5 text-center opacity-50">
+  <div class="container text-sm pb-5 text-center text-foreground/70">
     © {new Date().getFullYear()} QueryEditor. Developed by <a
       target="_blank"
       rel="noopener noreferrer"

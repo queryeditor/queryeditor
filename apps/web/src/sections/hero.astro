@@ -1,28 +1,24 @@
 ---
-import darkHeroImage from '@queryeditor/shared/images/hero-dark.webp'
-import lightHeroImage from '@queryeditor/shared/images/hero-light.webp'
+import darkHero from '@queryeditor/shared/images/hero-dark.png'
+import lightHero from '@queryeditor/shared/images/hero-light.png'
 import background from '@queryeditor/shared/images/background.avif'
+import { Image } from 'astro:assets'
 ---
 
 <div class="max-w-370 mx-auto">
   <div
-    class="relative md:rounded-3xl overflow-hidden bg-center bg-cover py-10 px-10 w-full"
+    class="relative md:rounded-3xl overflow-hidden bg-center bg-cover p-5 md:p-10 w-full"
     style={{
       backgroundImage: `url(${background.src})`
     }}
   >
     <div class="flex gap-5 justify-center w-full h-full relative">
       <picture>
-        <source
-          srcset={darkHeroImage.src}
-          media="(prefers-color-scheme: dark)"
-        />
+        <source srcset={darkHero.src} media="(prefers-color-scheme: dark)" />
         <img
-          width="400"
-          height="500"
-          src={lightHeroImage.src}
+          src={lightHero.src}
           alt="QueryEditor Light Hero Image"
-          class="shadow-[0_5px_20px_rgba(0,0,0,0.3)] w-max! rounded-lg md:rounded-2xl border-transparent! dark:border-neutral-600 border"
+          class="shadow-[0_5px_20px_rgba(0,0,0,0.3)] rounded-lg md:rounded-2xl border-neutral-400/50! dark:border-neutral-600/50! border-2"
         />
       </picture>
     </div>

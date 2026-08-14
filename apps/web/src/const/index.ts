@@ -47,4 +47,4 @@ export const DAUSTINN = {
   website: 'https://daustinn.com',
   x: 'https://x.com/daustinndev',
   buyMeACoffee: 'https://www.buymeacoffee.com/daustinn'
-}
+} as const

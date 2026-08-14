@@ -16,17 +16,19 @@ const classButton =
 
 <header class="sticky transition-colors group root__nav top-0 z-50 h-20">
   <div
-    class="h-full relative dark:shadow-none! group-data-notop:drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] duration-600 transition-[filter]"
+    class="h-full relative dark:shadow-none! group-data-notop:drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] dark:group-data-notop:drop-shadow-[0px_4px_20px_rgba(0,0,0,.7)] duration-600 transition-[filter]"
   >
     <div class="flex h-full items-center pb-1 justify-between container">
       <div class="flex items-center grow basis-0 justify-start">
-        <a href="/" class="flex h-full z-1 items-center gap-3 px-2 md:px-1">
-          <QueryEditor width={18} />
-          <p
-            class="tracking-tight max-xxs:hidden line-clamp-1 font-medium text-xl font-google-sans"
-          >
-            QueryEditor
-          </p>
+        <a href="/" class="z-1">
+          <h1 class="flex h-full items-center gap-3 px-2 md:px-1">
+            <QueryEditor width={18} />
+            <p
+              class="tracking-tight max-xxs:hidden line-clamp-1 font-medium text-xl font-google-sans"
+            >
+              QueryEditor
+            </p>
+          </h1>
         </a>
         <nav
           class={cn(
@@ -147,7 +149,7 @@ const classButton =
   }
   @media (prefers-color-scheme: dark) {
     .gradient__background {
-      background: black;
+      background: #141516;
     }
   }
 </style>
