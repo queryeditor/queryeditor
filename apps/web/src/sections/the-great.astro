@@ -23,7 +23,7 @@ const items = {
     images: [editorLight, editorDark],
     colSpan: 7,
     class: {
-      img: 'translate-x-20! translate-y-5! scale-110!',
+      img: 'translate-x-20 md:translate-x-30! translate-y-5! scale-120!',
       body: ''
     }
   },
@@ -34,7 +34,7 @@ const items = {
     images: [workspaceLight, workspaceDark],
     colSpan: 5,
     class: {
-      img: 'translate-x-30! translate-y-10! scale-130!',
+      img: 'translate-x-20 md:translate-x-30! translate-y-10! scale-120 md:scale-130!',
       body: ''
     }
   },
@@ -46,7 +46,7 @@ const items = {
     colSpan: 5,
     class: {
       img: '',
-      body: 'px-6'
+      body: 'px-2 md:px-6'
     }
   },
   datagrid: {
@@ -57,7 +57,7 @@ const items = {
     colSpan: 7,
     class: {
       img: '',
-      body: 'px-10'
+      body: 'px-2 md:px-10'
     }
   },
   connections: {
@@ -68,7 +68,7 @@ const items = {
     colSpan: 7,
     class: {
       img: 'mx-auto',
-      body: 'px-10 pb-10'
+      body: 'px-2 md:px-10 pb-10'
     }
   },
   shortcuts: {
@@ -78,7 +78,7 @@ const items = {
     colSpan: 5,
     class: {
       img: '',
-      body: 'px-6 pb-10'
+      body: 'px-2 md:px-6 pb-10'
     }
   }
 } as const
@@ -86,16 +86,16 @@ const items = {
 
 <section class="mx-auto w-full pt-20 md:pt-30">
   <h3
-    class="pb-20 font-young-serif text-center text-4xl max-w-sm mx-auto tracking-tight"
+    class="pb-20 md:px-4 px-3 font-young-serif text-center text-3xl md:text-4xl max-w-sm mx-auto tracking-tight"
   >
     Built for developers who work with SQL daily.
   </h3>
-  <div class="container gap-5 [&>div]:h-135 grid md:grid-cols-12">
+  <div class="container gap-5 [&>div]:md:h-135 grid md:grid-cols-12">
     {
       Object.entries(items).map(([key, item], i) => (
         <div
           class={cn(
-            'rounded-2xl border relative max-md:col-span-1! overflow-hidden flex flex-col bg-neutral-200 dark:bg-neutral-900'
+            'rounded-lg md:rounded-2xl border relative max-md:col-span-1! overflow-hidden flex flex-col bg-neutral-200 dark:bg-neutral-900'
           )}
           style={`grid-column: span ${item.colSpan}`}
         >
@@ -116,7 +116,7 @@ const items = {
               <img
                 loading="lazy"
                 class={cn(
-                  'overflow-hidden max-md:w-full rounded-2xl dark:shadow-[0_0px_40px_rgba(0,0,0,.5)] shadow-[0_20px_30px_rgba(0,0,0,.2)] border-2 border-border/60!',
+                  'overflow-hidden max-md:w-full rounded-lg md:rounded-2xl dark:shadow-[0_0px_40px_rgba(0,0,0,.5)] shadow-[0_20px_30px_rgba(0,0,0,.2)] border-2 border-border/60!',
                   item.class.img
                 )}
                 src={item.images[0].src}

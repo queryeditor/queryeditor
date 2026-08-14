@@ -6,16 +6,16 @@ import { DATABASES } from '@/const/index'
   <p class="text-center text-lg opacity-70">
     Connects to MySQL, SQLite, and Cloudflare D1. More on the way.
   </p>
-  <div class="pt-20 flex-wrap flex gap-15 justify-center">
+  <div class="pt-20 flex-wrap grid grid-cols-2 md:flex gap-15 justify-center">
     {
       Object.entries(DATABASES).map(([key, database]) => (
         <div
           data-available={database.available ? '' : undefined}
-          class="flex items-center data-available:opacity-100 opacity-50 text-2xl font-google-sans font-medium gap-1"
+          class="flex max-md:justify-center items-center data-available:opacity-100 opacity-50 text-lg md:text-2xl font-google-sans font-medium gap-1"
           data-key={key}
           aria-label={`Database: ${database.name}`}
         >
-          <database.icon width={28} />
+          <database.icon class="w-5 md:w-6" />
           <span>{database.name}</span>
         </div>
       ))

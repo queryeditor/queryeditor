@@ -19,7 +19,7 @@ export const DATABASES = {
     icon: Sqlite
   },
   d1: {
-    name: 'Cloudflare D1',
+    name: 'D1',
     available: true,
     icon: Cloudflare
   },
