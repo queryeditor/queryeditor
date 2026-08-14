@@ -11,12 +11,12 @@
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #13130f;
+    --background: #0f0f11;
     --foreground: #fcfaf7;
     --border: #272620;
     --accent: #238aff;
-    --selection-foreground: #000000;
-    --selection-background: #c3d100;
+    --selection-foreground: #bbccf1;
+    --selection-background: #0031d1;
   }
 }
 
