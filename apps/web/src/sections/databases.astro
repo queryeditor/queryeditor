@@ -2,28 +2,21 @@
 import { DATABASES } from '@/const/index'
 ---
 
-<section class="container pt-10">
+<section class="container pt-20">
   <p class="text-center text-lg opacity-70">
     Connects to MySQL, SQLite, and Cloudflare D1. More on the way.
   </p>
-  <div
-    class="py-10 flex max-lg:grid max-lg:grid-cols-3 max-sm:grid-cols-2 gap-3"
-  >
+  <div class="pt-20 flex-wrap flex gap-15 justify-center">
     {
       Object.entries(DATABASES).map(([key, database]) => (
         <div
-          data-unavailable={database.available ? undefined : ''}
-          class="flex flex-col items-center justify-center gap-0.5 py-4 text-center bg-white dark:bg-neutral-500/15 shadow-md rounded-xl w-full data-unavailable:[&>svg]:opacity-50"
+          data-available={database.available ? '' : undefined}
+          class="flex items-center data-available:opacity-100 opacity-50 text-2xl font-google-sans font-medium gap-1"
           data-key={key}
           aria-label={`Database: ${database.name}`}
         >
-          <database.icon width={35} />
-          <p class="text-sm pt-5">{database.name}</p>
-          {!database.available && (
-            <p class="text-xs pt-1 text-orange-700 dark:text-orange-400">
-              Coming soon
-            </p>
-          )}
+          <database.icon width={28} />
+          <span>{database.name}</span>
         </div>
       ))
     }

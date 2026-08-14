@@ -1,0 +1,38 @@
+---
+import Window from '@queryeditor/shared/icons/window.svg'
+import Apple from '@queryeditor/shared/icons/apple.svg'
+import Linux from '@queryeditor/shared/icons/linux.svg'
+import Send from '@queryeditor/shared/icons/send.svg'
+import cn from '@queryeditor/shared/lib/cn'
+import { WAITLIST_URL } from '@/const'
+const classButton =
+  'hidden w-full text-base md:w-fit justify-center hover:scale-105 active:scale-95 transition-transform items-center gap-3 font-google-sans border-2 border-foreground! bg-foreground/95 text-background rounded-3xl font-semibold shadow-md px-5 py-6'
+---
+
+<button class={cn(classButton, 'pwindows:flex download-button')}>
+  <Window width={24} />
+  Try on Windows
+</button>
+<a
+  href={WAITLIST_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={cn(classButton, 'pmac:flex')}
+>
+  <Apple width={24} />
+  Join the waitlist
+</a>
+<a
+  href={WAITLIST_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={cn(classButton, 'plinux:flex')}
+>
+  <Linux width={24} />
+  Join the waitlist
+</a>
+
+<button class={cn(classButton, 'pother:flex share__button')}>
+  <Send width={24} />
+  Send download link
+</button>

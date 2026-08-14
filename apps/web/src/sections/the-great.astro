@@ -1,0 +1,132 @@
+---
+import editorDark from '@queryeditor/shared/images/editor-dark.png'
+import editorLight from '@queryeditor/shared/images/editor-light.png'
+import workspaceDark from '@queryeditor/shared/images/workspace-dark.png'
+import workspaceLight from '@queryeditor/shared/images/workspace-light.png'
+import aiDark from '@queryeditor/shared/images/ai-dark.png'
+import aiLight from '@queryeditor/shared/images/ai-light.png'
+
+import connectionManangerDark from '@queryeditor/shared/images/connection-manager-dark.png'
+import connectionManangerLight from '@queryeditor/shared/images/connection-manager-light.png'
+import datagridDark from '@queryeditor/shared/images/datagrid-dark.png'
+import datagridLight from '@queryeditor/shared/images/datagrid-light.png'
+import shortcDark from '@queryeditor/shared/images/shortcuts2-dark.png'
+import shortcLight from '@queryeditor/shared/images/shortcuts2-light.png'
+
+import cn from '#/packages/shared/dist/cn'
+
+const items = {
+  'monaco-editor': {
+    title: 'Monaco Editor',
+    description:
+      'The same engine that powers VS Code. Full SQL autocomplete, syntax highlighting, multi-cursor editing and keyboard shortcuts you already know — no learning curve.',
+    images: [editorLight, editorDark],
+    colSpan: 7,
+    class: {
+      img: 'translate-x-20! translate-y-5! scale-110!',
+      body: ''
+    }
+  },
+  workspace: {
+    title: 'Workspace',
+    description:
+      'Queries are real .sql files in a real folder on your disk. Organize them however you want — subfolders, rename, drag. Open them in any editor, commit them to Git. No proprietary format.',
+    images: [workspaceLight, workspaceDark],
+    colSpan: 5,
+    class: {
+      img: 'translate-x-30! translate-y-10! scale-130!',
+      body: ''
+    }
+  },
+  ai: {
+    title: 'AI Assistant',
+    description:
+      'Ask it to write a query, explain a result, or refactor a slow statement. The AI assistant has context about your connected database — not just generic SQL.',
+    images: [aiLight, aiDark],
+    colSpan: 5,
+    class: {
+      img: '',
+      body: 'px-6'
+    }
+  },
+  datagrid: {
+    title: 'Data grid',
+    description:
+      'Query results land in a fast, scrollable grid. Sort or resize any column, copy rows as CSV, JSON, or plain text, and handle thousands of rows without stuttering.',
+    images: [datagridLight, datagridDark],
+    colSpan: 7,
+    class: {
+      img: '',
+      body: 'px-10'
+    }
+  },
+  connections: {
+    title: 'Multiple databases',
+    description:
+      'Connect to MySQL, SQLite, and Cloudflare D1 today. More drivers on the way. Switch between connections without closing anything.',
+    images: [connectionManangerLight, connectionManangerDark],
+    colSpan: 7,
+    class: {
+      img: 'mx-auto',
+      body: 'px-10 pb-10'
+    }
+  },
+  shortcuts: {
+    title: 'Keyboard shortcuts',
+    description: 'Discover the keyboard shortcuts for the Query Editor.',
+    images: [shortcLight, shortcDark],
+    colSpan: 5,
+    class: {
+      img: '',
+      body: 'px-6 pb-10'
+    }
+  }
+} as const
+---
+
+<section class="mx-auto w-full pt-20 md:pt-30">
+  <h3
+    class="pb-20 font-young-serif text-center text-4xl max-w-sm mx-auto tracking-tight"
+  >
+    Built for developers who work with SQL daily.
+  </h3>
+  <div class="container gap-5 [&>div]:h-135 grid md:grid-cols-12">
+    {
+      Object.entries(items).map(([key, item], i) => (
+        <div
+          class={cn(
+            'rounded-2xl border relative max-md:col-span-1! overflow-hidden flex flex-col bg-neutral-200 dark:bg-neutral-900'
+          )}
+          style={`grid-column: span ${item.colSpan}`}
+        >
+          <div class="p-10">
+            <h4 class="bg-background w-fit text-nowrap rounded-full p-2 font-google-sans text-base font-semibold px-3 max-w-3xs">
+              {item.title}
+            </h4>
+            <p class="text-base font-google-sans pt-2 text-foreground/80">
+              {item.description}
+            </p>
+          </div>
+          <div class={cn('grow flex flex-col', item.class.body)}>
+            <picture class="mt-auto">
+              <source
+                srcset={item.images[1].src}
+                media="(prefers-color-scheme: dark)"
+              />
+              <img
+                loading="lazy"
+                class={cn(
+                  'overflow-hidden max-md:w-full rounded-2xl dark:shadow-[0_0px_40px_rgba(0,0,0,.5)] shadow-[0_20px_30px_rgba(0,0,0,.2)] border-2 border-border/60!',
+                  item.class.img
+                )}
+                src={item.images[0].src}
+                alt={item.title}
+              />
+            </picture>
+          </div>
+          <div class="absolute z-1 inset-x-0 h-[40%] bottom-0 bg-linear-to-t dark:from-neutral-900 from-neutral-200" />
+        </div>
+      ))
+    }
+  </div>
+</section>
