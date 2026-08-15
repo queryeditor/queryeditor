@@ -4,13 +4,12 @@ import cloudflare from '@astrojs/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import mdx from '@astrojs/mdx'
 
-const PAGE =
-  process.env.HOME_PAGE_URL ||
-  import.meta.env.HOME_PAGE_URL ||
-  'https://queryeditor.com'
+const SITE = import.meta.env.HOME_SITE || 'http://localhost:4321'
+const BASE = import.meta.env.HOME_BASE || '/'
 
 export default defineConfig({
-  site: PAGE,
+  site: SITE,
+  base: BASE,
   output: 'static',
   adapter: cloudflare({
     prerenderEnvironment: 'node'
