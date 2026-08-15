@@ -8,13 +8,14 @@ import preact from '@astrojs/preact'
 const PAGE =
   process.env.DOCS_PAGE_URL ||
   import.meta.env.DOCS_PAGE_URL ||
-  'https://docs.queryeditor.com'
+  'http://localhost:4322'
 
-const BASE = process.env.BASE_URL || import.meta.env.BASE_URL || '/'
+const BASE = process.env.DOCS_BASE_URL || import.meta.env.DOCS_BASE_URL || '/'
 
 export default defineConfig({
   site: PAGE,
   output: 'static',
+  base: BASE,
   adapter: cloudflare({
     prerenderEnvironment: 'node'
   }),
