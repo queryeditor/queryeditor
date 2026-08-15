@@ -9,6 +9,7 @@ import {
   NumberSymbol,
   Search as SearchIcon
 } from '@/components/icons'
+import path from '@/lib/path'
 
 export default function Search() {
   const [result, setResult] = useState<SearchResult[]>()
@@ -30,7 +31,7 @@ export default function Search() {
     try {
       setLoading(true)
       $treeContent.hidden = true
-      const response = await fetch(`/api/search?query=${value}`)
+      const response = await fetch(path(`/api/search?query=${value}`))
       const data = await response.json()
       setResult(data)
       setHidden(false)

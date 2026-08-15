@@ -49,7 +49,7 @@ const jsonLd = {
 }
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-pt-30">
   <head>
     <ClientRouter />
@@ -225,7 +225,9 @@ const jsonLd = {
     })
 
     window.addEventListener('popstate', () => {
-      const $openFig = document.querySelector<HTMLElement>('.figure__container[data-open]')
+      const $openFig = document.querySelector<HTMLElement>(
+        '.figure__container[data-open]'
+      )
       if ($openFig) {
         const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
         closeBtn?.click()
@@ -234,7 +236,9 @@ const jsonLd = {
 
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return
-      const $openFig = document.querySelector<HTMLElement>('.figure__container[data-open]')
+      const $openFig = document.querySelector<HTMLElement>(
+        '.figure__container[data-open]'
+      )
       if ($openFig) {
         e.preventDefault()
         const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
@@ -271,9 +275,12 @@ const jsonLd = {
     $$<HTMLFormElement>('.waitlist-form').forEach(($form) => {
       $form.addEventListener('submit', (e) => {
         e.preventDefault()
-        const email = ($form.elements.namedItem('email') as HTMLInputElement)?.value ?? ''
+        const email =
+          ($form.elements.namedItem('email') as HTMLInputElement)?.value ?? ''
         const platform = $form.dataset.platform ?? ''
-        const subject = encodeURIComponent(`Waitlist: QueryEditor for ${platform}`)
+        const subject = encodeURIComponent(
+          `Waitlist: QueryEditor for ${platform}`
+        )
         const body = encodeURIComponent(
           `I'd like to be notified when QueryEditor is available for ${platform}.\n\nEmail: ${email}`
         )

@@ -1,13 +1,12 @@
 ---
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
-import path from '@/lib/path'
-import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
+import { HOME_SITE, DOCS_BASE } from '@queryeditor/shared/lib/env'
 ---
 
 <header class="border-b bg-background sticky top-0 z-5 h-14 min-h-14">
   <nav class="container justify-between h-full flex">
     <nav class="basis-0 grow flex">
-      <a href={path('/')} class="flex gap-2.5 h-full text-lg items-center">
+      <a href={DOCS_BASE} class="flex gap-2.5 h-full text-lg items-center">
         <QueryEditor width={15} />
         <h1>Docs</h1>
       </a>
@@ -15,7 +14,7 @@ import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
     <div class=""></div>
     <nav class="grow basis-0 flex gap-3 items-center justify-end">
       <a
-        href={HOME_PAGE_URL}
+        href={HOME_SITE}
         class="flex text-nowrap bg-foreground font-medium text-background gap-2 rounded-full px-3 py-0.5 items-center"
       >
         Try Editor
