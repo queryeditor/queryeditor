@@ -4,8 +4,9 @@ import cloudflare from '@astrojs/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import mdx from '@astrojs/mdx'
 
-const SITE = import.meta.env.HOME_SITE || 'http://localhost:4321'
-const BASE = import.meta.env.HOME_BASE || '/'
+const SITE =
+  process.env.HOME_SITE || import.meta.env.HOME_SITE || 'http://localhost:4321'
+const BASE = process.env.HOME_BASE || import.meta.env.HOME_BASE
 
 export default defineConfig({
   site: SITE,

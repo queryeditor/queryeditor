@@ -5,8 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 import slugtree from 'slugtree/astro'
 import preact from '@astrojs/preact'
 
-const SITE = import.meta.env.DOCS_SITE || 'http://localhost:4322'
-const BASE = import.meta.env.DOCS_BASE || '/'
+const SITE =
+  process.env.DOCS_SITE || import.meta.env.DOCS_SITE || 'http://localhost:4322'
+const BASE = process.env.DOCS_BASE || import.meta.env.DOCS_BASE || '/'
 
 export default defineConfig({
   site: SITE,
