@@ -1,4 +1,4 @@
-import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
+import { DOCS_SITE } from '@queryeditor/shared/lib/env'
 
 export default {
   title: 'QueryEditor Documentation',
@@ -19,7 +19,7 @@ export default {
     'documentation',
     'docs'
   ],
-  url: DOCS_PAGE_URL,
+  url: DOCS_SITE,
   ogImage: '/og-image.png',
   locale: 'en_US',
   xHandle: '@queryeditor',

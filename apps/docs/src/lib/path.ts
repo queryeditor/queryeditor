@@ -1,10 +1,10 @@
-import { DOCS_PAGE_URL } from '@queryeditor/shared/lib/env'
+import { DOCS_BASE } from '@queryeditor/shared/lib/env'
 
 export default (path?: string): string => {
   let base = ''
 
   try {
-    const { pathname } = new URL(DOCS_PAGE_URL ?? '')
+    const { pathname } = new URL(DOCS_BASE ?? '')
     base = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
   } catch {
     base = ''

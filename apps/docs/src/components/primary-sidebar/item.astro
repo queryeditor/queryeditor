@@ -3,7 +3,7 @@ import { type Node } from 'slugtree'
 import Item from './item.astro'
 import path from '@/lib/path'
 import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
-import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
+import { HOME_SITE } from '@queryeditor/shared/lib/env'
 
 export type Props = {
   node: Node
@@ -15,7 +15,7 @@ const { node } = Astro.props
 
 const nodeRef = ((node.type !== 'label' && node.href) || '/').replace(
   '{homePage}',
-  HOME_PAGE_URL
+  HOME_SITE
 )
 
 const isCurrentNode =

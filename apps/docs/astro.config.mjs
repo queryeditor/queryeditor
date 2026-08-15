@@ -5,15 +5,11 @@ import tailwindcss from '@tailwindcss/vite'
 import slugtree from 'slugtree/astro'
 import preact from '@astrojs/preact'
 
-const PAGE =
-  process.env.DOCS_PAGE_URL ||
-  import.meta.env.DOCS_PAGE_URL ||
-  'http://localhost:4322'
-
-const BASE = process.env.DOCS_BASE_URL || import.meta.env.DOCS_BASE_URL || '/'
+const SITE = import.meta.env.DOCS_SITE || 'http://localhost:4322'
+const BASE = import.meta.env.DOCS_BASE || '/'
 
 export default defineConfig({
-  site: PAGE,
+  site: SITE,
   output: 'static',
   base: BASE,
   adapter: cloudflare({
@@ -23,10 +19,13 @@ export default defineConfig({
     slugtree({
       basePath: BASE
     }),
-    preact()
+    preact({ compat: true })
   ],
   vite: {
     envDir: '../../',
+    resolve: {
+      dedupe: ['preact', 'preact/hooks', 'preact/compat']
+    },
     plugins: [
       tailwindcss(),
       {

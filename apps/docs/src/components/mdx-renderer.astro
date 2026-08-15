@@ -117,7 +117,7 @@ import updaterToastLight from '@queryeditor/shared/images/updater-toast-light.pn
 import connectionManagerDark from '@queryeditor/shared/images/connection-manager-dark.png'
 import connectionManagerLight from '@queryeditor/shared/images/connection-manager-light.png'
 
-import { HOME_PAGE_URL } from '@queryeditor/shared/lib/env'
+import { HOME_SITE } from '@queryeditor/shared/lib/env'
 
 export interface Props {
   node: NodePage | NodeFolder
@@ -143,7 +143,7 @@ if (data) {
       components={MDXComponents}
       env={import.meta.env}
       path={path}
-      homePage={HOME_PAGE_URL}
+      homePage={HOME_SITE}
       images={{
         main: {
           light: mainLight.src,
