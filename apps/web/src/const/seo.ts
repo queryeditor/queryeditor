@@ -1,4 +1,4 @@
-import { HOME_URL } from './env'
+import { HOME_SITE } from '@queryeditor/shared/lib/env'
 
 export default {
   title: 'A query editor that lives on your machine.',
@@ -19,7 +19,7 @@ export default {
     'sqlite client',
     'mysql client'
   ],
-  url: HOME_URL,
+  url: HOME_SITE,
   ogImage: '/og-image.png',
   locale: 'en_US',
   xHandle: '@queryeditor',
