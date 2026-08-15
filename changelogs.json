@@ -1,5 +1,48 @@
 [
   {
+    "title": "Smooth AI & Editor Enhancements",
+    "version": "0.0.102",
+    "date": "2026-08-15",
+    "sha": "84bf38ef359a1180004c798da97ef2d310e41700",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.102",
+    "data": [
+      {
+        "category": "Features",
+        "body": [
+          {
+            "subcategory": "Editor",
+            "body": [
+              "Added VS Code and Zed editor configuration files for smoother external editor integration."
+            ]
+          },
+          {
+            "subcategory": "AI",
+            "body": [
+              "Introduced new AI-powered skills to enhance query assistance."
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Improvements",
+        "body": [
+          {
+            "subcategory": "AI",
+            "body": [
+              "Enhanced AI prompt with richer QueryEditor context and stricter non-technical rules for more accurate assistance."
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Bug Fixes",
+        "body": [
+          "Fixed title bar theme color detection in the main window, ensuring proper appearance in dark/light modes."
+        ]
+      }
+    ]
+  },
+  {
     "title": "AI-Enhanced Query Editor",
     "version": "0.0.101",
     "date": "2026-08-13",
