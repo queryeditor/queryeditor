@@ -172,17 +172,15 @@ const jsonLd = [
 
 <script>
   import { $$ } from '@queryeditor/shared/lib/dom'
+  import { getDownloadURL } from '@/utils/get-download-url'
 
   function init() {
     $$('.download-button').forEach(($btn) => {
       $btn.addEventListener('click', async () => {
         $btn.setAttribute('disabled', 'disabled')
         try {
-          const res = await fetch('/api/get-download-url')
-          if (res.ok) {
-            const data = await res.json()
-            if (data) window.open(data, '_blank')
-          }
+          const url = await getDownloadURL()
+          if (url) window.open(url, '_blank')
         } catch (error) {
           console.error('Download failed:', error)
         } finally {
