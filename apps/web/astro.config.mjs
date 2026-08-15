@@ -12,7 +12,9 @@ const PAGE =
 export default defineConfig({
   site: PAGE,
   output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    prerenderEnvironment: 'node'
+  }),
   vite: {
     envDir: '../../',
     plugins: [tailwindcss()]
