@@ -11,6 +11,9 @@ import {
 } from '@/components/icons'
 import path from '@/lib/path'
 
+const rawBase = import.meta.env.PUBLIC_DOCS_BASE || import.meta.env.BASE_URL || ''
+const basePath = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase
+
 export default function Search() {
   const [result, setResult] = useState<SearchResult[]>()
   const [loading, setLoading] = useState(false)
@@ -31,7 +34,7 @@ export default function Search() {
     try {
       setLoading(true)
       $treeContent.hidden = true
-      const response = await fetch(path(`/api/search?query=${value}`))
+      const response = await fetch(`${basePath}/api/search?query=${value}`)
       const data = await response.json()
       setResult(data)
       setHidden(false)
