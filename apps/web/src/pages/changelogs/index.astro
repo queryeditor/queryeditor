@@ -28,7 +28,12 @@ const sortedChangelogs = (changelogs as Changelog[]).sort((a, b) =>
         {
           sortedChangelogs.map((changelog) => (
             <div id={changelog.version} class="pb-3">
-              <h3 class="mb-1! font-young-serif text-xl!">{changelog.title}</h3>
+              <h3 class="mb-1! font-young-serif text-xl!">
+                {changelog.title}{' '}
+                <span class="opacity-40 font-google-sans text-lg!">
+                  v{changelog.version}
+                </span>
+              </h3>
               <p class="mb-1!">
                 Released date:{' '}
                 <span class="text-accent">
@@ -40,13 +45,13 @@ const sortedChangelogs = (changelogs as Changelog[]).sort((a, b) =>
                 </span>
               </p>
               <p class="mb-2!">
-                Release URL:{' '}
+                Release:{' '}
                 <a
                   href={changelog.releaseURL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {changelog.releaseURL}
+                  v{changelog.version}
                 </a>
               </p>
               <div>
