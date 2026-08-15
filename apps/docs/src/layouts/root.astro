@@ -5,7 +5,6 @@ import Nav from '@/components/nav/index.astro'
 import PrimarySidebar from '@/components/primary-sidebar/index.astro'
 import path from '@/lib/path'
 import seo from '@/const/seo'
-import { ClientRouter } from 'astro:transitions'
 
 type Props = {
   title?: string
@@ -52,7 +51,6 @@ const jsonLd = {
 <!doctype html>
 <html lang="en" class="scroll-pt-30">
   <head>
-    <ClientRouter />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link

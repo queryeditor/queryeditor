@@ -1,9 +1,8 @@
 ---
 import { type Node } from 'slugtree'
 import Item from './item.astro'
-import path from '@/lib/path'
 import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
-import { HOME_SITE } from '@queryeditor/shared/lib/env'
+import { HOME_SITE, DOCS_BASE } from '@queryeditor/shared/lib/env'
 
 export type Props = {
   node: Node
@@ -19,9 +18,7 @@ const nodeRef = ((node.type !== 'label' && node.href) || '/').replace(
 )
 
 const isCurrentNode =
-  path(nodeRef) === path('/')
-    ? path(pathname) === path(nodeRef)
-    : path(pathname).startsWith(path(nodeRef))
+  nodeRef === DOCS_BASE ? pathname === nodeRef : pathname.startsWith(nodeRef)
 ---
 
 {

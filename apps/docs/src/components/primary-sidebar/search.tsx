@@ -9,9 +9,9 @@ import {
   NumberSymbol,
   Search as SearchIcon
 } from '@/components/icons'
-import path from '@/lib/path'
 
-const rawBase = import.meta.env.PUBLIC_DOCS_BASE || import.meta.env.BASE_URL || ''
+const rawBase =
+  import.meta.env.PUBLIC_DOCS_BASE || import.meta.env.BASE_URL || ''
 const basePath = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase
 
 export default function Search() {
