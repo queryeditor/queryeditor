@@ -1,9 +1,13 @@
+import getPlatformFromUserAgent from '@/utils/get-platform-from-user-agent'
 import { defineAction } from 'astro:actions'
-import getPlatformFromUserAgent from '../utils/get-platform-from-user-agent'
 
 export const server = {
   getDownloadURL: defineAction<string | null>({
-    async handler(_, context) {
+    async handler(_, { request }) {
+      const userAgent = (request.headers.get('user-agent') || '').toLowerCase()
+
+      const platform = getPlatformFromUserAgent(userAgent)
+
       try {
         const response = await fetch(
           'https://api.github.com/repos/queryeditor/queryeditor/releases',
@@ -16,38 +20,33 @@ export const server = {
           }
         )
 
-        if (!response.ok) {
-          return null
-        }
+        if (!response.ok) return null
 
         const releases = await response.json()
+
         const latest = releases[0]
 
-        if (!latest?.assets) {
-          return null
-        }
+        // Windows
+        const exe = latest.assets.find((asset: any) =>
+          asset.name.endsWith('.exe')
+        )
 
-        const userAgent = context.request.headers.get('user-agent')?.toLowerCase() || ''
-        const platform = getPlatformFromUserAgent(userAgent)
+        // macOS
+        const dmg = latest.assets.find((asset: any) =>
+          asset.name.endsWith('.dmg')
+        )
 
-        const extensionMap: Record<string, string[]> = {
-          windows: ['.exe'],
-          mac: ['.dmg', '.zip'],
-          linux: ['.AppImage', '.deb']
-        }
+        // Linux
+        const deb = latest.assets.find((asset: any) =>
+          asset.name.endsWith('.deb')
+        )
 
-        const targetExtensions = extensionMap[platform] || ['.exe']
+        if (!exe) return null
 
-        const asset =
-          latest.assets.find((item: any) =>
-            targetExtensions.some((ext) => item.name.toLowerCase().endsWith(ext.toLowerCase()))
-          ) || latest.assets.find((item: any) => item.name.endsWith('.exe'))
-
-        if (!asset) {
-          return null
-        }
-
-        return asset.browser_download_url
+        if (platform === 'mac') return dmg?.browser_download_url
+        if (platform === 'linux') return deb?.browser_download_url
+        if (platform === 'windows') return exe.browser_download_url
+        return null
       } catch (error) {
         return null
       }
