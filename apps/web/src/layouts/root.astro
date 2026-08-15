@@ -171,16 +171,18 @@ const jsonLd = [
 </html>
 
 <script>
-  import { $$, $ } from '@queryeditor/shared/lib/dom'
-  import { actions } from 'astro:actions'
+  import { $$ } from '@queryeditor/shared/lib/dom'
 
   function init() {
     $$('.download-button').forEach(($btn) => {
       $btn.addEventListener('click', async () => {
         $btn.setAttribute('disabled', 'disabled')
         try {
-          const res = await actions.getDownloadURL()
-          if (res.data) window.open(res.data, '_blank')
+          const res = await fetch('/api/get-download-url')
+          if (res.ok) {
+            const data = await res.json()
+            if (data) window.open(data, '_blank')
+          }
         } catch (error) {
           console.error('Download failed:', error)
         } finally {
