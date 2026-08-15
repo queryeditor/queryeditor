@@ -1,9 +1,14 @@
-export const HOME_PAGE_URL: string =
-  import.meta.env.HOME_PAGE_URL ||
-  (typeof process !== 'undefined' ? process.env.HOME_PAGE_URL : '') ||
-  'https://queryeditor.dev'
+export const HOME_SITE: string =
+  import.meta.env.HOME_SITE ||
+  (typeof process !== 'undefined' ? process.env.HOME_SITE : '') ||
+  'http://localhost:4321'
 
-export const DOCS_PAGE_URL: string =
-  import.meta.env.DOCS_PAGE_URL ||
-  (typeof process !== 'undefined' ? process.env.DOCS_PAGE_URL : '') ||
-  'https://docs.queryeditor.dev'
+export const DOCS_SITE: string =
+  import.meta.env.DOCS_SITE ||
+  (typeof process !== 'undefined' ? process.env.DOCS_SITE : '') ||
+  'http://localhost:4322'
+
+export const DOCS_BASE: string =
+  import.meta.env.DOCS_BASE ||
+  (typeof process !== 'undefined' ? process.env.DOCS_BASE : '') ||
+  '/'
