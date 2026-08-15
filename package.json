@@ -8,6 +8,8 @@
   "packageManager": "bun@1.2.22",
   "scripts": {
     "dev": "turbo dev",
+    "dev:docs": "turbo dev --filter docs",
+    "dev:web": "turbo dev --filter web",
     "start": "turbo start",
     "build": "turbo build",
     "lint": "turbo lint",
