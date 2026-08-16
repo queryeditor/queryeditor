@@ -1,1 +1,6 @@
-{ "nodes": ["index", "table", "json-viewer", "export"] }
+{
+  "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "title": "Data Grid",
+  "icon": "data-grid",
+  "nodes": ["index", "table", "json-viewer", "export"]
+}

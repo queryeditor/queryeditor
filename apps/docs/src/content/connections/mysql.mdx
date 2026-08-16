@@ -1,6 +1,7 @@
-﻿---
+---
 title: MySQL
 description: Connect QueryEditor to your MySQL databases. Learn about SSL configurations, multiple statement execution, socket connections, and IntelliSense schema completion.
+icon: mysql
 ---
 
 ## Connecting to MySQL
@@ -9,13 +10,13 @@ The MySQL connector supports standard TCP/IP connections as well as Unix socket 
 
 ## Required Fields
 
-| Field | Required | Default |
-|---|---|---|
-| Hostname / IP | Yes (in Host mode) | — |
-| Port | No | 3306 |
-| Username | No | — |
-| Password | No | — |
-| Database | No | — |
+| Field         | Required           | Default |
+| ------------- | ------------------ | ------- |
+| Hostname / IP | Yes (in Host mode) | —       |
+| Port          | No                 | 3306    |
+| Username      | No                 | —       |
+| Password      | No                 | —       |
+| Database      | No                 | —       |
 
 ## Connection Type (Protocol)
 
@@ -35,12 +36,12 @@ MySQL supports two connection modes, selectable via radio buttons at the top of 
 
 When the **Use SSL** toggle is activated, three optional file-path fields are revealed:
 
-| Field | Description |
-|---|---|
-| SSL Key file | Absolute path to the client private key (`.pem` or `.key`). |
-| SSL Certificate file | Absolute path to the client certificate. |
-| SSL CA file | Absolute path to the Certificate Authority bundle. |
-| Reject Unauthorized | When enabled, the server certificate is strictly validated against the CA. |
+| Field                | Description                                                                |
+| -------------------- | -------------------------------------------------------------------------- |
+| SSL Key file         | Absolute path to the client private key (`.pem` or `.key`).                |
+| SSL Certificate file | Absolute path to the client certificate.                                   |
+| SSL CA file          | Absolute path to the Certificate Authority bundle.                         |
+| Reject Unauthorized  | When enabled, the server certificate is strictly validated against the CA. |
 
 ## Connection Testing
 

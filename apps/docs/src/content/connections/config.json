@@ -1,5 +1,7 @@
 {
   "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "title": "Connections",
+  "icon": "database",
   "nodes": [
     "index",
     "mysql",
