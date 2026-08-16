@@ -24,6 +24,7 @@ export const DAUSTINN = {
     github: 'https://github.com/daustinn',
     website: 'https://daustinn.com',
     x: 'https://x.com/daustinndev',
-    buyMeACoffee: 'https://www.buymeacoffee.com/daustinn'
+    buyMeACoffee: 'https://www.buymeacoffee.com/daustinn',
+    slugtree: 'https://daustinn.com/slugtree'
   }
 } as const
