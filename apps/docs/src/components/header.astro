@@ -17,21 +17,23 @@ const label = getNodeLabel(node.slug)
 const breadcrumbs = getNodeBreadcrumbs(node.slug)
 ---
 
-<header class="pt-4 md:pt-10 pb-5 border-b">
+<header class="pt-6 md:pt-10 pb-6 border-b border-border/60">
   {
     (label || breadcrumbs.length > 1) && (
-      <nav aria-label="Breadcrumbs">
+      <nav aria-label="Breadcrumbs" class="mb-3">
         <ol
-          class="flex items-center text-sm gap-1 pt-2"
+          class="flex flex-wrap items-center text-xs gap-1.5 text-foreground/50"
           itemscope
           itemtype="https://schema.org/BreadcrumbList"
         >
           {label && (
-            <li class="inline-flex items-center gap-2">
-              <span class="text-accent inline-flex items-center gap-2">
+            <li class="inline-flex items-center gap-1.5">
+              <span class="text-accent font-medium inline-flex items-center">
                 {label?.label}
               </span>
-              {breadcrumbs.length > 1 && <ChevronRight width={12} />}
+              {breadcrumbs.length > 1 && (
+                <ChevronRight width={10} height={10} class="opacity-40" />
+              )}
             </li>
           )}
           {breadcrumbs.length > 1 &&
@@ -39,14 +41,14 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
               const isLast = index === breadcrumbs.length - 1
               return (
                 <li
-                  class="flex items-center gap-2"
+                  class="flex items-center gap-1.5"
                   itemprop="itemListElement"
                   itemscope
                   itemtype="https://schema.org/ListItem"
                 >
                   {isLast ? (
                     <span
-                      class="opacity-40"
+                      class="text-foreground/80 font-medium"
                       aria-current="page"
                       itemprop="name"
                     >
@@ -54,7 +56,7 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
                     </span>
                   ) : (
                     <a
-                      class="inline-block hover:underline"
+                      class="hover:text-foreground transition-colors"
                       href={crumb.href}
                       itemprop="item"
                     >
@@ -62,7 +64,9 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
                     </a>
                   )}
                   <meta itemprop="position" content={String(index + 1)} />
-                  {!isLast && <ChevronRight width={12} />}
+                  {!isLast && (
+                    <ChevronRight width={10} height={10} class="opacity-40" />
+                  )}
                 </li>
               )
             })}
@@ -70,10 +74,14 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
       </nav>
     )
   }
-  <h1 class="text-3xl pt-2 font-medium font-google-sans">{node.title}</h1>
+  <h1 class="text-3xl md:text-4xl font-semibold font-google-sans tracking-tight text-foreground">
+    {node.title}
+  </h1>
   {
     node.description && (
-      <p class="pt-4 text-base text-foreground/70">{node.description}</p>
+      <p class="pt-3 text-[16px] text-foreground/70 leading-relaxed font-normal">
+        {node.description}
+      </p>
     )
   }
 </header>

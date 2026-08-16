@@ -82,68 +82,76 @@ export default function Search() {
         setHidden(true)
       }}
       href={href}
-      className="flex border border-transparent! hover:border-border! hover:bg-foreground/5 dark:hover:bg-foreground/10 rounded-xl items-center p-0.5 pl-0 text-left"
+      className="flex gap-2.5 border border-transparent hover:border-border/60 hover:bg-foreground/4 rounded-xl items-center p-2 text-left transition-all group"
     >
-      <div className="px-2">{icon}</div>
-      <div>
-        <span className="font-semibold">{title}</span>
-        <p className="text-xs line-clamp-1 text-foreground/60">{description}</p>
+      <div className="text-foreground/40 group-hover:text-accent transition-colors shrink-0">
+        {icon}
+      </div>
+      <div className="overflow-hidden">
+        <span className="font-medium text-xs text-foreground group-hover:text-accent transition-colors block line-clamp-1">
+          {title}
+        </span>
+        {description && (
+          <p className="text-xs line-clamp-1 text-foreground/50 mt-0.5">
+            {description}
+          </p>
+        )}
       </div>
     </a>
   )
 
   return (
     <>
-      <nav class="min-h-12 px-4 md:px-2 h-12 mt-1 md:mt-1 mb-3 flex flex-col">
-        <label class="flex items-center h-full relative">
+      <div class="px-3 pt-3 pb-2">
+        <label class="flex items-center relative w-full rounded-xl border border-border/60 bg-foreground/2 hover:bg-foreground/4 focus-within:bg-background focus-within:border-accent/60 focus-within:ring-2 focus-within:ring-accent/15 transition-all">
           <SearchIcon
-            width={17}
-            class="opacity-60 absolute inset-y-auto left-2"
+            width={15}
+            height={15}
+            class="opacity-50 absolute left-3 text-foreground"
           />
           <input
             ref={inputRef}
             onInput={(e) => setValue(e.currentTarget.value)}
-            placeholder="Search..."
-            class="relative text-base bg-border/20 focus:bg-border/30 outline-none search__trigger border w-full rounded-xl py-2 px-8 pr-10 gap-2"
+            placeholder="Search docs..."
+            class="text-sm w-full bg-transparent outline-none py-2 pl-9 pr-14 text-foreground placeholder:text-foreground/40"
           />
-          <span class="opacity-40 absolute inset-y-auto pointer-events-none right-3">
-            ⌘+k
-          </span>
+          <kbd class="pointer-events-none absolute right-2 font-mono text-[10px] font-medium text-foreground/50 border border-border/60 bg-foreground/5 rounded px-1.5 py-0.5 shadow-2xs">
+            ⌘K
+          </kbd>
         </label>
-      </nav>
+      </div>
 
       {loading && !!debouncedValue && (
-        <div className="grow grid text-sm text-foreground/60 place-content-center">
-          Loading results...
+        <div className="p-4 text-center text-xs text-foreground/50">
+          Searching...
         </div>
       )}
 
       {!loading && result?.length === 0 && !!debouncedValue && (
-        <div className="grow grid text-sm text-foreground/60 place-content-center">
+        <div className="p-4 text-center text-xs text-foreground/50">
           No results found
         </div>
       )}
 
       <div
         hidden={!result || loading || result.length === 0 || hidden}
-        className="flex flex-col px-2 gap-1 grow overflow-y-auto"
+        className="flex flex-col px-3 gap-1 grow overflow-y-auto"
       >
         {result?.slice(0, 10).map((item, i) => {
           return (
-            <Fragment>
+            <Fragment key={i}>
               <Item
-                key={i}
-                icon={<Document width={20} className="opacity-50" />}
+                icon={<Document width={18} height={18} />}
                 title={item.title}
                 description={item.description}
                 href={item.href}
               />
               {item.children.length > 0 && (
-                <div className="pl-3">
-                  {item.children.map((sub) => (
+                <div className="pl-3 space-y-0.5 border-l border-border/40 ml-2">
+                  {item.children.map((sub, j) => (
                     <Item
-                      key={i}
-                      icon={<NumberSymbol width={20} className="text-accent" />}
+                      key={j}
+                      icon={<NumberSymbol width={16} height={16} />}
                       title={sub.title}
                       description={sub.content}
                       href={sub.href}

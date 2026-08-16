@@ -14,7 +14,7 @@ const paddingLeft = (tocItem.depth - 2) * 1 + 'rem'
   <a
     href={`#${tocItem.id}`}
     data-slug-id={tocItem.id}
-    class="py-1 toc__item text-foreground/70 data-highlighted:text-accent text-sm inline-flex"
+    class="py-1 toc__item text-[13px] leading-snug text-foreground/60 hover:text-foreground data-highlighted:text-accent data-highlighted:font-medium inline-block transition-colors duration-150"
   >
     {tocItem.text}
   </a>

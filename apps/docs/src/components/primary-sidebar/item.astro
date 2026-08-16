@@ -28,9 +28,9 @@ const isCurrentNode =
 
 {
   node.type === 'label' && (
-    <label class="text-foreground/50 px-2.5 font-semibold text-xs mt-6 mb-2">
+    <div class="text-foreground/45 px-3 font-semibold text-[10px] uppercase tracking-wider mt-5 mb-1.5">
       {node.label}
-    </label>
+    </div>
   )
 }
 
@@ -38,35 +38,39 @@ const isCurrentNode =
   node.type === 'page' && (
     <a
       title={node.title}
-      data-current={isCurrentNode ? '' : undefined}
+      data-current={isCurrentNode ? 'true' : undefined}
       href={nodeRef}
-      class="min-h-8 h-8 flex items-center data-current:text-accent data-current:font-medium hover:bg-foreground/5 rounded-lg px-3"
+      class="min-h-8 text-[13.5px] flex items-center text-foreground/75 hover:text-foreground hover:bg-foreground/4 data-current:bg-accent/10 data-current:text-accent data-current:font-medium data-current:hover:bg-accent/15 rounded-lg px-3 transition-colors"
     >
-      {node.title}
+      <span class="truncate">{node.title}</span>
     </a>
   )
 }
 
 {
   node.type === 'folder' && (
-    <div class="node group/node" data-open={isCurrentNode ? 'true' : undefined}>
+    <div
+      class="node group/node my-0.5"
+      data-open={isCurrentNode ? 'true' : undefined}
+    >
       <a
         title={node.title}
         data-current={isCurrentNode ? 'true' : undefined}
         href={nodeRef || '#'}
-        class="min-h-8 h-8 flex hover:bg-foreground/5 items-center data-current:font-medium data-current:text-accent rounded-lg pl-3"
+        class="min-h-8 text-sm flex hover:bg-foreground/4 items-center text-foreground/75 hover:text-foreground data-current:font-medium data-current:text-accent data-current:bg-accent/10 rounded-lg pl-3 pr-1 transition-colors"
       >
-        <span class="grow inline-flex">{node.title}</span>
-        <div class="node__button p-1.5 px-3">
+        <span class="grow truncate">{node.title}</span>
+        <div class="node__button p-1.5 rounded-md hover:bg-foreground/5 cursor-pointer text-foreground/50 hover:text-foreground transition-colors">
           <ChevronRight
             width={12}
-            class="group-data-open/node:rotate-90 transition-transform"
+            height={12}
+            class="group-data-open/node:rotate-90 transition-transform duration-200"
           />
         </div>
       </a>
       <div
         data-open={isCurrentNode ? 'true' : undefined}
-        class="flex-col pl-4 node__children data-open:flex hidden"
+        class="flex-col pl-2 ml-3 border-l border-border/50 node__children data-open:flex hidden space-y-0.5 mt-0.5"
       >
         {node.children.map((child) =>
           child.type === 'page' && child.href === node.href ? null : (

@@ -12,13 +12,15 @@ const toc = node?.slug ? getNodeToc(node.slug) : []
 
 <aside
   aria-label="Table of contents"
-  class="hidden lg:flex flex-col min-w-70 max-w-70 sticky top-14 px-10 h-[calc(100svh-3.5rem)] overflow-y-auto"
+  class="hidden xl:flex flex-col min-w-64 max-w-64 sticky top-14 px-6 pt-6 pb-10 h-[calc(100svh-3.5rem)] overflow-y-auto"
 >
-  <div class="pb-2 text-xs pt-10 text-foreground/60 font-semibold tracking-wider">
+  <div
+    class="pb-2 text-xxs text-foreground/45 font-semibold tracking-wider uppercase"
+  >
     <span>ON THIS PAGE</span>
   </div>
   <nav aria-label="Page outline">
-    <ul>
+    <ul class="space-y-0.5 border-l border-border/40 pl-2">
       {toc.map((item) => <Item tocItem={item} />)}
     </ul>
   </nav>

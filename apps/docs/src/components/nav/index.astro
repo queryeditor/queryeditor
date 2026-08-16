@@ -5,46 +5,45 @@ import { APP } from '@queryeditor/shared/lib/const'
 ---
 
 <header
-  class="border-b dark:bg-background bg-white sticky top-0 z-5 h-14 min-h-14"
+  class="border-b border-border/70 backdrop-blur-md bg-white/80 dark:bg-background/80 sticky top-0 z-20 h-14 min-h-14 transition-colors"
 >
-  <div class="container justify-between h-full flex">
+  <div class="container justify-between h-full flex items-center">
     <nav
       aria-label="Brand navigation"
-      class="basis-0 grow flex items-center font-semibold text-2xl font-google-sans gap-2"
+      class="basis-0 grow flex items-center font-semibold text-xl font-google-sans gap-3"
     >
       <a
         href={APP.urls.home.site}
         aria-label="QueryEditor Home"
-        class="hover:-translate-y-1 transition-transform flex gap-2"
+        class="hover:opacity-80 transition-opacity flex items-center gap-2 text-foreground"
       >
-        <QueryEditor width={18} />
-        QueryEditor
+        <QueryEditor width={20} height={20} />
+        <span class="tracking-tight font-medium">QueryEditor</span>
       </a>
       <a
         href={APP.urls.docs.site}
         aria-label="Documentation Home"
-        class="hover:-translate-y-1 text-accent transition-transform"
+        class="inline-flex items-center text-xs font-medium px-2 py-0.5 rounded-md bg-accent/10 text-accent border border-accent/20 hover:bg-accent/15 transition-colors"
       >
         Docs
       </a>
     </nav>
-    <div class=""></div>
     <nav
       aria-label="External and quick actions"
-      class="grow basis-0 flex gap-1 items-center justify-end"
+      class="grow basis-0 flex gap-2 items-center justify-end"
     >
       <a
         href={APP.urls.githubRepo}
         target="_blank"
-        class="inline-block px-2 max-xs:hidden"
+        class="p-1.5 rounded-lg text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition-colors max-xs:hidden inline-flex items-center justify-center"
         rel="noopener noreferrer"
         aria-label="QueryEditor on GitHub"
       >
-        <Github width={24} />
+        <Github width={20} height={20} />
       </a>
       <a
         href={APP.urls.home.site}
-        class="flex text-nowrap font-google-sans bg-foreground font-semibold text-background gap-2 rounded-full px-3 py-1 items-center"
+        class="text-xs text-nowrap font-google-sans bg-foreground font-medium text-background hover:opacity-90 active:scale-95 transition-all rounded-full px-3.5 py-1.5 shadow-xs"
       >
         Try Editor
       </a>
@@ -53,14 +52,14 @@ import { APP } from '@queryeditor/shared/lib/const'
         aria-label="Toggle navigation menu"
         aria-controls="primary-sidebar"
         aria-expanded="false"
-        class="size-5 md:hidden group nav__menuTrigger space-y-2 mx-1"
+        class="size-8 flex flex-col items-center justify-center md:hidden group nav__menuTrigger p-1.5 rounded-lg hover:bg-foreground/5 transition-colors"
       >
         <div
-          class="w-full group-data-open:rotate-45 group-data-open:translate-y-1.25 h-0.5 bg-foreground"
+          class="w-4 h-0.5 bg-foreground transition-transform duration-200 group-data-open:rotate-45 group-data-open:translate-y-1"
         >
         </div>
         <div
-          class="w-full group-data-open:-rotate-45 group-data-open:-translate-y-1.25 h-0.5 bg-foreground"
+          class="w-4 h-0.5 bg-foreground mt-1.5 transition-transform duration-200 group-data-open:-rotate-45 group-data-open:-translate-y-1"
         >
         </div>
       </button>

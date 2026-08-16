@@ -33,9 +33,9 @@ const breadcrumbs = node ? getNodeBreadcrumbs(node.slug) : []
       description={node.description}
       breadcrumbs={breadcrumbs}
     >
-      <article class="flex md:max-w-2xl px-2 md:px-5 mx-auto w-full flex-col">
+      <article class="flex max-w-3xl px-4 md:px-8 mx-auto w-full flex-col min-w-0">
         <Header node={node} />
-        <div class="prose__content grow pt-5">
+        <div class="prose__content grow pt-6">
           <MDXRenderer node={node} />
         </div>
         <Footer slug={slug} />
