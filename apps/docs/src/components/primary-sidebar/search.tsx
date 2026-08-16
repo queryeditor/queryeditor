@@ -14,6 +14,127 @@ const rawBase =
   import.meta.env.PUBLIC_DOCS_BASE || import.meta.env.BASE_URL || ''
 const basePath = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase
 
+interface SearchIndexNode {
+  id: string
+  title: string
+  description: string
+  icon?: string
+  href: string
+  toc: Array<{ id: string; text: string; depth: number }>
+  rawContent: string
+}
+
+let searchIndexCache: SearchIndexNode[] | null = null
+
+async function loadSearchIndex(): Promise<SearchIndexNode[]> {
+  if (searchIndexCache) return searchIndexCache
+  try {
+    const response = await fetch(`${basePath}/api/search-index.json`)
+    if (!response.ok) throw new Error('Search index failed to load')
+    const data = await response.json()
+    searchIndexCache = Array.isArray(data) ? data : []
+    return searchIndexCache
+  } catch (error) {
+    console.error('Failed to fetch search index:', error)
+    return []
+  }
+}
+
+function extractHeadingContent(
+  rawContent: string,
+  headingText: string,
+  maxLength = 200
+) {
+  const lines = rawContent.split('\n')
+  const headingPattern = /^#{1,6}\s+/
+  let headingIndex = -1
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    if (
+      headingPattern.test(line) &&
+      line.replace(headingPattern, '').trim().toLowerCase() ===
+        headingText.toLowerCase()
+    ) {
+      headingIndex = i
+      break
+    }
+  }
+  if (headingIndex === -1) return ''
+  const contentLines: string[] = []
+  for (let i = headingIndex + 1; i < lines.length; i++) {
+    if (headingPattern.test(lines[i])) break
+    contentLines.push(lines[i])
+  }
+  const text = contentLines
+    .join(' ')
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/`[^`]+`/g, (m) => m.slice(1, -1))
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[*_~]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return text.length > maxLength
+    ? text.slice(0, maxLength).trimEnd() + '\u2026'
+    : text
+}
+
+function searchContentLocal(
+  nodes: SearchIndexNode[],
+  query: string
+): SearchResult[] {
+  if (!query || query.trim() === '') return []
+  const lowerQuery = query.toLowerCase()
+  const results: SearchResult[] = []
+
+  for (const node of nodes) {
+    const title = (node.title || '').toLowerCase()
+    const description = (node.description || '').toLowerCase()
+    const content = (node.rawContent || '').toLowerCase()
+
+    let pageScore = 0
+    if (title.includes(lowerQuery)) pageScore += 10
+    if (description.includes(lowerQuery)) pageScore += 5
+    const contentMatches = content.split(lowerQuery).length - 1
+    pageScore += contentMatches
+
+    const matchingHeadings: any[] = []
+    for (const tocItem of node.toc || []) {
+      if (tocItem.text.toLowerCase().includes(lowerQuery)) {
+        const headingScore = tocItem.depth <= 2 ? 4 : 2
+        const headingType = tocItem.depth === 1 ? 'title' : 'subtitle'
+        const excerpt = extractHeadingContent(
+          node.rawContent || '',
+          tocItem.text,
+          200
+        )
+        matchingHeadings.push({
+          id: `${node.id}#${tocItem.id}`,
+          title: tocItem.text,
+          href: `${node.href}#${tocItem.id}`,
+          type: headingType,
+          content: excerpt,
+          matchScore: headingScore
+        })
+        pageScore += headingScore
+      }
+    }
+
+    if (pageScore > 0) {
+      results.push({
+        id: node.id,
+        title: node.title,
+        description: node.description,
+        icon: node.icon,
+        href: node.href,
+        matchScore: pageScore,
+        children: matchingHeadings
+      })
+    }
+  }
+
+  return results.sort((a, b) => b.matchScore - a.matchScore)
+}
+
 interface FlattenedSearchItem {
   id: string
   title: string
@@ -85,12 +206,9 @@ export default function Search() {
 
     try {
       setLoading(true)
-      const response = await fetch(
-        `${basePath}/api/search?query=${encodeURIComponent(trimmed)}`
-      )
-      if (!response.ok) throw new Error('Search failed')
-      const data = await response.json()
-      setResults(Array.isArray(data) ? data : [])
+      const nodes = await loadSearchIndex()
+      const data = searchContentLocal(nodes, trimmed)
+      setResults(data)
       setSelectedIndex(0)
     } catch (error) {
       console.error('Search error:', error)
@@ -102,7 +220,7 @@ export default function Search() {
 
   const [debouncedValue, setDebouncedQuery] = useDebounce<string>({
     onDebounced: (val) => handleSearch(val || ''),
-    delay: 200
+    delay: 50
   })
 
   const onInputChange = (val: string) => {
@@ -144,57 +262,46 @@ export default function Search() {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         setIsOpen((prev) => !prev)
-        return
-      }
-
-      if (e.key === '/' && !isOpen) {
-        const target = e.target as HTMLElement
-        if (
-          target.tagName !== 'INPUT' &&
-          target.tagName !== 'TEXTAREA' &&
-          !target.isContentEditable
-        ) {
-          e.preventDefault()
-          setIsOpen(true)
-        }
+        loadSearchIndex()
       }
     }
-
-    document.addEventListener('keydown', handleGlobalKeyDown)
-    return () => {
-      document.removeEventListener('keydown', handleGlobalKeyDown)
-    }
-  }, [isOpen])
+    window.addEventListener('keydown', handleGlobalKeyDown)
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown)
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      loadSearchIndex()
       const timer = setTimeout(() => {
         inputRef.current?.focus()
-      }, 40)
+      }, 50)
+      document.body.style.overflow = 'hidden'
       return () => {
         clearTimeout(timer)
         document.body.style.overflow = ''
       }
-    } else {
-      document.body.style.overflow = ''
     }
   }, [isOpen])
 
   useEffect(() => {
-    setSelectedIndex(0)
-  }, [flatItems])
-
-  useEffect(() => {
-    if (isOpen && flatItems.length > 0 && selectedIndex >= 0) {
-      const activeEl = document.querySelector(
-        `[data-search-index="${selectedIndex}"]`
-      )
-      if (activeEl) {
-        activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    function handleClickOutside(e: MouseEvent) {
+      if (dialogRef.current && !dialogRef.current.contains(e.target as Node)) {
+        setIsOpen(false)
       }
     }
-  }, [selectedIndex, isOpen, flatItems])
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (flatItems.length > 0 && selectedIndex >= 0) {
+      const el = document.getElementById(flatItems[selectedIndex]?.id || '')
+      el?.scrollIntoView({ block: 'nearest' })
+    }
+  }, [selectedIndex, flatItems])
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -227,7 +334,11 @@ export default function Search() {
       <div class="px-3 pt-3 pb-2">
         <button
           type="button"
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true)
+            loadSearchIndex()
+          }}
+          onMouseEnter={() => loadSearchIndex()}
           aria-haspopup="dialog"
           aria-expanded={isOpen}
           aria-label="Search documentation (Press Ctrl+K or Cmd+K to open)"
@@ -260,11 +371,16 @@ export default function Search() {
           onKeyDown={handleKeyDown}
           role="dialog"
           aria-modal="true"
-          aria-label="Search documentation"
+          aria-label="Documentation search"
         >
           <div
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"
+            aria-hidden="true"
+          />
+
+          <div
             ref={dialogRef}
-            class="w-full max-w-2xl bg-background border border-border/80 rounded-2xl dark:shadow-[0_20px_50px_rgba(0,0,0,1)] shadow-[0_20px_40px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150"
+            class="w-full max-w-2xl bg-background border border-border/80 rounded-2xl dark:shadow-[0_20px_50px_rgba(0,0,0,1)] shadow-[0_20px_40px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150 relative z-10"
           >
             <div class="flex items-center px-4 border-b border-border/60 relative bg-foreground/1">
               <SearchIcon
@@ -274,47 +390,44 @@ export default function Search() {
               />
               <input
                 ref={inputRef}
+                type="text"
                 value={query}
-                onInput={(e) => onInputChange(e.currentTarget.value)}
-                placeholder="Search documentation, guides, and concepts..."
-                class="w-full bg-transparent py-4 text-sm outline-none text-foreground placeholder:text-foreground/40 font-normal"
-                role="combobox"
-                aria-autocomplete="list"
-                aria-expanded={flatItems.length > 0}
-                aria-activedescendant={
-                  flatItems[selectedIndex]?.id || undefined
+                onInput={(e) =>
+                  onInputChange((e.target as HTMLInputElement).value)
                 }
+                placeholder="Search documentation, guides, and features..."
+                class="w-full py-4 text-base bg-transparent border-none outline-none text-foreground placeholder:text-foreground/35 font-normal"
+                role="combobox"
+                aria-expanded={flatItems.length > 0}
+                aria-controls="search-results-list"
+                aria-autocomplete="list"
               />
               {query && (
                 <button
                   type="button"
                   onClick={() => onInputChange('')}
-                  class="p-1 text-foreground/40 hover:text-foreground rounded-full hover:bg-foreground/5 transition-colors mr-2 cursor-pointer"
-                  aria-label="Clear search input"
+                  class="p-1 rounded-md text-foreground/40 hover:text-foreground hover:bg-foreground/5 mr-2 transition-colors cursor-pointer"
                 >
                   <CloseIcon width={16} height={16} />
                 </button>
               )}
-              <button
-                type="button"
+              <kbd
                 onClick={() => setIsOpen(false)}
-                aria-label="Close search dialog"
+                class="hidden sm:inline-block text-[11px] font-mono font-medium text-foreground/45 border border-border/60 bg-foreground/5 rounded px-1.5 py-0.5 shadow-2xs cursor-pointer hover:bg-foreground/10"
               >
-                <kbd class="border border-border/60 bg-foreground/5 px-1.5 py-0.5 rounded-full text-[10px]">
-                  ESC
-                </kbd>
-              </button>
+                ESC
+              </kbd>
             </div>
 
             <div
-              class="overflow-y-auto p-2 flex flex-col grow min-h-36 max-h-[50vh] divide-y divide-border/20"
+              id="search-results-list"
               role="listbox"
-              aria-label="Search results"
+              class="overflow-y-auto p-2 max-h-[60vh] space-y-1"
             >
               {loading && (
-                <div class="py-12 flex flex-col items-center justify-center gap-2 text-foreground/50 ">
-                  <div class="size-4 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
-                  <span>Searching docs...</span>
+                <div class="py-12 flex flex-col items-center justify-center gap-2 text-foreground/50 text-sm">
+                  <div class="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+                  <span>Searching documentation...</span>
                 </div>
               )}
 
@@ -363,12 +476,12 @@ export default function Search() {
                     const isSelected = selectedIndex === index
                     return (
                       <div
+                        key={item.id}
                         className={cn({
                           'ml-5 pl-2 border-l border-border/40': item.isSubItem
                         })}
                       >
                         <a
-                          key={item.id}
                           id={item.id}
                           data-search-index={index}
                           href={item.href}
