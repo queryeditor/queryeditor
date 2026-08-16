@@ -235,8 +235,8 @@ export default function Search() {
         >
           <div class="flex items-center gap-2.5">
             <SearchIcon
-              width={14}
-              height={14}
+              width={20}
+              height={20}
               class="opacity-60 group-hover:opacity-100 group-hover:text-accent transition-all shrink-0"
             />
             <span class="font-normal text-foreground/50 group-hover:text-foreground/80 transition-colors">
@@ -264,7 +264,7 @@ export default function Search() {
         >
           <div
             ref={dialogRef}
-            class="w-full max-w-2xl bg-background border border-border/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150"
+            class="w-full max-w-2xl bg-background border border-border/80 rounded-2xl dark:shadow-[0_20px_50px_rgba(0,0,0,1)] shadow-[0_20px_40px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[80vh] animate-in zoom-in-95 duration-150"
           >
             <div class="flex items-center px-4 border-b border-border/60 relative bg-foreground/1">
               <SearchIcon

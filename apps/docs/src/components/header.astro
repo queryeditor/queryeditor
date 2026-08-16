@@ -49,7 +49,7 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
                 >
                   {isLast ? (
                     <span
-                      class="text-foreground/80 font-medium"
+                      class="text-foreground/60 font-medium"
                       aria-current="page"
                       itemprop="name"
                     >
@@ -57,7 +57,7 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
                     </span>
                   ) : (
                     <a
-                      class="hover:text-foreground transition-colors"
+                      class="text-foreground transition-colors"
                       href={crumb.href}
                       itemprop="item"
                     >
