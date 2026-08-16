@@ -2,6 +2,7 @@
 import { type Node } from 'slugtree'
 import Item from './item.astro'
 import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
+import NodeIcon from '@/components/node-icon.astro'
 import { APP } from '@queryeditor/shared/lib/const'
 import path from '@/lib/path'
 
@@ -40,8 +41,9 @@ const isCurrentNode =
       title={node.title}
       data-current={isCurrentNode ? 'true' : undefined}
       href={nodeRef}
-      class="min-h-8 text-[13.5px] flex items-center text-foreground/75 hover:text-foreground hover:bg-foreground/4 data-current:bg-accent/10 data-current:text-accent data-current:font-medium data-current:hover:bg-accent/15 rounded-lg px-3 transition-colors"
+      class="min-h-8 font-medium text-sm flex items-center gap-2 text-foreground/75 hover:text-foreground hover:bg-foreground/4 data-current:bg-background data-current:text-accent data-current:font-semibold rounded-full px-2.5 transition-colors group"
     >
+      {node.icon && <NodeIcon name={node.icon} size={14} />}
       <span class="truncate">{node.title}</span>
     </a>
   )
@@ -50,27 +52,31 @@ const isCurrentNode =
 {
   node.type === 'folder' && (
     <div
-      class="node group/node my-0.5"
+      class="node relative group/node my-0.5"
       data-open={isCurrentNode ? 'true' : undefined}
     >
-      <a
-        title={node.title}
-        data-current={isCurrentNode ? 'true' : undefined}
-        href={nodeRef || '#'}
-        class="min-h-8 text-sm flex hover:bg-foreground/4 items-center text-foreground/75 hover:text-foreground data-current:font-medium data-current:text-accent data-current:bg-accent/10 rounded-lg pl-3 pr-1 transition-colors"
-      >
-        <span class="grow truncate">{node.title}</span>
-        <div class="node__button p-1.5 rounded-md hover:bg-foreground/5 cursor-pointer text-foreground/50 hover:text-foreground transition-colors">
-          <ChevronRight
-            width={12}
-            height={12}
-            class="group-data-open/node:rotate-90 transition-transform duration-200"
-          />
-        </div>
-      </a>
+      <span class="absolute rounded-[1.2rem] inset-0 block group-data-open/node:bg-white group-data-open/node:shadow-sm" />
+      <div class="p-1 pb-0">
+        <a
+          title={node.title}
+          data-current={isCurrentNode ? 'true' : undefined}
+          href={nodeRef || '#'}
+          class="min-h-8 text-sm font-medium flex relative rounded-full hover:bg-foreground/4 items-center gap-2 text-foreground/75 hover:text-foreground data-current:font-semibold data-current:text-accent pl-2.5 pr-1 transition-colors group"
+        >
+          {node.icon && <NodeIcon name={node.icon} size={14} />}
+          <span class="grow truncate">{node.title}</span>
+          <div class="node__button p-1.5 rounded-full hover:bg-foreground/5 cursor-pointer text-foreground/50 hover:text-foreground transition-colors">
+            <ChevronRight
+              width={12}
+              height={12}
+              class="group-data-open/node:rotate-90 transition-transform duration-200"
+            />
+          </div>
+        </a>
+      </div>
       <div
         data-open={isCurrentNode ? 'true' : undefined}
-        class="flex-col pl-2 ml-3 border-l border-border/50 node__children data-open:flex hidden space-y-0.5 mt-0.5"
+        class="flex-col p-1 relative border-border/50 node__children data-open:flex hidden space-y-0.5"
       >
         {node.children.map((child) =>
           child.type === 'page' && child.href === node.href ? null : (

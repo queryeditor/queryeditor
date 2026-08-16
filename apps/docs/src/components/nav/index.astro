@@ -10,7 +10,7 @@ import { APP } from '@queryeditor/shared/lib/const'
   <div class="container justify-between h-full flex items-center">
     <nav
       aria-label="Brand navigation"
-      class="basis-0 grow flex items-center font-semibold text-xl font-google-sans gap-3"
+      class="basis-0 grow flex items-center font-semibold text-xl font-google-sans gap-2"
     >
       <a
         href={APP.urls.home.site}
@@ -21,9 +21,9 @@ import { APP } from '@queryeditor/shared/lib/const'
         <span class="tracking-tight font-medium">QueryEditor</span>
       </a>
       <a
-        href={APP.urls.docs.site}
+        href={APP.urls.docs.base}
         aria-label="Documentation Home"
-        class="inline-flex items-center text-xs font-medium px-2 py-0.5 rounded-md bg-accent/10 text-accent border border-accent/20 hover:bg-accent/15 transition-colors"
+        class="hover:opacity-80 transition-opacity flex items-center gap-2 text-accent"
       >
         Docs
       </a>

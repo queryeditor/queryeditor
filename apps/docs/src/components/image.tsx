@@ -12,7 +12,7 @@ export default function Image({
   return (
     <figure className="my-8 group figure__container first:mt-0">
       <span class="opacity-0 transition-opacity duration-300 bg-black/60 backdrop-blur-md figure__overlay z-50 fixed pointer-events-none inset-0 group-data-open:pointer-events-auto group-data-open:opacity-100" />
-      <div className="overflow-hidden w-fit rounded-[1.2rem] border border-border/70 bg-foreground/2 p-1 md:p-2 shadow-xs transition-shadow hover:shadow-md">
+      <div className="overflow-hidden w-fit mx-auto rounded-[1.2rem] border border-border/70 bg-foreground/2 p-1 md:p-2 shadow-xs transition-shadow hover:shadow-md">
         <picture>
           {darksrc && (
             <source srcset={darksrc} media="(prefers-color-scheme: dark)" />

@@ -3,6 +3,7 @@ import { getTree } from 'slugtree'
 import Item from './item.astro'
 import Search from './search'
 import cn from '@queryeditor/shared/lib/cn'
+import { DAUSTINN } from '@queryeditor/shared/lib/const'
 
 const tree = getTree()
 ---
@@ -11,7 +12,7 @@ const tree = getTree()
   id="primary-sidebar"
   aria-label="Documentation navigation"
   class={cn(
-    'bg-white/90 dark:bg-background/90 backdrop-blur-md md:border-r border-border/70 side__primaryPanel flex flex-col md:min-w-64 md:max-w-64 lg:min-w-72 lg:max-w-72 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto z-10',
+    'max-md:bg-background side__primaryPanel flex flex-col md:min-w-64 md:max-w-64 lg:min-w-72 lg:max-w-72 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto z-10',
     'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-30 max-md:bg-background',
     'data-open:max-md:h-[calc(100svh-3.5rem)] max-md:transition-all max-md:duration-200'
   )}
@@ -38,7 +39,7 @@ const tree = getTree()
         class="underline decoration-border hover:text-foreground transition-colors"
         target="_blank"
         rel="noopener noreferrer"
-        href="https://slugtree.daustinn.com"
+        href={DAUSTINN.urls.slugtree}
       >
         Slugtree
       </a>{' '}
