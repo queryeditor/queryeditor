@@ -73,21 +73,32 @@ const speculationRules = {
 <html lang="en">
   <head>
     <ClientRouter />
-    <link
-      rel="preload"
-      href={lightHero.src}
-      as="image"
-      fetchpriority="high"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="preload"
-      href={darkHero.src}
-      as="image"
-      fetchpriority="high"
-      media="(prefers-color-scheme: dark)"
-    />
-    <link rel="preload" href={background.src} as="image" fetchpriority="high" />
+    {
+      (Astro.url.pathname === '/' || Astro.url.pathname === '') && (
+        <>
+          <link
+            rel="preload"
+            href={lightHero.src}
+            as="image"
+            fetchpriority="high"
+            media="(prefers-color-scheme: light)"
+          />
+          <link
+            rel="preload"
+            href={darkHero.src}
+            as="image"
+            fetchpriority="high"
+            media="(prefers-color-scheme: dark)"
+          />
+          <link
+            rel="preload"
+            href={background.src}
+            as="image"
+            fetchpriority="high"
+          />
+        </>
+      )
+    }
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
