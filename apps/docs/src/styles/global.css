@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 @utility container {
-  max-width: 95rem;
+  max-width: 120rem;
   margin-inline: auto;
-  padding-inline: 2rem;
+  padding-inline: 1rem;
   @apply max-lg:px-3;
 }
 
@@ -16,7 +16,9 @@
   --text-sm: 14px;
   --text-xs: 12px;
   --text-xxs: 11px;
-  --font-google-sans: var(--font-google-sans);
+  --font-google-sans: 'Google Sans';
+  --font-young-serif: 'Young Serif';
+  --breakpoint-xs: 540px;
 }
 
 .prose__content {

@@ -1,8 +1,7 @@
 ---
 import DownloadButton from '@/components/download-button.astro'
-import { DAUSTINN } from '@/const'
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
-import { DOCS_SITE } from '@queryeditor/shared/lib/env'
+import { APP, DAUSTINN } from '@queryeditor/shared/lib/const'
 
 const items = {
   Legal: [
@@ -43,7 +42,7 @@ const items = {
     {
       ariaLabel: 'Docs of QueryEditor',
       name: 'Docs',
-      href: DOCS_SITE
+      href: APP.urls.docs.site
     },
     {
       ariaLabel: 'About of QueryEditor',
@@ -55,22 +54,22 @@ const items = {
     {
       ariaLabel: 'X of Daustinn',
       name: 'X',
-      href: DAUSTINN.x
+      href: DAUSTINN.urls.x
     },
     {
       ariaLabel: 'Github of Daustinn',
       name: 'Github',
-      href: DAUSTINN.github
+      href: DAUSTINN.urls.github
     },
     {
       ariaLabel: 'Website of Daustinn',
       name: 'Website',
-      href: DAUSTINN.website
+      href: DAUSTINN.urls.website
     },
     {
       ariaLabel: 'Buy me a coffee of Daustinn',
       name: 'Buy me a coffee',
-      href: DAUSTINN.buyMeACoffee
+      href: DAUSTINN.urls.buyMeACoffee
     }
   ]
 } as const

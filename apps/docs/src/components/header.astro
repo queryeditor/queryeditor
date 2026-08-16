@@ -1,5 +1,11 @@
 ---
-import { getNodeLabel, type NodeFolder, type NodePage } from 'slugtree'
+import {
+  getNodeLabel,
+  type NodeFolder,
+  type NodePage,
+  getNodeBreadcrumbs
+} from 'slugtree'
+import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
 
 export type Props = {
   node: NodePage | NodeFolder
@@ -8,17 +14,42 @@ export type Props = {
 const { node } = Astro.props
 
 const label = getNodeLabel(node.slug)
+const breadcrumbs = getNodeBreadcrumbs(node.slug)
 ---
 
 <header class="pt-4 md:pt-10 pb-5 border-b">
-  {
-    label && (
-      <div class="pb-4">
-        <span class="text-accent">{label?.label}</span>
-      </div>
-    )
-  }
-  <h1 class="text-3xl font-medium">{node.title}</h1>
+  <ul
+    hidden={breadcrumbs.length === 1 && !label}
+    class="flex items-center text-sm gap-1 pt-2"
+  >
+    {
+      label && (
+        <span class="text-accent inline-flex gap-2">
+          {label?.label}
+          {breadcrumbs.length > 1 && <ChevronRight width={12} />}
+        </span>
+      )
+    }
+    {
+      breadcrumbs.length > 1 &&
+        breadcrumbs.map((crumb, index) => {
+          const isLast = index === breadcrumbs.length - 1
+          return (
+            <li class="flex gap-2">
+              <a
+                {...(isLast ? { 'aria-current': 'true' } : {})}
+                class="inline-block hover:underline aria-current:hover:no-underline aria-current:opacity-40"
+                href={isLast ? undefined : crumb.href}
+              >
+                {crumb.title}
+              </a>
+              {!isLast && <ChevronRight width={12} />}
+            </li>
+          )
+        })
+    }
+  </ul>
+  <h1 class="text-3xl pt-2 font-medium font-google-sans">{node.title}</h1>
   {
     node.description && (
       <p class="pt-4 text-base text-foreground/70">{node.description}</p>

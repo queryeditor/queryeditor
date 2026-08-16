@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'preact/hooks'
 import type { ReactNode } from 'preact/compat'
 import { Fragment } from 'preact/jsx-runtime'
 import type { SearchResult } from 'slugtree'
+
 import {
   Document,
   NumberSymbol,
@@ -93,7 +94,7 @@ export default function Search() {
 
   return (
     <>
-      <nav class="mt-0 md:mt-10 mb-3 relative px-2 w-full min-h-12 h-12">
+      <nav class="min-h-12 px-4 md:px-2 h-12 mt-1 md:mt-1 mb-3 flex flex-col">
         <label class="flex items-center h-full relative">
           <SearchIcon
             width={17}
@@ -103,7 +104,7 @@ export default function Search() {
             ref={inputRef}
             onInput={(e) => setValue(e.currentTarget.value)}
             placeholder="Search..."
-            class="relative text-base focus:outline-1 outline-accent search__trigger border shadow-[0_2px_5px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(0,0,0,0.3)] w-full rounded-xl py-2 px-8 pr-10 gap-2"
+            class="relative text-base bg-border/20 focus:bg-border/30 outline-none search__trigger border w-full rounded-xl py-2 px-8 pr-10 gap-2"
           />
           <span class="opacity-40 absolute inset-y-auto pointer-events-none right-3">
             ⌘+k

@@ -1,4 +1,4 @@
-import { DOCS_SITE } from '@queryeditor/shared/lib/env'
+import { APP } from '@queryeditor/shared/lib/const'
 
 export default {
   title: 'QueryEditor Documentation',
@@ -19,11 +19,11 @@ export default {
     'documentation',
     'docs'
   ],
-  url: DOCS_SITE,
+  url: APP.urls.docs.site + APP.urls.docs.base,
   ogImage: '/og-image.png',
   locale: 'en_US',
   xHandle: '@queryeditor',
-  xUrl: 'https://x.com/queryeditor',
-  githubUrl: 'https://github.com/queryeditor',
+  xUrl: APP.urls.x,
+  githubUrl: APP.urls.githubRepo,
   author: 'Daustinn'
 }

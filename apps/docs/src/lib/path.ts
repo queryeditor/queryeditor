@@ -1,10 +1,12 @@
-import { DOCS_BASE } from '@queryeditor/shared/lib/env'
+import { APP } from '@queryeditor/shared/lib/const'
 
 export default (path?: string): string => {
   let base = ''
-
   try {
-    const { pathname } = new URL(DOCS_BASE ?? '')
+    const { pathname } = new URL(
+      APP.urls.docs.site + (APP.urls.docs.base ?? '')
+    )
+
     base = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
   } catch {
     base = ''
