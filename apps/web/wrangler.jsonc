@@ -6,7 +6,7 @@
 		"global_fetch_strictly_public"
 	],
 	"assets": {
-		"directory": "./dist"
+		"directory": "./dist/client"
 	},
 	"observability": {
 		"enabled": true

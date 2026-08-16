@@ -2,6 +2,7 @@
 import path from 'node:path'
 import { loadEnvFile } from 'node:process'
 import { defineConfig } from 'astro/config'
+import cloudflare from '@astrojs/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import mdx from '@astrojs/mdx'
 
@@ -17,6 +18,9 @@ export default defineConfig({
   base: BASE,
   output: 'static',
   prefetch: true,
+  adapter: cloudflare({
+    prerenderEnvironment: 'node'
+  }),
   vite: {
     envDir: '../../',
     plugins: [tailwindcss()]
