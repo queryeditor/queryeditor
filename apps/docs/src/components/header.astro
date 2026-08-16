@@ -6,6 +6,7 @@ import {
   getNodeBreadcrumbs
 } from 'slugtree'
 import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
+import NodeIcon from '@/components/node-icon.astro'
 
 export type Props = {
   node: NodePage | NodeFolder
@@ -22,7 +23,7 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
     (label || breadcrumbs.length > 1) && (
       <nav aria-label="Breadcrumbs" class="mb-3">
         <ol
-          class="flex flex-wrap items-center text-xs gap-1.5 text-foreground/50"
+          class="flex flex-wrap items-center text-sm gap-1.5 text-foreground/50"
           itemscope
           itemtype="https://schema.org/BreadcrumbList"
         >
@@ -74,8 +75,11 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
       </nav>
     )
   }
-  <h1 class="text-3xl md:text-4xl font-semibold font-google-sans tracking-tight text-foreground">
-    {node.title}
+  <h1
+    class="text-2xl md:text-3xl font-semibold font-google-sans tracking-tight text-foreground flex items-center gap-3"
+  >
+    {node.icon && <NodeIcon name={node.icon} size={25} />}
+    <span>{node.title}</span>
   </h1>
   {
     node.description && (
