@@ -25,19 +25,20 @@ export default function Heading<T extends HeadingTag = 'h2'>({
       <a
         href={`#${id}`}
         aria-label={`Link to section: ${childrenText}`}
-        className="group prose__heading relative"
+        className="group prose__heading inline-flex items-center gap-2 relative no-underline hover:no-underline"
       >
         <span className="relative inline-flex">
           {childrenText}
-          <span className="absolute inset-y-0 pointer-events-none duration-700 bg-accent/20 w-0 group-data-highlighted:w-full transition-all" />
+          <span className="absolute inset-y-0 -inset-x-1 pointer-events-none rounded duration-500 bg-accent/15 w-0 group-data-highlighted:w-[calc(100%+0.5rem)] transition-all" />
         </span>
         <span
-          className="*:size-4 prose__heading__icon text-foreground/60 opacity-0 group-hover:opacity-100 inline-flex p-2"
+          className="prose__heading__icon text-foreground/40 hover:text-foreground opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-all p-1 rounded-md hover:bg-foreground/5 inline-flex items-center justify-center cursor-pointer"
           data-slug-id={id}
+          title="Copy link to heading"
           aria-hidden="true"
         >
           <svg
-            class="copy-icon group-data-copied:hidden"
+            class="copy-icon size-4 group-data-copied:hidden"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -48,7 +49,7 @@ export default function Heading<T extends HeadingTag = 'h2'>({
             />
           </svg>
           <svg
-            class="check-icon hidden group-data-copied:inline-flex dark:text-lime-400 text-lime-700"
+            class="check-icon size-4 hidden group-data-copied:inline-flex text-emerald-500"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 12 12"
             aria-hidden="true"

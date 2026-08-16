@@ -11,15 +11,15 @@ const tree = getTree()
   id="primary-sidebar"
   aria-label="Documentation navigation"
   class={cn(
-    'bg-white dark:bg-background md:border-r side__primaryPanel flex flex-col md:min-w-70 md:max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto',
-    'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-10',
-    'data-open:max-md:h-svh max-md:transition-all'
+    'bg-white/90 dark:bg-background/90 backdrop-blur-md md:border-r border-border/70 side__primaryPanel flex flex-col md:min-w-64 md:max-w-64 lg:min-w-72 lg:max-w-72 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto z-10',
+    'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-30 max-md:bg-background',
+    'data-open:max-md:h-[calc(100svh-3.5rem)] max-md:transition-all max-md:duration-200'
   )}
 >
   <Search client:load transition:persist />
   <nav
     aria-label="Documentation pages"
-    class="flex flex-col px-4 md:px-2 tree__content grow overflow-y-auto text-sm"
+    class="flex flex-col px-3 pb-6 tree__content grow overflow-y-auto text-sm space-y-0.5"
   >
     {
       tree.map((node) => {
@@ -28,22 +28,29 @@ const tree = getTree()
     }
   </nav>
 
-  <footer class="p-4">
-    <p>
-      © {new Date().getFullYear()} QueryEditor Docs
-    </p>
-    <p class="text-xs text-foreground/60 pt-1">
-      Built with <a
-        class="underline"
+  <footer
+    class="p-3 mx-3 mb-3 border-t border-border/40 text-xs text-foreground/45"
+  >
+    <p>© {new Date().getFullYear()} QueryEditor Docs</p>
+    <p class="pt-0.5">
+      Built with{' '}
+      <a
+        class="underline decoration-border hover:text-foreground transition-colors"
         target="_blank"
         rel="noopener noreferrer"
-        href="https://slugtree.daustinn.com">Slugtree</a
-      > & <a
-        class="underline"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://astro.build">Astro</a
+        href="https://slugtree.daustinn.com"
       >
+        Slugtree
+      </a>{' '}
+      &{' '}
+      <a
+        class="underline decoration-border hover:text-foreground transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://astro.build"
+      >
+        Astro
+      </a>
     </p>
   </footer>
 </aside>

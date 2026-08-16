@@ -3,8 +3,8 @@
 @utility container {
   max-width: 120rem;
   margin-inline: auto;
-  padding-inline: 1rem;
-  @apply max-lg:px-3;
+  padding-inline: 1.5rem;
+  @apply max-lg:px-4;
 }
 
 @theme inline {
@@ -16,13 +16,38 @@
   --text-sm: 14px;
   --text-xs: 12px;
   --text-xxs: 11px;
-  --font-google-sans: 'Google Sans';
-  --font-young-serif: 'Young Serif';
+  --font-google-sans: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-young-serif: 'Young Serif', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --breakpoint-xs: 540px;
 }
 
+/* Custom scrollbars for sidebars and code blocks */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--foreground) 15%, transparent);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--foreground) 25%, transparent);
+}
+
 .prose__content {
-  @apply text-base;
+  @apply text-base text-foreground/90 leading-relaxed font-google-sans;
+
+  p {
+    @apply leading-7 text-[15px] text-foreground/85 my-4;
+  }
+
   h2,
   h3,
   h4,
@@ -31,31 +56,46 @@
     &:first-child {
       margin-top: 0 !important;
     }
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    scroll-margin-top: 5rem;
+    @apply font-google-sans font-medium text-foreground tracking-tight;
     a {
-      @apply inline-block;
-      @apply text-foreground;
+      @apply inline-flex items-center text-foreground transition-colors hover:text-accent;
     }
   }
 
   h2 {
-    @apply text-2xl;
+    @apply text-2xl mt-12 mb-4 pb-2 border-b border-border/40 font-semibold;
   }
 
   h3 {
-    @apply text-xl;
+    @apply text-xl mt-8 mb-3 font-semibold;
   }
 
   h4 {
-    @apply text-lg;
+    @apply text-lg mt-6 mb-2 font-medium;
   }
 
   h5 {
-    @apply text-base;
+    @apply text-base mt-4 mb-2 font-medium;
   }
 
   h6 {
-    @apply text-xs;
+    @apply text-xs mt-3 mb-1 uppercase tracking-wider text-foreground/60;
+  }
+
+  ul {
+    @apply my-4 pl-5 list-disc space-y-1.5 marker:text-foreground/40;
+  }
+
+  ol {
+    @apply my-4 pl-5 list-decimal space-y-1.5 marker:text-foreground/50 marker:font-medium;
+  }
+
+  li {
+    @apply leading-7 text-[15px] text-foreground/85 pl-1;
+  }
+
+  hr {
+    @apply my-8 border-border/50;
   }
 }

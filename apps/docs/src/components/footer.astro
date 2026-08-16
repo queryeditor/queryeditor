@@ -12,41 +12,70 @@ const { slug } = Astro.props
 const pagination = getNodePagination(slug)
 ---
 
-<footer class="border-t mt-10 py-10 max-md:pb-5">
+<footer class="border-t border-border/60 mt-16 pt-8 pb-14">
   {
     pagination && (
       <nav
         aria-label="Documentation pagination"
-        class="gap-4 flex justify-between"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4"
       >
-        {Object.entries(pagination).map(
-          ([key, value]) =>
-            value && (
-              <a
-                rel={key === 'prev' ? 'prev' : 'next'}
-                aria-label={`${key === 'prev' ? 'Previous page' : 'Next page'}: ${value.title}`}
-                class={cn(
-                  'p-2 md:p-4 border gap-4 hover:border-accent! w-full flex items-center rounded-sm',
-                  {
-                    'flex-row-reverse text-right [&_svg]:rotate-180':
-                      key === 'prev'
-                  }
-                )}
-                href={value.href}
-              >
-                <div class="grow">
-                  <span class="text-foreground/50">
-                    {key === 'prev' ? 'Previous' : 'Next'}
-                  </span>
-                  <p class="text-base md:text-lg line-clamp-1">{value.title}</p>
-                  <p class="text-xs text-foreground/60 max-md:hidden line-clamp-1">
-                    {value.description}
-                  </p>
-                </div>
-                <ChevronRight class="opacity-70 min-w-5" width={20} />
-              </a>
-            )
+        {pagination.prev ? (
+          <a
+            rel="prev"
+            aria-label={`Previous page: ${pagination.prev.title}`}
+            class="group p-4 md:p-5 border border-border/70 hover:border-accent/60 bg-foreground/1 hover:bg-foreground/3 rounded-2xl transition-all shadow-2xs hover:shadow-xs flex items-center gap-4 text-left"
+            href={pagination.prev.href}
+          >
+            <ChevronRight
+              class="opacity-50 group-hover:opacity-100 group-hover:text-accent rotate-180 min-w-4 transition-all group-hover:-translate-x-0.5"
+              width={18}
+              height={18}
+            />
+            <div class="grow overflow-hidden">
+              <span class="text-xs font-semibold tracking-wider uppercase text-foreground/45 block mb-1">
+                Previous
+              </span>
+              <p class="text-sm md:text-[15px] font-semibold text-foreground group-hover:text-accent transition-colors truncate">
+                {pagination.prev.title}
+              </p>
+              {pagination.prev.description && (
+                <p class="text-xs text-foreground/60 line-clamp-1 mt-0.5 max-sm:hidden">
+                  {pagination.prev.description}
+                </p>
+              )}
+            </div>
+          </a>
+        ) : (
+          <div class="hidden sm:block" />
         )}
+
+        {pagination.next ? (
+          <a
+            rel="next"
+            aria-label={`Next page: ${pagination.next.title}`}
+            class="group p-4 md:p-5 border border-border/70 hover:border-accent/60 bg-foreground/1 hover:bg-foreground/3 rounded-2xl transition-all shadow-2xs hover:shadow-xs flex items-center gap-4 text-right justify-end ml-auto w-full"
+            href={pagination.next.href}
+          >
+            <div class="grow overflow-hidden">
+              <span class="text-xs font-semibold tracking-wider uppercase text-foreground/45 block mb-1">
+                Next
+              </span>
+              <p class="text-sm md:text-[15px] font-semibold text-foreground group-hover:text-accent transition-colors truncate">
+                {pagination.next.title}
+              </p>
+              {pagination.next.description && (
+                <p class="text-xs text-foreground/60 line-clamp-1 mt-0.5 max-sm:hidden">
+                  {pagination.next.description}
+                </p>
+              )}
+            </div>
+            <ChevronRight
+              class="opacity-50 group-hover:opacity-100 group-hover:text-accent min-w-4 transition-all group-hover:translate-x-0.5"
+              width={18}
+              height={18}
+            />
+          </a>
+        ) : null}
       </nav>
     )
   }
