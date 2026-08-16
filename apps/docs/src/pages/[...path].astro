@@ -2,7 +2,7 @@
 import Layout from '@/layouts/root.astro'
 import NotFound from '@/pages/404.astro'
 
-import { getNode, getSlugs } from 'slugtree'
+import { getNode, getNodeBreadcrumbs, getSlugs } from 'slugtree'
 import Header from '@/components/header.astro'
 import Footer from '@/components/footer.astro'
 import SecondarySidebar from '@/components/secondary-sidebar/index.astro'
@@ -23,18 +23,23 @@ export const prerender = true
 
 const { slug } = Astro.props
 const node = getNode(slug)
+const breadcrumbs = node ? getNodeBreadcrumbs(node.slug) : []
 ---
 
 {
   node ? (
-    <Layout title={node.title} description={node.description}>
-      <section class="flex md:max-w-2xl px-2 md:px-5 mx-auto w-full flex-col">
+    <Layout
+      title={node.title}
+      description={node.description}
+      breadcrumbs={breadcrumbs}
+    >
+      <article class="flex md:max-w-2xl px-2 md:px-5 mx-auto w-full flex-col">
         <Header node={node} />
         <div class="prose__content grow pt-5">
           <MDXRenderer node={node} />
         </div>
         <Footer slug={slug} />
-      </section>
+      </article>
       <SecondarySidebar node={node} />
     </Layout>
   ) : (

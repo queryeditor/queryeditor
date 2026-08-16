@@ -52,6 +52,21 @@ const jsonLd = [
     }
   }
 ]
+const speculationRules = {
+  prerender: [
+    {
+      source: 'document',
+      where: {
+        and: [
+          { href_matches: '/*' },
+          { not: { href_matches: '/api/*' } },
+          { not: { selector_matches: '[rel~=nofollow], [download]' } }
+        ]
+      },
+      eagerness: 'moderate'
+    }
+  ]
+}
 ---
 
 <!doctype html>
@@ -106,6 +121,10 @@ const jsonLd = [
     <meta name="twitter:image" content={ogImageURL} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script
+      type="speculationrules"
+      set:html={JSON.stringify(speculationRules)}
+    />
 
     <script is:inline>
       ;(function () {

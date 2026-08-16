@@ -19,11 +19,12 @@ export default function Image({
         <img
           {...props}
           loading="lazy"
+          decoding="async"
           className={cn(
             'rounded-xl w-fit transition-all mx-auto cursor-zoom-in figure__image border dark:drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] drop-shadow-[0_15px_20px_rgba(0,0,0,0.2)]',
             props.className
           )}
-          alt={props.alt ?? props.title ?? 'Image'}
+          alt={props.alt ?? props.title ?? 'Documentation visual'}
         />
       </picture>
 

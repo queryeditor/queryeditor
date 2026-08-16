@@ -8,6 +8,8 @@ const tree = getTree()
 ---
 
 <aside
+  id="primary-sidebar"
+  aria-label="Documentation navigation"
   class={cn(
     'bg-white dark:bg-background md:border-r side__primaryPanel flex flex-col md:min-w-70 md:max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto',
     'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-10',
@@ -15,7 +17,8 @@ const tree = getTree()
   )}
 >
   <Search client:load transition:persist />
-  <div
+  <nav
+    aria-label="Documentation pages"
     class="flex flex-col px-4 md:px-2 tree__content grow overflow-y-auto text-sm"
   >
     {
@@ -23,7 +26,7 @@ const tree = getTree()
         return <Item node={node} />
       })
     }
-  </div>
+  </nav>
 
   <footer class="p-4">
     <p>
