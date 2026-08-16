@@ -1,5 +1,6 @@
 {
   "$schema": "https://slugtree.daustinn.com/config.schema.json",
-  "title": "AI",
+  "title": "AI Assistant",
+  "icon": "ai",
   "nodes": ["index", "widget", "setting"]
 }

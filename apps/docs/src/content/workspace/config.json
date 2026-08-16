@@ -1,1 +1,6 @@
-{ "nodes": ["index", "files", "groups", "tabs"] }
+{
+  "$schema": "https://slugtree.daustinn.com/config.schema.json",
+  "title": "Workspace",
+  "icon": "workspace",
+  "nodes": ["index", "files", "groups", "tabs"]
+}

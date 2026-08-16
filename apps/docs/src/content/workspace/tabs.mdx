@@ -1,6 +1,7 @@
-﻿---
+---
 title: Tabs
 description: Multitask efficiently in QueryEditor using stateful tabs. Each SQL tab remembers its layout, query results, and unsaved changes for an uninterrupted workflow.
+icon: tabs
 ---
 
 ## Multitasking with Tabs
@@ -17,12 +18,13 @@ Every `.sql` file you open in the workspace creates a **Tab**. Tabs appear above
 ## Stateful Memory
 
 Tabs in QueryEditor are completely stateful. The application remembers the following for each tab individually:
+
 - The currently selected file path.
 - The SQL content (including unsaved text changes).
 - The query results currently displayed in the data grid.
 - The layout ratio between the Editor (top) and the Data Grid (bottom).
 
-If you switch from Tab A to Tab B, the Editor and Data Grid instantly restore to the exact state of Tab B. 
+If you switch from Tab A to Tab B, the Editor and Data Grid instantly restore to the exact state of Tab B.
 
 ## Handling Unsaved Changes
 

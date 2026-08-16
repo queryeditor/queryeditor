@@ -1,6 +1,7 @@
-﻿---
+---
 title: Connections
 description: Discover how QueryEditor securely stores and manages your database connections with encrypted local storage, connection modes, and dedicated workspace directories.
+icon: database
 ---
 
 ## The Heart of QueryEditor
@@ -22,14 +23,14 @@ Connections are stored locally and securely on your device. Sensitive fields suc
 
 Under the hood, a connection object contains the following key properties:
 
-| Property | Description |
-|---|---|
-| `name` | Optional display name. Falls back to the hostname, database path, or account ID if left blank. |
-| `color` | Optional hex color utilized as a visual accent in the title bar. |
-| `type` | The Engine key: `mysql`, `sqlite`, or `d1`. |
-| `mode` | The active Security Mode controlling write permissions. |
-| `workspaceDir` | The absolute path to the directory used as the file workspace for this connection. |
-| `layout` | Saved panel size ratios specific to the workspace window. |
+| Property       | Description                                                                                    |
+| -------------- | ---------------------------------------------------------------------------------------------- |
+| `name`         | Optional display name. Falls back to the hostname, database path, or account ID if left blank. |
+| `color`        | Optional hex color utilized as a visual accent in the title bar.                               |
+| `type`         | The Engine key: `mysql`, `sqlite`, or `d1`.                                                    |
+| `mode`         | The active Security Mode controlling write permissions.                                        |
+| `workspaceDir` | The absolute path to the directory used as the file workspace for this connection.             |
+| `layout`       | Saved panel size ratios specific to the workspace window.                                      |
 
 ## Creating a New Connection
 

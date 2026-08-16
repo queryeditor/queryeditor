@@ -1,13 +1,14 @@
-﻿---
+---
 title: Connection Modes
 description: Protect your production databases with QueryEditor's Connection Modes. Learn how Silent, Read-Only, Safe, Confirm, and Production modes restrict query execution.
+icon: modes
 ---
 
 ## What is a Connection Mode?
 
 Connection modes allow you to restrict what types of SQL queries can be executed on a given connection. They act as a vital safety net to prevent accidental data loss or catastrophic schema changes, particularly in production environments.
 
-The mode is evaluated locally on the client-side using strict Regular Expressions *before* the query is even sent to the database driver.
+The mode is evaluated locally on the client-side using strict Regular Expressions _before_ the query is even sent to the database driver.
 
 <Image
   src={props.images.modes.light}
@@ -20,23 +21,28 @@ The mode is evaluated locally on the client-side using strict Regular Expression
 QueryEditor provides five distinct connection modes:
 
 ### 1. Silent Mode
+
 - **Behavior**: Absolutely no restrictions. Any query is executed immediately.
 - **Ideal For**: Local development databases where you need full control and maximum speed.
 
 ### 2. Read-Only Mode
+
 - **Behavior**: Blocks all write and structural operations (e.g., `INSERT`, `UPDATE`, `DELETE`, `DROP`, `ALTER`, `CREATE`, `TRUNCATE`). Only `SELECT` and informational queries are allowed.
 - **Ideal For**: Read-replicas, analytics databases, or when you just need to explore data without risking modifications.
 
 ### 3. Safe Mode
+
 - **Behavior**: Allows writes but with strict safeguards. It explicitly blocks:
   - `DROP TABLE`, `DROP DATABASE`, `TRUNCATE TABLE`, `ALTER TABLE`.
   - `DELETE` and `UPDATE` statements that are missing a `WHERE` clause.
 - **Ideal For**: Staging environments where you need to modify data but want protection against catastrophic full-table wipes.
 
 ### 4. Confirm Mode
+
 - **Behavior**: The query is intercepted and passed to the built-in AI Assistant for review. A native confirmation dialog appears showing the AI's plain-English analysis of what the query will do, giving you the chance to proceed, edit, or cancel.
 - **Ideal For**: Learning SQL or working with complex nested queries where a second set of eyes is helpful.
 
 ### 5. Production Mode
+
 - **Behavior**: Combines the strict regex restrictions of **Safe Mode** with the manual AI review of **Confirm Mode**. Dangerous statements are blocked outright, and permitted statements must still be confirmed after an AI review.
 - **Ideal For**: Live, mission-critical production databases where maximum protection is non-negotiable.
