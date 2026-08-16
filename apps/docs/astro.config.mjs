@@ -2,7 +2,6 @@
 import path from 'node:path'
 import { loadEnvFile } from 'node:process'
 import { defineConfig } from 'astro/config'
-import cloudflare from '@astrojs/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import slugtree from 'slugtree/astro'
 import preact from '@astrojs/preact'
@@ -18,9 +17,7 @@ export default defineConfig({
   site: SITE,
   output: 'static',
   base: BASE,
-  adapter: cloudflare({
-    prerenderEnvironment: 'node'
-  }),
+  prefetch: true,
   integrations: [
     slugtree({
       basePath: BASE

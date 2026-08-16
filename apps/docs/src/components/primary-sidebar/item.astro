@@ -91,28 +91,32 @@ const isCurrentNode =
 <script>
   import { $$, $ } from '@queryeditor/shared/lib/dom'
 
-  const $nodes = $$('.node')
+  function init() {
+    const $nodes = $$('.node')
 
-  $nodes.forEach(($node) => {
-    const $btn = $('.node__button', $node)
-    const $children = $('.node__children', $node)
+    $nodes.forEach(($node) => {
+      const $btn = $('.node__button', $node)
+      const $children = $('.node__children', $node)
 
-    if (!$btn || !$children) return
+      if (!$btn || !$children) return
 
-    const toggle = (value: boolean) => {
-      if (value) {
-        $node.removeAttribute('data-open')
-        $children.removeAttribute('data-open')
-      } else {
-        $node.dataset.open = 'true'
-        $children.dataset.open = 'true'
+      const toggle = (value: boolean) => {
+        if (value) {
+          $node.removeAttribute('data-open')
+          $children.removeAttribute('data-open')
+        } else {
+          $node.dataset.open = 'true'
+          $children.dataset.open = 'true'
+        }
       }
-    }
 
-    $btn.addEventListener('click', (e) => {
-      e.stopPropagation()
-      e.preventDefault()
-      toggle(Boolean($node.dataset.open))
+      $btn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        toggle(Boolean($node.dataset.open))
+      })
     })
-  })
+  }
+
+  document.addEventListener('astro:page-load', init)
 </script>

@@ -70,10 +70,11 @@ import { APP } from '@queryeditor/shared/lib/const'
 <script>
   import { $ } from '@queryeditor/shared/lib/dom'
 
-  const $navTrigger = $('.nav__menuTrigger')
-  const $primaryPanel = $('.side__primaryPanel')
+  let menuHistoryPushed = false
 
   const toggleOpen = (value: boolean) => {
+    const $navTrigger = $('.nav__menuTrigger')
+    const $primaryPanel = $('.side__primaryPanel')
     if (!$navTrigger || !$primaryPanel) return
 
     if (value) {
@@ -88,8 +89,6 @@ import { APP } from '@queryeditor/shared/lib/const'
       $navTrigger.ariaExpanded = 'false'
     }
   }
-
-  let menuHistoryPushed = false
 
   const openMenu = () => {
     history.pushState({ navMenu: true }, '')
@@ -107,22 +106,31 @@ import { APP } from '@queryeditor/shared/lib/const'
     toggleOpen(false)
   }
 
-  $navTrigger?.addEventListener('click', () => {
-    const isOpen = $primaryPanel?.dataset.open === 'true'
-    if (isOpen) closeMenu()
-    else openMenu()
-  })
+  function init() {
+    const $navTrigger = $('.nav__menuTrigger')
+    const $primaryPanel = $('.side__primaryPanel')
 
-  window.addEventListener('popstate', (e) => {
+    $navTrigger?.addEventListener('click', () => {
+      const isOpen = $primaryPanel?.dataset.open === 'true'
+      if (isOpen) closeMenu()
+      else openMenu()
+    })
+  }
+
+  window.addEventListener('popstate', () => {
+    const $primaryPanel = $('.side__primaryPanel')
     if ($primaryPanel?.dataset.open === 'true') {
       closeMenu(true)
     }
   })
 
   document.addEventListener('keydown', (e) => {
+    const $primaryPanel = $('.side__primaryPanel')
     if (e.key === 'Escape' && $primaryPanel?.dataset.open === 'true') {
       e.preventDefault()
       closeMenu()
     }
   })
+
+  document.addEventListener('astro:page-load', init)
 </script>
