@@ -18,37 +18,58 @@ const breadcrumbs = getNodeBreadcrumbs(node.slug)
 ---
 
 <header class="pt-4 md:pt-10 pb-5 border-b">
-  <ul
-    hidden={breadcrumbs.length === 1 && !label}
-    class="flex items-center text-sm gap-1 pt-2"
-  >
-    {
-      label && (
-        <span class="text-accent inline-flex gap-2">
-          {label?.label}
-          {breadcrumbs.length > 1 && <ChevronRight width={12} />}
-        </span>
-      )
-    }
-    {
-      breadcrumbs.length > 1 &&
-        breadcrumbs.map((crumb, index) => {
-          const isLast = index === breadcrumbs.length - 1
-          return (
-            <li class="flex gap-2">
-              <a
-                {...(isLast ? { 'aria-current': 'true' } : {})}
-                class="inline-block hover:underline aria-current:hover:no-underline aria-current:opacity-40"
-                href={isLast ? undefined : crumb.href}
-              >
-                {crumb.title}
-              </a>
-              {!isLast && <ChevronRight width={12} />}
+  {
+    (label || breadcrumbs.length > 1) && (
+      <nav aria-label="Breadcrumbs">
+        <ol
+          class="flex items-center text-sm gap-1 pt-2"
+          itemscope
+          itemtype="https://schema.org/BreadcrumbList"
+        >
+          {label && (
+            <li class="inline-flex items-center gap-2">
+              <span class="text-accent inline-flex items-center gap-2">
+                {label?.label}
+              </span>
+              {breadcrumbs.length > 1 && <ChevronRight width={12} />}
             </li>
-          )
-        })
-    }
-  </ul>
+          )}
+          {breadcrumbs.length > 1 &&
+            breadcrumbs.map((crumb, index) => {
+              const isLast = index === breadcrumbs.length - 1
+              return (
+                <li
+                  class="flex items-center gap-2"
+                  itemprop="itemListElement"
+                  itemscope
+                  itemtype="https://schema.org/ListItem"
+                >
+                  {isLast ? (
+                    <span
+                      class="opacity-40"
+                      aria-current="page"
+                      itemprop="name"
+                    >
+                      {crumb.title}
+                    </span>
+                  ) : (
+                    <a
+                      class="inline-block hover:underline"
+                      href={crumb.href}
+                      itemprop="item"
+                    >
+                      <span itemprop="name">{crumb.title}</span>
+                    </a>
+                  )}
+                  <meta itemprop="position" content={String(index + 1)} />
+                  {!isLast && <ChevronRight width={12} />}
+                </li>
+              )
+            })}
+        </ol>
+      </nav>
+    )
+  }
   <h1 class="text-3xl pt-2 font-medium font-google-sans">{node.title}</h1>
   {
     node.description && (

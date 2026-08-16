@@ -12,6 +12,7 @@ type Props = {
   image?: string
   noindex?: boolean
   sidebar?: boolean
+  breadcrumbs?: Array<{ title: string; href?: string }>
 }
 
 const {
@@ -19,7 +20,8 @@ const {
   title = seo.title,
   image = seo.ogImage,
   noindex = false,
-  sidebar = true
+  sidebar = true,
+  breadcrumbs = []
 } = Astro.props
 
 const pageTitle =
@@ -30,12 +32,28 @@ const canonicalURL = new URL(
 ).toString()
 const ogImageURL = new URL(image, Astro.site || seo.url).toString()
 
-const jsonLd = {
-  '@context': 'https://schema.org',
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': `${seo.url}/#website`,
+  url: seo.url,
+  name: seo.name,
+  description: seo.description,
+  publisher: {
+    '@type': 'Organization',
+    name: seo.name,
+    url: seo.url
+  }
+}
+
+const articleSchema = {
   '@type': 'TechArticle',
+  '@id': `${canonicalURL}/#article`,
+  mainEntityOfPage: canonicalURL,
   headline: title,
   description: description,
   url: canonicalURL,
+  image: ogImageURL,
+  inLanguage: seo.locale,
   author: {
     '@type': 'Person',
     name: seo.author
@@ -46,13 +64,49 @@ const jsonLd = {
     url: seo.url
   }
 }
+
+const breadcrumbSchema =
+  breadcrumbs.length > 0
+    ? {
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.title,
+          ...(crumb.href
+            ? { item: new URL(crumb.href, Astro.site || seo.url).toString() }
+            : {})
+        }))
+      }
+    : null
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [websiteSchema, articleSchema, breadcrumbSchema].filter(Boolean)
+}
+
+const speculationRules = {
+  prerender: [
+    {
+      source: 'document',
+      where: {
+        and: [
+          { href_matches: '/*' },
+          { not: { href_matches: '/api/*' } },
+          { not: { selector_matches: '[rel~=nofollow], [download]' } }
+        ]
+      },
+      eagerness: 'moderate'
+    }
+  ]
+}
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-pt-30">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="icon"
       href={path('/favicon.svg')}
@@ -73,6 +127,7 @@ const jsonLd = {
       content={noindex ? 'noindex, nofollow' : 'index, follow'}
     />
     <meta name="theme-color" content="#09090b" />
+    <meta name="format-detection" content="telephone=no" />
 
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content={seo.name} />
@@ -80,19 +135,32 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={seo.locale} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content={seo.xHandle} />
+    <meta name="twitter:creator" content={seo.xHandle} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={title} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script
+      type="speculationrules"
+      set:html={JSON.stringify(speculationRules)}
+    />
   </head>
   <body class="flex flex-col">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:border focus:rounded-md shadow-md"
+    >
+      Skip to main content
+    </a>
     <Nav />
-    <main class="flex grow font-google-sans">
+    <main id="main-content" class="flex grow font-google-sans">
       {sidebar && <PrimarySidebar />}
       <div class="grow flex">
         <slot />

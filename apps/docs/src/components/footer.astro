@@ -12,34 +12,42 @@ const { slug } = Astro.props
 const pagination = getNodePagination(slug)
 ---
 
-<footer class="border-t mt-10 py-10 max-md:pb-5 gap-4 flex justify-between">
+<footer class="border-t mt-10 py-10 max-md:pb-5">
   {
-    pagination &&
-      Object.entries(pagination).map(
-        ([key, value]) =>
-          value && (
-            <a
-              class={cn(
-                'p-2 md:p-4 border gap-4 hover:border-accent! w-full flex items-center rounded-sm',
-                {
-                  'flex-row-reverse text-right [&_svg]:rotate-180':
-                    key === 'prev'
-                }
-              )}
-              href={value.href}
-            >
-              <div class="grow">
-                <span class="text-foreground/50">
-                  {key === 'prev' ? 'Previous' : 'Next'}
-                </span>
-                <p class="text-base md:text-lg line-clamp-1">{value.title}</p>
-                <p class="text-xs text-foreground/60 max-md:hidden line-clamp-1">
-                  {value.description}
-                </p>
-              </div>
-              <ChevronRight class="opacity-70 min-w-5" width={20} />
-            </a>
-          )
-      )
+    pagination && (
+      <nav
+        aria-label="Documentation pagination"
+        class="gap-4 flex justify-between"
+      >
+        {Object.entries(pagination).map(
+          ([key, value]) =>
+            value && (
+              <a
+                rel={key === 'prev' ? 'prev' : 'next'}
+                aria-label={`${key === 'prev' ? 'Previous page' : 'Next page'}: ${value.title}`}
+                class={cn(
+                  'p-2 md:p-4 border gap-4 hover:border-accent! w-full flex items-center rounded-sm',
+                  {
+                    'flex-row-reverse text-right [&_svg]:rotate-180':
+                      key === 'prev'
+                  }
+                )}
+                href={value.href}
+              >
+                <div class="grow">
+                  <span class="text-foreground/50">
+                    {key === 'prev' ? 'Previous' : 'Next'}
+                  </span>
+                  <p class="text-base md:text-lg line-clamp-1">{value.title}</p>
+                  <p class="text-xs text-foreground/60 max-md:hidden line-clamp-1">
+                    {value.description}
+                  </p>
+                </div>
+                <ChevronRight class="opacity-70 min-w-5" width={20} />
+              </a>
+            )
+        )}
+      </nav>
+    )
   }
 </footer>

@@ -22,7 +22,11 @@ export default function Heading<T extends HeadingTag = 'h2'>({
 
   return (
     <Tag {...props} id={id}>
-      <a href={`#${id}`} className="group prose__heading relative">
+      <a
+        href={`#${id}`}
+        aria-label={`Link to section: ${childrenText}`}
+        className="group prose__heading relative"
+      >
         <span className="relative inline-flex">
           {childrenText}
           <span className="absolute inset-y-0 pointer-events-none duration-700 bg-accent/20 w-0 group-data-highlighted:w-full transition-all" />
@@ -30,11 +34,13 @@ export default function Heading<T extends HeadingTag = 'h2'>({
         <span
           className="*:size-4 prose__heading__icon text-foreground/60 opacity-0 group-hover:opacity-100 inline-flex p-2"
           data-slug-id={id}
+          aria-hidden="true"
         >
           <svg
             class="copy-icon group-data-copied:hidden"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
@@ -45,6 +51,7 @@ export default function Heading<T extends HeadingTag = 'h2'>({
             class="check-icon hidden group-data-copied:inline-flex dark:text-lime-400 text-lime-700"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 12 12"
+            aria-hidden="true"
           >
             <path
               fill="currentColor"
