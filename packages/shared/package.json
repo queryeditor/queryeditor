@@ -13,12 +13,14 @@
     "./lib/*": "./dist/*.js",
     "./images/*": "./images/*",
     "./icons/*": "./icons/*",
+    "./fonts/*": "./fonts/*",
     "./theme.css": "./theme.css"
   },
   "files": [
     "dist",
     "images",
     "icons",
+    "fonts",
     "theme.css"
   ],
   "scripts": {

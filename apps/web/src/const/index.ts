@@ -39,12 +39,3 @@ export const DATABASES = {
     icon: Sqlserver
   }
 } as const
-
-export const WAITLIST_URL = 'https://form.typeform.com/to/jBtGN2Xa' as const
-
-export const DAUSTINN = {
-  github: 'https://github.com/daustinn',
-  website: 'https://daustinn.com',
-  x: 'https://x.com/daustinndev',
-  buyMeACoffee: 'https://www.buymeacoffee.com/daustinn'
-} as const

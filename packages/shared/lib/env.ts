@@ -3,6 +3,11 @@ export const HOME_SITE: string =
   (typeof process !== 'undefined' ? process.env.HOME_SITE : '') ||
   'http://localhost:4321'
 
+export const HOME_BASE: string =
+  import.meta.env.HOME_BASE ||
+  (typeof process !== 'undefined' ? process.env.HOME_BASE : '') ||
+  '/'
+
 export const DOCS_SITE: string =
   import.meta.env.DOCS_SITE ||
   (typeof process !== 'undefined' ? process.env.DOCS_SITE : '') ||

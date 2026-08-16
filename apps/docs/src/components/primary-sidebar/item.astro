@@ -2,7 +2,8 @@
 import { type Node } from 'slugtree'
 import Item from './item.astro'
 import ChevronRight from '@queryeditor/shared/icons/chevron-right.svg'
-import { HOME_SITE, DOCS_BASE } from '@queryeditor/shared/lib/env'
+import { APP } from '@queryeditor/shared/lib/const'
+import path from '@/lib/path'
 
 export type Props = {
   node: Node
@@ -10,15 +11,19 @@ export type Props = {
 
 const { pathname } = Astro.url
 
+const parsePathname = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
+
 const { node } = Astro.props
 
 const nodeRef = ((node.type !== 'label' && node.href) || '/').replace(
   '{homePage}',
-  HOME_SITE
+  APP.urls.home.site
 )
 
 const isCurrentNode =
-  nodeRef === DOCS_BASE ? pathname === nodeRef : pathname.startsWith(nodeRef)
+  nodeRef === APP.urls.docs.base
+    ? parsePathname === nodeRef
+    : parsePathname.startsWith(nodeRef)
 ---
 
 {
@@ -35,7 +40,7 @@ const isCurrentNode =
       title={node.title}
       data-current={isCurrentNode ? '' : undefined}
       href={nodeRef}
-      class="min-h-8 h-8 flex items-center data-current:text-accent hover:bg-foreground/5 rounded-lg px-3"
+      class="min-h-8 h-8 flex items-center data-current:text-accent data-current:font-medium hover:bg-foreground/5 rounded-lg px-3"
     >
       {node.title}
     </a>
@@ -49,7 +54,7 @@ const isCurrentNode =
         title={node.title}
         data-current={isCurrentNode ? 'true' : undefined}
         href={nodeRef || '#'}
-        class="min-h-8 h-8 flex hover:bg-foreground/5 items-center data-current:text-accent rounded-lg pl-3"
+        class="min-h-8 h-8 flex hover:bg-foreground/5 items-center data-current:font-medium data-current:text-accent rounded-lg pl-3"
       >
         <span class="grow inline-flex">{node.title}</span>
         <div class="node__button p-1.5 px-3">
@@ -76,32 +81,28 @@ const isCurrentNode =
 <script>
   import { $$, $ } from '@queryeditor/shared/lib/dom'
 
-  function init() {
-    const $nodes = $$('.node')
+  const $nodes = $$('.node')
 
-    $nodes.forEach(($node) => {
-      const $btn = $('.node__button', $node)
-      const $children = $('.node__children', $node)
+  $nodes.forEach(($node) => {
+    const $btn = $('.node__button', $node)
+    const $children = $('.node__children', $node)
 
-      if (!$btn || !$children) return
+    if (!$btn || !$children) return
 
-      const toggle = (value: boolean) => {
-        if (value) {
-          $node.removeAttribute('data-open')
-          $children.removeAttribute('data-open')
-        } else {
-          $node.dataset.open = 'true'
-          $children.dataset.open = 'true'
-        }
+    const toggle = (value: boolean) => {
+      if (value) {
+        $node.removeAttribute('data-open')
+        $children.removeAttribute('data-open')
+      } else {
+        $node.dataset.open = 'true'
+        $children.dataset.open = 'true'
       }
+    }
 
-      $btn.addEventListener('click', (e) => {
-        e.stopPropagation()
-        e.preventDefault()
-        toggle(Boolean($node.dataset.open))
-      })
+    $btn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+      toggle(Boolean($node.dataset.open))
     })
-  }
-
-  document.addEventListener('astro:page-load', init)
+  })
 </script>

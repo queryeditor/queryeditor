@@ -1,13 +1,18 @@
 // @ts-check
+import path from 'node:path'
+import { loadEnvFile } from 'node:process'
 import { defineConfig } from 'astro/config'
 import cloudflare from '@astrojs/cloudflare'
 import tailwindcss from '@tailwindcss/vite'
 import slugtree from 'slugtree/astro'
 import preact from '@astrojs/preact'
 
-const SITE =
-  process.env.DOCS_SITE || import.meta.env.DOCS_SITE || 'http://localhost:4322'
-const BASE = process.env.DOCS_BASE || import.meta.env.DOCS_BASE || '/'
+try {
+  loadEnvFile(path.resolve(import.meta.dirname, '../../.env'))
+} catch {}
+
+const SITE = process.env.DOCS_SITE ?? 'http://localhost:4322'
+const BASE = process.env.DOCS_BASE ?? '/'
 
 export default defineConfig({
   site: SITE,

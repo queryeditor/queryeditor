@@ -1,4 +1,4 @@
-import { HOME_SITE } from '@queryeditor/shared/lib/env'
+import { APP } from '@queryeditor/shared/lib/const'
 
 export default {
   title: 'A query editor that lives on your machine.',
@@ -19,11 +19,11 @@ export default {
     'sqlite client',
     'mysql client'
   ],
-  url: HOME_SITE,
+  url: APP.urls.home.site,
   ogImage: '/og-image.png',
   locale: 'en_US',
   xHandle: '@queryeditor',
-  xUrl: 'https://x.com/queryeditor',
-  githubUrl: 'https://github.com/queryeditor',
+  xUrl: APP.urls.x,
+  githubUrl: APP.urls.githubRepo,
   author: 'Daustinn'
 }

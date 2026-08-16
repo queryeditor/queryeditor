@@ -9,14 +9,15 @@ const tree = getTree()
 
 <aside
   class={cn(
-    'side__primaryPanel flex flex-col md:min-w-70 md:max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto',
-    'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-10 max-md:bg-background max-md:pt-2',
+    'bg-white dark:bg-background md:border-r side__primaryPanel flex flex-col md:min-w-70 md:max-w-70 sticky top-14 h-[calc(100svh-3.5rem)] overflow-y-auto',
+    'max-md:fixed max-md:h-0 max-md:top-14 max-md:inset-x-0 max-md:z-10',
     'data-open:max-md:h-svh max-md:transition-all'
   )}
 >
   <Search client:load transition:persist />
-
-  <div class="flex flex-col tree__content px-3 grow overflow-y-auto text-sm">
+  <div
+    class="flex flex-col px-4 md:px-2 tree__content grow overflow-y-auto text-sm"
+  >
     {
       tree.map((node) => {
         return <Item node={node} />
@@ -51,76 +52,72 @@ const tree = getTree()
 
   gsap.registerPlugin(ScrollToPlugin)
 
-  function init() {
-    const $tocItems = $$('.toc__item')
-    const $headings = $$('.prose__heading')
+  const $tocItems = $$('.toc__item')
+  const $headings = $$('.prose__heading')
 
-    let activeId = ''
+  let activeId = ''
 
-    const handleScroll = () => {
-      const threshold = 122
-      let closestHeading = null
-      const isAtBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 10
+  const handleScroll = () => {
+    const threshold = 122
+    let closestHeading = null
+    const isAtBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 10
 
-      if (isAtBottom && $headings.length > 0) {
-        closestHeading = $headings[$headings.length - 1]
-      } else {
-        for (let i = $headings.length - 1; i >= 0; i--) {
-          const $heading = $headings[i]
-          const rect = $heading.getBoundingClientRect()
-          if (rect.top <= threshold) {
-            closestHeading = $heading
-            break
-          }
-        }
-      }
-
-      if (!closestHeading && $headings.length > 0) {
-        closestHeading = $headings[0]
-      }
-
-      if (closestHeading) {
-        const $icon = $('.prose__heading__icon', closestHeading)
-        const id = $icon?.dataset['slugId']
-        if (id && id !== activeId) {
-          activeId = id
-          $tocItems.forEach(($item) => {
-            if ($item.dataset['slugId'] === activeId) {
-              $item.dataset['highlighted'] = 'true'
-            } else {
-              delete $item.dataset['highlighted']
-            }
-          })
+    if (isAtBottom && $headings.length > 0) {
+      closestHeading = $headings[$headings.length - 1]
+    } else {
+      for (let i = $headings.length - 1; i >= 0; i--) {
+        const $heading = $headings[i]
+        const rect = $heading.getBoundingClientRect()
+        if (rect.top <= threshold) {
+          closestHeading = $heading
+          break
         }
       }
     }
 
-    $tocItems.forEach(($item) => {
-      $item.addEventListener('click', () => {
-        const slugId = $item.dataset['slugId']
-        if (!slugId) return
-        activeId = slugId
-        $tocItems.forEach(($i) => {
-          if ($i.dataset['slugId'] === activeId) {
-            $i.dataset['highlighted'] = 'true'
+    if (!closestHeading && $headings.length > 0) {
+      closestHeading = $headings[0]
+    }
+
+    if (closestHeading) {
+      const $icon = $('.prose__heading__icon', closestHeading)
+      const id = $icon?.dataset['slugId']
+      if (id && id !== activeId) {
+        activeId = id
+        $tocItems.forEach(($item) => {
+          if ($item.dataset['slugId'] === activeId) {
+            $item.dataset['highlighted'] = 'true'
           } else {
-            delete $i.dataset['highlighted']
+            delete $item.dataset['highlighted']
           }
         })
-      })
-    })
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        requestAnimationFrame(handleScroll)
-      },
-      { passive: true }
-    )
-
-    handleScroll()
+      }
+    }
   }
 
-  document.addEventListener('astro:page-load', init)
+  $tocItems.forEach(($item) => {
+    $item.addEventListener('click', () => {
+      const slugId = $item.dataset['slugId']
+      if (!slugId) return
+      activeId = slugId
+      $tocItems.forEach(($i) => {
+        if ($i.dataset['slugId'] === activeId) {
+          $i.dataset['highlighted'] = 'true'
+        } else {
+          delete $i.dataset['highlighted']
+        }
+      })
+    })
+  })
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      requestAnimationFrame(handleScroll)
+    },
+    { passive: true }
+  )
+
+  handleScroll()
 </script>

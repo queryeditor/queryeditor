@@ -1,14 +1,13 @@
 ---
 import { cn } from '@queryeditor/shared/lib/cn'
-import { DOCS_SITE } from '@queryeditor/shared/lib/env'
+import { APP, DAUSTINN } from '@queryeditor/shared/lib/const'
 const items = {
   Changelogs: '/changelogs',
-  Docs: DOCS_SITE,
+  Docs: APP.urls.docs.site,
   About: '/about'
 }
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
 import Bmc from '@queryeditor/shared/icons/bmc.svg'
-import { DAUSTINN, WAITLIST_URL } from '@/const'
 
 const classButton =
   'hidden items-center font-google-sans text-sm download-button font-semibold bg-foreground text-background rounded-xl p-1.5 px-3 gap-2'
@@ -61,7 +60,7 @@ const classButton =
           >
             <li>
               <a
-                href={DAUSTINN.website}
+                href={DAUSTINN.urls.website}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="nav__menuItem font-semibold py-1 inline-flex text-lg px-4"
@@ -77,7 +76,7 @@ const classButton =
         class="flex relative z-1 max-md:px-2 basis-0 items-center gap-5 md:gap-3 grow justify-end"
       >
         <a
-          href={DAUSTINN.buyMeACoffee}
+          href={DAUSTINN.urls.buyMeACoffee}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Buy me a coffee Button"
@@ -95,7 +94,7 @@ const classButton =
           Try on Windows
         </button>
         <a
-          href={WAITLIST_URL}
+          href={APP.urls.waitlist}
           target="_blank"
           rel="noopener noreferrer"
           class={cn(classButton, 'pmac:md:flex')}
@@ -103,7 +102,7 @@ const classButton =
           Join the waitlist
         </a>
         <a
-          href={WAITLIST_URL}
+          href={APP.urls.waitlist}
           target="_blank"
           rel="noopener noreferrer"
           class={cn(classButton, 'plinux:md:flex')}

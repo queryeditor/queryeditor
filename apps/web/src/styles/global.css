@@ -5,20 +5,6 @@
 @custom-variant plinux (html[data-platform="linux"] &);
 @custom-variant pother (html[data-platform="other"] &);
 
-@font-face {
-  font-family: 'Google Sans';
-  src: url('/fonts/google-sans.woff2') format('woff2');
-  font-weight: 100 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Young Serif';
-  src: url('/fonts/young-serif.woff2') format('woff2');
-  font-weight: 400;
-  font-display: swap;
-}
-
 @utility container {
   max-width: 84rem;
   margin-inline: auto;

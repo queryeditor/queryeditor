@@ -1,21 +1,43 @@
 ---
 import QueryEditor from '@queryeditor/shared/icons/queryeditor.svg'
-import { HOME_SITE, DOCS_BASE } from '@queryeditor/shared/lib/env'
+import Github from '@queryeditor/shared/icons/github.svg'
+import { APP } from '@queryeditor/shared/lib/const'
 ---
 
-<header class="border-b bg-background sticky top-0 z-5 h-14 min-h-14">
-  <nav class="container justify-between h-full flex">
-    <nav class="basis-0 grow flex">
-      <a href={DOCS_BASE} class="flex gap-2.5 h-full text-lg items-center">
-        <QueryEditor width={15} />
-        <h1>Docs</h1>
+<header
+  class="border-b dark:bg-background bg-white sticky top-0 z-5 h-14 min-h-14"
+>
+  <div class="container justify-between h-full flex">
+    <nav
+      class="basis-0 grow flex items-center font-semibold text-2xl font-google-sans gap-2"
+    >
+      <a
+        href={APP.urls.home.site}
+        class="hover:-translate-y-1 transition-transform flex gap-2"
+      >
+        <QueryEditor width={18} />
+        QueryEditor
+      </a>
+      <a
+        href={APP.urls.docs.site}
+        class="hover:-translate-y-1 text-accent transition-transform"
+      >
+        Docs
       </a>
     </nav>
     <div class=""></div>
-    <nav class="grow basis-0 flex gap-3 items-center justify-end">
+    <nav class="grow basis-0 flex gap-1 items-center justify-end">
       <a
-        href={HOME_SITE}
-        class="flex text-nowrap bg-foreground font-medium text-background gap-2 rounded-full px-3 py-0.5 items-center"
+        href={APP.urls.githubRepo}
+        target="_blank"
+        class="inline-block px-2 max-xs:hidden"
+        rel="noopener noreferrer"
+      >
+        <Github width={24} />
+      </a>
+      <a
+        href={APP.urls.home.site}
+        class="flex text-nowrap font-google-sans bg-foreground font-semibold text-background gap-2 rounded-full px-3 py-1 items-center"
       >
         Try Editor
       </a>
@@ -33,69 +55,65 @@ import { HOME_SITE, DOCS_BASE } from '@queryeditor/shared/lib/env'
         </div>
       </button>
     </nav>
-  </nav>
+  </div>
 </header>
 
 <script>
   import { $ } from '@queryeditor/shared/lib/dom'
 
-  function init() {
-    const $navTrigger = $('.nav__menuTrigger')
-    const $primaryPanel = $('.side__primaryPanel')
+  const $navTrigger = $('.nav__menuTrigger')
+  const $primaryPanel = $('.side__primaryPanel')
 
+  const toggleOpen = (value: boolean) => {
     if (!$navTrigger || !$primaryPanel) return
 
-    const toggleOpen = (value: boolean) => {
-      if (value) {
-        document.body.style.overflow = 'hidden'
-        $primaryPanel.dataset.open = 'true'
-        $navTrigger.dataset.open = 'true'
-        $navTrigger.ariaExpanded = 'true'
-      } else {
-        delete $primaryPanel.dataset.open
-        delete $navTrigger.dataset.open
-        document.body.style.overflow = 'auto'
-        $navTrigger.ariaExpanded = 'false'
-      }
+    if (value) {
+      document.body.style.overflow = 'hidden'
+      $primaryPanel.dataset.open = 'true'
+      $navTrigger.dataset.open = 'true'
+      $navTrigger.ariaExpanded = 'true'
+    } else {
+      delete $primaryPanel.dataset.open
+      delete $navTrigger.dataset.open
+      document.body.style.overflow = 'auto'
+      $navTrigger.ariaExpanded = 'false'
     }
-
-    let menuHistoryPushed = false
-
-    const openMenu = () => {
-      history.pushState({ navMenu: true }, '')
-      menuHistoryPushed = true
-      toggleOpen(true)
-    }
-
-    const closeMenu = (fromPopstate = false) => {
-      if (!fromPopstate && menuHistoryPushed) {
-        menuHistoryPushed = false
-        history.back()
-        return
-      }
-      menuHistoryPushed = false
-      toggleOpen(false)
-    }
-
-    $navTrigger.addEventListener('click', () => {
-      const isOpen = $primaryPanel.dataset.open === 'true'
-      if (isOpen) closeMenu()
-      else openMenu()
-    })
-
-    window.addEventListener('popstate', (e) => {
-      if ($primaryPanel.dataset.open === 'true') {
-        closeMenu(true)
-      }
-    })
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && $primaryPanel.dataset.open === 'true') {
-        e.preventDefault()
-        closeMenu()
-      }
-    })
   }
 
-  document.addEventListener('astro:page-load', init)
+  let menuHistoryPushed = false
+
+  const openMenu = () => {
+    history.pushState({ navMenu: true }, '')
+    menuHistoryPushed = true
+    toggleOpen(true)
+  }
+
+  const closeMenu = (fromPopstate = false) => {
+    if (!fromPopstate && menuHistoryPushed) {
+      menuHistoryPushed = false
+      history.back()
+      return
+    }
+    menuHistoryPushed = false
+    toggleOpen(false)
+  }
+
+  $navTrigger?.addEventListener('click', () => {
+    const isOpen = $primaryPanel?.dataset.open === 'true'
+    if (isOpen) closeMenu()
+    else openMenu()
+  })
+
+  window.addEventListener('popstate', (e) => {
+    if ($primaryPanel?.dataset.open === 'true') {
+      closeMenu(true)
+    }
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && $primaryPanel?.dataset.open === 'true') {
+      e.preventDefault()
+      closeMenu()
+    }
+  })
 </script>

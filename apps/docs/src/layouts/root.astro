@@ -92,7 +92,7 @@ const jsonLd = {
   </head>
   <body class="flex flex-col">
     <Nav />
-    <main class="flex grow container">
+    <main class="flex grow font-google-sans">
       {sidebar && <PrimarySidebar />}
       <div class="grow flex">
         <slot />
@@ -107,185 +107,180 @@ const jsonLd = {
   import { Flip } from 'gsap/Flip'
 
   gsap.registerPlugin(Flip)
+  const $headings = $$('.prose__heading')
 
-  function init() {
-    const $headings = $$('.prose__heading')
+  $headings.forEach(($heading) => {
+    const $icon = $('.prose__heading__icon', $heading)
 
-    $headings.forEach(($heading) => {
-      const $icon = $('.prose__heading__icon', $heading)
+    if (!$icon) return
 
-      if (!$icon) return
+    $icon.addEventListener('click', (e) => {
+      e.stopPropagation()
+      e.preventDefault()
 
-      $icon.addEventListener('click', (e) => {
-        e.stopPropagation()
-        e.preventDefault()
+      const slugId = $icon.dataset['slugId']
+      const currentFullPath = location.href
+      const url = new URL(currentFullPath)
 
-        const slugId = $icon.dataset['slugId']
-        const currentFullPath = location.href
-        const url = new URL(currentFullPath)
+      url.hash = `#${slugId}`
 
-        url.hash = `#${slugId}`
+      window.navigator.clipboard.writeText(url.toString())
 
-        window.navigator.clipboard.writeText(url.toString())
+      $heading.dataset.copied = 'true'
 
-        $heading.dataset.copied = 'true'
-
-        setTimeout(() => {
-          delete $heading.dataset.copied
-        }, 2000)
-      })
+      setTimeout(() => {
+        delete $heading.dataset.copied
+      }, 2000)
     })
+  })
 
-    const $figures = $$('.figure__container')
+  const $figures = $$('.figure__container')
 
-    $figures.forEach(($fig) => {
-      const $image = $<HTMLImageElement>('.figure__image', $fig)
-      const $overlay = $<HTMLSpanElement>('.figure__overlay', $fig)
+  $figures.forEach(($fig) => {
+    const $image = $<HTMLImageElement>('.figure__image', $fig)
+    const $overlay = $<HTMLSpanElement>('.figure__overlay', $fig)
 
-      if (!$image || !$overlay) return
+    if (!$image || !$overlay) return
 
-      let clone: HTMLImageElement | null = null
-      let imageHistoryPushed = false
+    let clone: HTMLImageElement | null = null
+    let imageHistoryPushed = false
 
-      const closeImage = (fromPopstate = false) => {
-        if (!clone) return
+    const closeImage = (fromPopstate = false) => {
+      if (!clone) return
 
-        if (!fromPopstate && imageHistoryPushed) {
-          imageHistoryPushed = false
-          history.back()
-          return
-        }
-
+      if (!fromPopstate && imageHistoryPushed) {
         imageHistoryPushed = false
+        history.back()
+        return
+      }
 
-        const state = Flip.getState(clone)
-        Flip.fit(clone, $image)
+      imageHistoryPushed = false
 
-        Flip.from(state, {
-          duration: 0.4,
-          ease: 'power3.inOut',
-          onUpdate: function () {
-            if (this.progress() > 0.9 && $image.style.visibility === 'hidden') {
-              $image.style.visibility = ''
-            }
-          },
-          onComplete: () => {
+      const state = Flip.getState(clone)
+      Flip.fit(clone, $image)
+
+      Flip.from(state, {
+        duration: 0.4,
+        ease: 'power3.inOut',
+        onUpdate: function () {
+          if (this.progress() > 0.9 && $image.style.visibility === 'hidden') {
             $image.style.visibility = ''
-            clone?.remove()
-            clone = null
           }
-        })
-
-        delete $fig.dataset['open']
-        document.body.style.overflow = ''
-      }
-
-      $image.addEventListener('click', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-
-        if (clone) return
-
-        clone = new Image()
-        clone.src =
-          $image.currentSrc || $image.src || $image.getAttribute('src') || ''
-        document.body.appendChild(clone)
-
-        Flip.fit(clone, $image)
-        const state = Flip.getState(clone)
-
-        $image.style.visibility = 'hidden'
-
-        clone.removeAttribute('style')
-        clone.className =
-          // border border-border/50
-          'drop-shadow-[0_15px_20px_rgba(0,0,0,0.2)] rounded-xl max-h-svh max-w-svw fixed inset-1 m-auto z-[9999] cursor-zoom-out'
-
-        Flip.from(state, { duration: 0.4, ease: 'power3.inOut' })
-
-        $fig.dataset['open'] = 'true'
-        document.body.style.overflow = 'hidden'
-
-        history.pushState({ figureOpen: true }, '')
-        imageHistoryPushed = true
-
-        clone.addEventListener('click', (ev) => {
-          ev.stopPropagation()
-          closeImage()
-        })
+        },
+        onComplete: () => {
+          $image.style.visibility = ''
+          clone?.remove()
+          clone = null
+        }
       })
 
-      $overlay.addEventListener('click', (e) => {
-        e.stopPropagation()
-        e.preventDefault()
-        if ($fig.dataset['open']) closeImage()
+      delete $fig.dataset['open']
+      document.body.style.overflow = ''
+    }
+
+    $image.addEventListener('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+
+      if (clone) return
+
+      clone = new Image()
+      clone.src =
+        $image.currentSrc || $image.src || $image.getAttribute('src') || ''
+      document.body.appendChild(clone)
+
+      Flip.fit(clone, $image)
+      const state = Flip.getState(clone)
+
+      $image.style.visibility = 'hidden'
+
+      clone.removeAttribute('style')
+      clone.className =
+        // border border-border/50
+        'drop-shadow-[0_15px_20px_rgba(0,0,0,0.2)] rounded-xl max-h-svh max-w-svw fixed inset-1 m-auto z-[9999] cursor-zoom-out'
+
+      Flip.from(state, { duration: 0.4, ease: 'power3.inOut' })
+
+      $fig.dataset['open'] = 'true'
+      document.body.style.overflow = 'hidden'
+
+      history.pushState({ figureOpen: true }, '')
+      imageHistoryPushed = true
+
+      clone.addEventListener('click', (ev) => {
+        ev.stopPropagation()
+        closeImage()
       })
     })
 
-    window.addEventListener('popstate', () => {
-      const $openFig = document.querySelector<HTMLElement>(
-        '.figure__container[data-open]'
+    $overlay.addEventListener('click', (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+      if ($fig.dataset['open']) closeImage()
+    })
+  })
+
+  window.addEventListener('popstate', () => {
+    const $openFig = document.querySelector<HTMLElement>(
+      '.figure__container[data-open]'
+    )
+    if ($openFig) {
+      const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
+      closeBtn?.click()
+    }
+  })
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return
+    const $openFig = document.querySelector<HTMLElement>(
+      '.figure__container[data-open]'
+    )
+    if ($openFig) {
+      e.preventDefault()
+      const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
+      closeBtn?.click()
+    }
+  })
+
+  const $tocItems = $$('.toc__item')
+
+  $tocItems.forEach(($item) => {
+    $item.addEventListener('click', () => {
+      const slugId = $item.dataset['slugId']
+
+      if (!slugId) return
+
+      const $heading = document.getElementById(slugId)
+
+      if (!$heading) return
+
+      const $anchor = $<HTMLAnchorElement>('a', $heading)
+
+      if (!$anchor) return
+
+      if ($anchor) delete $anchor.dataset['highlighted']
+
+      $anchor.dataset['highlighted'] = 'true'
+
+      setTimeout(() => {
+        delete $anchor.dataset['highlighted']
+      }, 2000)
+    })
+  })
+
+  $$<HTMLFormElement>('.waitlist-form').forEach(($form) => {
+    $form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const email =
+        ($form.elements.namedItem('email') as HTMLInputElement)?.value ?? ''
+      const platform = $form.dataset.platform ?? ''
+      const subject = encodeURIComponent(
+        `Waitlist: QueryEditor for ${platform}`
       )
-      if ($openFig) {
-        const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
-        closeBtn?.click()
-      }
-    })
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return
-      const $openFig = document.querySelector<HTMLElement>(
-        '.figure__container[data-open]'
+      const body = encodeURIComponent(
+        `I'd like to be notified when QueryEditor is available for ${platform}.\n\nEmail: ${email}`
       )
-      if ($openFig) {
-        e.preventDefault()
-        const closeBtn = $openFig.querySelector<HTMLElement>('.figure__overlay')
-        closeBtn?.click()
-      }
+      window.location.href = `mailto:hi@queryeditor.com?subject=${subject}&body=${body}`
     })
-
-    const $tocItems = $$('.toc__item')
-
-    $tocItems.forEach(($item) => {
-      $item.addEventListener('click', () => {
-        const slugId = $item.dataset['slugId']
-
-        if (!slugId) return
-
-        const $heading = document.getElementById(slugId)
-
-        if (!$heading) return
-
-        const $anchor = $<HTMLAnchorElement>('a', $heading)
-
-        if (!$anchor) return
-
-        if ($anchor) delete $anchor.dataset['highlighted']
-
-        $anchor.dataset['highlighted'] = 'true'
-
-        setTimeout(() => {
-          delete $anchor.dataset['highlighted']
-        }, 2000)
-      })
-    })
-
-    $$<HTMLFormElement>('.waitlist-form').forEach(($form) => {
-      $form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const email =
-          ($form.elements.namedItem('email') as HTMLInputElement)?.value ?? ''
-        const platform = $form.dataset.platform ?? ''
-        const subject = encodeURIComponent(
-          `Waitlist: QueryEditor for ${platform}`
-        )
-        const body = encodeURIComponent(
-          `I'd like to be notified when QueryEditor is available for ${platform}.\n\nEmail: ${email}`
-        )
-        window.location.href = `mailto:hi@queryeditor.com?subject=${subject}&body=${body}`
-      })
-    })
-  }
-
-  document.addEventListener('astro:page-load', init)
+  })
 </script>
