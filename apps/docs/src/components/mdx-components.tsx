@@ -1,6 +1,5 @@
 import Heading, { type HeadingProps } from './heading'
 import Image from './image'
-import WaitlistForm from './waitlist-form'
 
 export default {
   h1: (props: HeadingProps) => <Heading as="h1" {...props} />,
@@ -87,6 +86,5 @@ export default {
     <strong {...props} className="font-semibold text-foreground" />
   ),
   Image: Image,
-  img: Image,
-  WaitlistForm: WaitlistForm
+  img: Image
 }
