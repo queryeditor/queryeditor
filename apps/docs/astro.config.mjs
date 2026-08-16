@@ -1,5 +1,7 @@
 // @ts-check
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import fs from 'node:fs/promises'
 import { loadEnvFile } from 'node:process'
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
@@ -22,7 +24,37 @@ export default defineConfig({
     slugtree({
       basePath: BASE
     }),
-    preact({ compat: true })
+    preact({ compat: true }),
+    {
+      name: 'wrangler-compatibility',
+      hooks: {
+        'astro:build:done': async ({ dir }) => {
+          const serverDir = path.join(fileURLToPath(dir), 'server')
+          await fs.mkdir(serverDir, { recursive: true })
+          await fs.writeFile(
+            path.join(serverDir, 'wrangler.json'),
+            JSON.stringify(
+              {
+                name: 'queryeditor-docs',
+                compatibility_date: '2026-02-24',
+                compatibility_flags: [
+                  'nodejs_compat',
+                  'global_fetch_strictly_public'
+                ],
+                assets: {
+                  directory: '../'
+                },
+                observability: {
+                  enabled: true
+                }
+              },
+              null,
+              2
+            )
+          )
+        }
+      }
+    }
   ],
   vite: {
     envDir: '../../',
