@@ -1,5 +1,34 @@
 [
   {
+    "title": "Polished UI & New Alerts",
+    "version": "0.0.103",
+    "date": "2026-08-17",
+    "sha": "68acd7f28f1e28b271f5cc4667396e3f5691fdcf",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.103",
+    "data": [
+      {
+        "category": "Features",
+        "body": [
+          {
+            "subcategory": "Other",
+            "body": [
+              "System notifications now inform you when background queries complete",
+              "Added background query listener for real-time updates"
+            ]
+          },
+          {
+            "subcategory": "Other",
+            "body": [
+              "Added Windows taskbar user tasks for quick actions",
+              "Application now runs as a single instance to prevent multiple windows"
+            ]
+          }
+        ]
+      },
+      "{ \"category\": \"Improvements\", \"body\": [ { \"subcategory\": \"Other\", \"body\": [ \"Added validation for clipboard sources\", \"Updated progress bar styling for clearer feedback\" ] }, { \"subcategory\": \"Other\", \"body\": [ \"Replaced loading animation with smoother custom SVG spinner\" ] } ] }"
+    ]
+  },
+  {
     "title": "Smooth AI & Editor Enhancements",
     "version": "0.0.102",
     "date": "2026-08-15",
