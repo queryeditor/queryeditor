@@ -1,16 +1,24 @@
 ---
 import RootLayout from '@/layouts/root.astro'
-import changelogs from '#/changelogs.json'
+import changelogs from '#/changelog.json'
 
 type Changelog = {
   version: string
   title: string
   date: string
+  sha: string
   releaseURL: string
   data: {
-    category: string
-    body: string[] | { subcategory: string; body: string[] }[]
-  }[]
+    feactures?: string[]
+    Improvements?: string[]
+    'Bug Fixes'?: string[]
+  }
+}
+
+const categoryLabels: Record<string, string> = {
+  feactures: 'Features',
+  Improvements: 'Improvements',
+  'Bug Fixes': 'Bug Fixes'
 }
 
 const sortedChangelogs = (changelogs as Changelog[]).sort((a, b) =>
@@ -55,35 +63,20 @@ const sortedChangelogs = (changelogs as Changelog[]).sort((a, b) =>
                 </a>
               </p>
               <div>
-                {changelog.data.map((item) => (
-                  <div class="pt-5">
-                    <h4 class="font-young-serif mb-2 text-xl!">
-                      {item.category}
-                    </h4>
-                    {typeof item.body[0] === 'string' ? (
+                {Object.entries(changelog.data).map(([key, items]) =>
+                  items && items.length > 0 ? (
+                    <div class="pt-5">
+                      <h4 class="font-young-serif mb-2 text-xl!">
+                        {categoryLabels[key] || key}
+                      </h4>
                       <ul class="pl-2">
-                        {item.body.map((item) => (
+                        {items.map((item: string) => (
                           <li>{item}</li>
                         ))}
                       </ul>
-                    ) : (
-                      (
-                        item.body as { subcategory: string; body: string[] }[]
-                      ).map((item) => (
-                        <div class="pl-2">
-                          <h5 class="font-young-serif mb-1">
-                            {item.subcategory}
-                          </h5>
-                          <ul>
-                            {item.body.map((text) => (
-                              <li>{text}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  ) : null
+                )}
               </div>
             </div>
           ))

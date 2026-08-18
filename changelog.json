@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Polished UI & New Alerts",
+    "version": "0.0.103",
+    "date": "2026-08-17",
+    "sha": "68acd7f28f1e28b271f5cc4667396e3f5691fdcf",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.103",
+    "data": {
+      "feactures": [
+        "System notifications when background queries complete",
+        "Real-time query execution updates",
+        "Windows taskbar quick action shortcuts",
+        "Single instance application support to prevent duplicate windows"
+      ],
+      "Improvements": [
+        "Enhanced clipboard copy and paste handling",
+        "Refined progress bar and smoother loading animations"
+      ],
+      "Bug Fixes": []
+    }
+  },
+  {
+    "title": "Smooth AI & Editor Enhancements",
+    "version": "0.0.102",
+    "date": "2026-08-15",
+    "sha": "84bf38ef359a1180004c798da97ef2d310e41700",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.102",
+    "data": {
+      "feactures": [
+        "Configuration support for external editor integration",
+        "New AI capabilities to assist with query construction"
+      ],
+      "Improvements": [
+        "Improved AI assistant accuracy and contextual suggestions"
+      ],
+      "Bug Fixes": [
+        "Fixed title bar theme color detection when switching between light and dark modes"
+      ]
+    }
+  },
+  {
+    "title": "AI-Enhanced Query Editor",
+    "version": "0.0.101",
+    "date": "2026-08-13",
+    "sha": "8309fc735cf1793a27089aeb7fe3c0e35fb17b3b",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.101",
+    "data": {
+      "feactures": [
+        "Integrated AI assistance for building queries",
+        "Modern query editor interface with customizable layouts and themes",
+        "Support for multiple database engines and query execution",
+        "Automatic application updates"
+      ],
+      "Improvements": [],
+      "Bug Fixes": []
+    }
+  }
+]
