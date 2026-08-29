@@ -25,6 +25,6 @@ export const DAUSTINN = {
     website: 'https://daustinn.com',
     x: 'https://x.com/daustinndev',
     buyMeACoffee: 'https://www.buymeacoffee.com/daustinn',
-    slugtree: 'https://daustinn.com/slugtree'
+    slugtree: 'https://slugtree.daustinn.com'
   }
 } as const
