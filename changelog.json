@@ -1,5 +1,28 @@
 [
   {
+    "title": "Secure SSH Connections & Smarter Docs",
+    "version": "0.0.104",
+    "date": "2026-09-05",
+    "sha": "a212f238d195c2ee9ec7027befcbcc2add8bbbd2",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.104",
+    "data": {
+      "feactures": [
+        "SSH tunneling support added for MySQL connections, including TOFU host verification.",
+        "New documentation for MySQL and SQLite functions, keywords, and code snippets with signatures and examples.",
+        "Enhanced hover tooltips with formatted markdown and SQL code blocks for clearer inline help."
+      ],
+      "Improvements": [
+        "Query cancellation now updates status instantly and works reliably over SSH, SQLite, and D1 connections.",
+        "MySQL connection form now includes SSH tunnel options for easier remote database access."
+      ],
+      "Bug Fixes": [
+        "Fixed issue where canceling a query did not immediately reflect the running state.",
+        "Resolved MySQL query cancellation problems over SSH and prevented connection pool closures on reconnect.",
+        "Improved cancellation and reconnection handling for SQLite and D1 databases."
+      ]
+    }
+  },
+  {
     "title": "Polished UI & New Alerts",
     "version": "0.0.103",
     "date": "2026-08-17",
