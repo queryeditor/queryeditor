@@ -49,7 +49,23 @@ const jsonLd = [
     author: {
       '@type': 'Person',
       name: seo.author
-    }
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD'
+    },
+    featureList: [
+      'Monaco Editor with SQL syntax highlighting',
+      'Schema-aware AI autocompletion',
+      'File-based local workspace',
+      'MySQL support',
+      'SQLite support',
+      'Cloudflare D1 support',
+      'Fast scrollable data grid',
+      'No account required'
+    ],
+    screenshot: new URL(seo.ogImage, Astro.site || seo.url).toString()
   }
 ]
 const speculationRules = {
@@ -123,6 +139,9 @@ const speculationRules = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content={String(seo.ogImageWidth)} />
+    <meta property="og:image:height" content={String(seo.ogImageHeight)} />
+    <meta property="og:image:alt" content={`${seo.name} — ${description}`} />
     <meta property="og:locale" content={seo.locale} />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -130,6 +149,7 @@ const speculationRules = {
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={`${seo.name} — ${description}`} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script

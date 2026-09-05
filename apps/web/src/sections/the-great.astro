@@ -21,6 +21,7 @@ const items = {
     description:
       'The same engine that powers VS Code. Full SQL autocomplete, syntax highlighting, multi-cursor editing and keyboard shortcuts you already know — no learning curve.',
     images: [editorLight, editorDark],
+    alt: 'QueryEditor SQL editor powered by Monaco — showing syntax highlighting and autocomplete',
     colSpan: 7,
     class: {
       img: 'translate-x-20 md:translate-x-30! translate-y-5! scale-120!',
@@ -32,6 +33,7 @@ const items = {
     description:
       'Queries are real .sql files in a real folder on your disk. Organize them however you want — subfolders, rename, drag. Open them in any editor, commit them to Git. No proprietary format.',
     images: [workspaceLight, workspaceDark],
+    alt: 'QueryEditor file-based workspace panel showing .sql files organized in folders',
     colSpan: 5,
     class: {
       img: 'translate-x-20 md:translate-x-30! translate-y-10! scale-120 md:scale-130!',
@@ -43,6 +45,7 @@ const items = {
     description:
       'Ask it to write a query, explain a result, or refactor a slow statement. The AI assistant has context about your connected database — not just generic SQL.',
     images: [aiLight, aiDark],
+    alt: 'QueryEditor AI assistant panel generating SQL queries with schema-aware context',
     colSpan: 5,
     class: {
       img: '',
@@ -54,6 +57,7 @@ const items = {
     description:
       'Query results land in a fast, scrollable grid. Sort or resize any column, copy rows as CSV, JSON, or plain text, and handle thousands of rows without stuttering.',
     images: [datagridLight, datagridDark],
+    alt: 'QueryEditor data grid displaying SQL query results in a fast scrollable table',
     colSpan: 7,
     class: {
       img: '',
@@ -65,6 +69,7 @@ const items = {
     description:
       'Connect to MySQL, SQLite, and Cloudflare D1 today. More drivers on the way. Switch between connections without closing anything.',
     images: [connectionManangerLight, connectionManangerDark],
+    alt: 'QueryEditor connection manager showing MySQL, SQLite, and Cloudflare D1 database connections',
     colSpan: 7,
     class: {
       img: 'mx-auto',
@@ -75,6 +80,7 @@ const items = {
     title: 'Keyboard shortcuts',
     description: 'Discover the keyboard shortcuts for the Query Editor.',
     images: [shortcLight, shortcDark],
+    alt: 'QueryEditor keyboard shortcuts reference panel',
     colSpan: 5,
     class: {
       img: '',
@@ -120,7 +126,7 @@ const items = {
                   item.class.img
                 )}
                 src={item.images[0].src}
-                alt={item.title}
+                alt={item.alt}
               />
             </picture>
           </div>
