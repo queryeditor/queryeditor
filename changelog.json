@@ -1,5 +1,31 @@
 [
   {
+    "title": "MariaDB Support & Window Management",
+    "version": "0.0.105",
+    "date": "2026-09-19",
+    "sha": "1f1ff70",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.105",
+    "data": {
+      "feactures": [
+        "MariaDB is now fully supported as a new database connection type.",
+        "Redesigned connection creation flow with a new connection type selector.",
+        "Help menu now includes links to documentation, devtools, check-for-updates and restart.",
+        "MariaDB completions and SQL syntax highlighting in the editor.",
+        "MariaDB schema introspection with sequence support.",
+        "Improved window management so child dialogs are properly tied to their parent session."
+      ],
+      "Improvements": [
+        "Connection forms refactored: all actions (connect, save, test) now appear in a single unified form.",
+        "Deleting a group now also refreshes the connection list automatically.",
+        "Context menu and manager now open a connection type picker instead of inline sub-menus."
+      ],
+      "Bug Fixes": [
+        "Fixed home page gradient visibility in dark mode.",
+        "Fixed horizontal scrollbar appearing unexpectedly in scrollable panels."
+      ]
+    }
+  },
+  {
     "title": "Secure SSH Connections & Smarter Docs",
     "version": "0.0.104",
     "date": "2026-09-05",
