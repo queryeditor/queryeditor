@@ -1,5 +1,23 @@
 [
   {
+    "title": "Smoother Native Scrolling",
+    "version": "0.0.106",
+    "date": "2026-09-21",
+    "sha": "1b6a594e5efa8d9ec42ee3aa2b41fa24ab598bac",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.106",
+    "data": {
+      "feactures": [],
+      "Improvements": [
+        "Native scrolling for tables provides smoother performance and a more familiar scrollbar experience.",
+        "Updated file list display for clearer empty‑file indication.",
+        "Refined bottom panel layout for consistent overflow handling."
+      ],
+      "Bug Fixes": [
+        "Fixed table scrolling issue by replacing the custom PerfectScrollbar with native scroll support."
+      ]
+    }
+  },
+  {
     "title": "MariaDB Support & Window Management",
     "version": "0.0.105",
     "date": "2026-09-19",
