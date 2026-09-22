@@ -8,8 +8,6 @@ import Sqlite from '@queryeditor/shared/icons/sqlite.svg'
 export const DATABASES = {
   mysql: {
     name: 'MySQL',
-    description:
-      'MySQL is an open-source relational database management system.',
     available: true,
     icon: Mysql
   },
@@ -23,15 +21,15 @@ export const DATABASES = {
     available: true,
     icon: Cloudflare
   },
+  mariadb: {
+    name: 'MariaDB',
+    available: true,
+    icon: Mariadb
+  },
   postgres: {
     name: 'PostgreSQL',
     available: false,
     icon: Postgresql
-  },
-  mariadb: {
-    name: 'MariaDB',
-    available: false,
-    icon: Mariadb
   },
   sqlserver: {
     name: 'SQL Server',
