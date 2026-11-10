@@ -1,5 +1,22 @@
 [
   {
+    "title": "Groq AI Provider Added",
+    "version": "0.0.107",
+    "date": "2026-11-10",
+    "sha": "fc06502b8def824d129f667c1151b0122a3daa56",
+    "releaseURL": "https://github.com/queryeditor/queryeditor/releases/tag/v0.0.107",
+    "data": {
+      "feactures": [
+        "Added Groq AI provider for production use, expanding AI assistance options."
+      ],
+      "Improvements": [],
+      "Bug Fixes": [
+        "Unified test connection success messages across all database providers.",
+        "Fixed SQLite native binding issues in packaged builds, improving reliability of SQLite connections."
+      ]
+    }
+  },
+  {
     "title": "Smoother Native Scrolling",
     "version": "0.0.106",
     "date": "2026-09-21",
